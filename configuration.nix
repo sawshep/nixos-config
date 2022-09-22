@@ -8,20 +8,10 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./common.nix
       <home-manager/nixos>
     ];
 
-  # NIX
-
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-
-  nixpkgs.config.allowUnfree = true;
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
-
-  # BOOTING
 
   boot.loader.grub = {
     enable = true;
@@ -35,12 +25,9 @@
   # FILESYSTEMS
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
-  nix.settings.auto-optimise-store = true;
 
-  # NETWORKING
 
   networking.hostName = "co";
-  networking.networkmanager.enable = true;
 
   services.openssh.enable = true;
   services.tor.enable = true;
@@ -51,8 +38,6 @@
     drivers = [ pkgs.hplip ]; # HP printer driver
   };
 
-  # VIRTUALIZATION
-
   virtualisation = {
     virtualbox.host.enable = true;
     podman = {
@@ -62,13 +47,6 @@
   };
 
   users.extraGroups.vboxusers.members = [ "me" ];
-
-  # LOCALE
-
-  time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  # DISPLAY
 
   hardware.opengl.enable = true;
 
@@ -87,8 +65,6 @@
     };
   };
 
-  # SOUND
-
   sound.enable = true;
   services.pipewire = {
     enable = true;
@@ -99,39 +75,12 @@
     pulse.enable = true;
   }; 
 
-
-  # Don't forget to set a password with ‘passwd’!
   users.users.me = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
   users.groups.plocate = { };
-
-  # EDITOR
-
-  programs.neovim = {
-  	enable = true;
-	viAlias = true;
-  };
-
-  environment.variables.EDITOR = "nvim";
-
-  # SHELL
-
-  environment.shellAliases = {
-    ll = "ls -l";
-    la = "ls -l --almost-all";
-    ip = "ip --color";
-    untar = "tar -xafv";
-    xxz = "xz -T0 -9e -v";
-    "..." = "cd ../..";
-    "...." = "cd ../../..";
-  };
-
-  programs.bash.promptInit = ''
-    PS1="\u@\h:\w \$ "
-  '';
 
   environment.systemPackages = with pkgs; [
 
@@ -141,11 +90,14 @@
     file
     gcc
     git
+    lsof
     gnumake
+    samba
     gnupg
     home-manager
     htop
     inetutils
+    iotop
     jq
     lm_sensors
     moreutils
@@ -157,7 +109,9 @@
     sqlite
     tldr
     tree
+    unixtools.xxd
     unrar
+    fuse3
     unzip
     wget
     zip
@@ -190,6 +144,9 @@
     ruby_3_1
     sbcl
   ];
+
+  # For accessing Samba shares
+  services.gvfs.enable = true;
 
   # Must be enabled systemwide to work, unfortunately
   programs.steam.enable = true;
