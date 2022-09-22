@@ -87,33 +87,21 @@
     apg
     binutils
     extundelete
-    file
     gcc
-    git
-    lsof
     gnumake
     samba
     gnupg
     home-manager
-    htop
-    inetutils
-    iotop
     jq
-    lm_sensors
-    moreutils
-    networkmanager
     p7zip
-    pciutils
     plocate
     rlwrap
     sqlite
     tldr
-    tree
     unixtools.xxd
     unrar
     fuse3
     unzip
-    wget
     zip
 
     aircrack-ng

@@ -41,4 +41,21 @@
     "..." = "cd ../..";
     "...." = "cd ../../..";
   };
+
+  environment.systemPackages = with pkgs; [
+
+    file
+    git
+    lsof
+    htop
+    inetutils
+    iotop
+    lm_sensors
+    moreutils
+    networkmanager
+    pciutils
+    tree
+    wget
+
+  ];
 }
