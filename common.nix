@@ -15,6 +15,13 @@
 
   networking.networkmanager.enable = true;
 
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+  };
+
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -46,14 +53,15 @@
 
     file
     git
-    lsof
     htop
     inetutils
     iotop
     lm_sensors
+    lsof
     moreutils
     networkmanager
     pciutils
+    podman-compose
     tree
     wget
 

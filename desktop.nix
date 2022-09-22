@@ -26,7 +26,6 @@
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
-
   networking.hostName = "co";
 
   services.openssh.enable = true;
@@ -38,14 +37,7 @@
     drivers = [ pkgs.hplip ]; # HP printer driver
   };
 
-  virtualisation = {
-    virtualbox.host.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-    };
-  };
-
+  virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
 
   hardware.opengl.enable = true;
