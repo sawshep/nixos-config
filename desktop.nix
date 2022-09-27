@@ -86,6 +86,7 @@
     home-manager
     jq
     p7zip
+    glib
     plocate
     rlwrap
     sqlite
