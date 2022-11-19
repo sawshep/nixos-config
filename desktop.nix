@@ -5,28 +5,34 @@
 { config, pkgs, ... }:
 
 {
+  
   imports =
     [
-      ./hardware-configuration.nix
+      ./hardware-configurations/desktop.nix
       ./common.nix
       <home-manager/nixos>
     ];
 
-
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    efiSupport = true;
-    device = "nodev"; # or "nodev" for efi only
+ nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+    };
+    steam = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        libgdiplus
+      ];
+    };
   };
 
+  # Use systemd bootloader
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # FILESYSTEMS
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
-  networking.hostName = "co";
+  networking.hostName = "big";
 
   services.openssh.enable = true;
   services.tor.enable = true;
@@ -37,18 +43,30 @@
     drivers = [ pkgs.hplip ]; # HP printer driver
   };
 
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
 
   hardware.opengl.enable = true;
+  # For Steam
+  hardware.opengl.driSupport32Bit = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" ];
-    # For dual display configuration
-    screenSection = ''
-      Option "metamodes" "DP-2: 3840x2160_144 +0+0, DP-0: 1920x1080_60_0 +3840+120 {rotation=left}"
-    '';
+    exportConfiguration = true;
+
+    # Monitor config
+    #xrandrHeads = [
+    #  {
+    #    output = "DP-2";
+    #    primary = true;
+    #  }
+    #  {
+    #    output = "DP-0";
+    #    monitorConfig = "Option \"Rotate\" \"left\"";
+    #  }
+    #];
 
     displayManager.defaultSession = "xfce";
     desktopManager = {
@@ -58,6 +76,7 @@
   };
 
   sound.enable = true;
+  nixpkgs.config.pulseaudio = true;
   services.pipewire = {
     enable = true;
     media-session.enable = true;
@@ -69,33 +88,30 @@
 
   users.users.me = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" ];
   };
+
 
   users.groups.plocate = { };
 
   environment.systemPackages = with pkgs; [
 
-    apg
     binutils
     extundelete
+    fuse3
     gcc
     gnumake
-    samba
-    gnupg
-    home-manager
     jq
-    p7zip
-    glib
+    mokutil
     plocate
-    rlwrap
+    podman-compose
+    samba
     sqlite
-    tldr
     unixtools.xxd
     unrar
-    fuse3
-    unzip
-    zip
+    ventoy-bin
+    wineWowPackages.stable
+    winetricks
 
     aircrack-ng
     cudaPackages.cudatoolkit
@@ -121,6 +137,8 @@
     heimdall
     safecopy
 
+    steam
+
     python3Full
     ruby_3_1
     sbcl
@@ -131,6 +149,229 @@
 
   # Must be enabled systemwide to work, unfortunately
   programs.steam.enable = true;
+
+  home-manager.users.me = { pkgs, ... }: {
+    nixpkgs.config.allowUnfree = true;
+
+    # Home Manager needs a bit of information about you and the
+    # paths it should manage.
+    home.username = "me";
+    home.homeDirectory = "/home/me";
+
+    programs.bash.enable = true;
+
+    home.sessionPath =  [ "$HOME/bin" ];
+
+    home.shellAliases = {
+      dict = "dict --config ~/dict.conf";
+      hm = "home-manager";
+      sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
+    };
+
+    programs.dircolors = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+
+    home.file = {
+      dict = {
+        target = "./.config/dict.conf";
+        text = "server dict.org\n";
+      };
+      sbcl = {
+        target = "./.config/sbclrc";
+        text = ''
+          #-quicklisp
+          (let ((quicklisp-init (merge-pathnames ".local/share/quicklisp/setup.lisp"
+          				       (user-homedir-pathname))))
+            (when (probe-file quicklisp-init)
+              (load quicklisp-init)))
+        '';
+      };
+      discord = {
+        target = "./.config/discord/settings.json";
+        text = ''
+          {
+            "SKIP_HOST_UPDATE": true,
+            "IS_MAXIMIZED": false,
+            "IS_MINIMIZED": false,
+            "WINDOW_BOUNDS": {
+              "x": 245,
+              "y": 582,
+              "width": 1016,
+              "height": 764
+            }
+          }
+        '';
+      };
+    };
+
+    home.packages = with pkgs; [
+
+      bitwarden
+      discord
+      easyeffects
+      gimp
+      imv
+      libreoffice
+      nextcloud-client
+      pavucontrol
+      spotify
+      thunderbird
+      tor-browser-bundle-bin
+      transmission-qt
+      yuzu
+
+      ansible
+      dict
+      tenacity
+      muse
+      nnn
+      onionshare
+      pandoc
+      ranger
+      screenfetch
+      torsocks
+      xboxdrv
+      xclip
+      youtube-dl
+
+      rubocop
+      rust-analyzer
+      scry
+      solargraph
+      tree-sitter
+
+    ];
+
+    programs.firefox.enable = true;
+    programs.librewolf.enable = true;
+    #programs.librewolf = {
+    #  enable = true;
+    #  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    #    ipfs-companion
+    #  ];
+    #};
+    programs.mpv.enable = true;
+    programs.zathura.enable = true;
+
+    programs.git = {
+      enable = true;
+      userName = "Sawyer Shepherd";
+      userEmail = "contact@sawyershepherd.org";
+    };
+
+    programs.ssh.extraConfig = ''
+      Host github.com
+        IdentityFile ~/.ssh/github
+        IdentitiesOnly yes
+    '';
+
+    programs.gpg = {
+      enable = true;
+      #homedir = "${config.xdg.dataHome}/gnupg";
+    };
+
+    programs.neovim = {
+      enable = true;
+
+      coc = {
+        enable = true;
+        settings.crystal = {
+          command = "scry";
+          filetypes = [ "crystal" "cr" ];
+        };
+      };
+
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+
+      withNodeJs = true;
+      withRuby = true;
+      withPython3 = true;
+
+      plugins = with pkgs.vimPlugins; [
+
+        lightline-vim
+        nnn-vim
+        neoterm
+        nvim-treesitter
+        vim-fugitive
+        vim-lightline-coc
+        vim-nix
+        vim-sandwich
+        vim-slime
+        vim-vinegar
+        vimspector
+
+        coc-css
+        coc-git
+        coc-highlight
+        coc-html
+        coc-java
+        coc-json
+        coc-pairs
+        coc-prettier
+        coc-pyright
+        coc-rls
+        coc-solargraph
+        coc-yaml
+
+      ];
+      extraConfig = ''
+        set signcolumn=yes
+        set ignorecase
+        set smartcase
+        filetype plugin indent on
+        set tabstop=4
+        set softtabstop=0
+        set expandtab
+        set shiftwidth=4
+        set smarttab
+        set number relativenumber
+        set cursorline
+        set tw=60
+        set encoding=UTF-8
+        set mouse=a
+        noremap Y y$
+        let g:slime_target = "neovim"
+        tnoremap <Esc> <C-\><C-n>
+      '';
+    };
+
+    xdg = {
+      enable = true;
+      #mimeApps.enable = true;
+      userDirs = {
+        enable = true;
+        createDirectories = true;
+        desktop = "$HOME/desk";
+        documents = "$HOME/doc";
+        download = "$HOME/down";
+        music = "$HOME/music";
+        pictures = "$HOME/media";
+        publicShare = "$HOME/pub";
+        templates = "$HOME/temp";
+        videos = "$HOME/media";
+      };
+    };
+
+    # This value determines the Home Manager release that your
+    # configuration is compatible with. This helps avoid breakage
+    # when a new Home Manager release introduces backwards
+    # incompatible changes.
+    #
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    home.stateVersion = "22.05";
+
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
+    programs.home-manager.path = "$HOME/proj/home-manager";
+  	
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

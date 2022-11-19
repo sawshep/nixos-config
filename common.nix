@@ -51,17 +51,23 @@
 
   environment.systemPackages = with pkgs; [
 
+    apg
     file
     git
+    glib
+    gnupg
     htop
     inetutils
     iotop
+    killall
     lm_sensors
     lsof
     moreutils
     networkmanager
+    p7zip
     pciutils
-    podman-compose
+    rlwrap
+    tldr
     tree
     wget
 
