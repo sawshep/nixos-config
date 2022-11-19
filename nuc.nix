@@ -87,6 +87,7 @@
   services.samba-wsdd.enable = true;
   services.samba = {
     enable = true;
+    enableNmbd = true;
     securityType = "user";
     extraConfig = ''
       workgroup = WORKGROUP
@@ -123,6 +124,11 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+  #networking.firewall = {
+  #  enable = true;
+  #  allowedTCPPorts = [ 8000 5357 ];
+  #  allowedUDPPorts = [ 3702 ];
+  #};
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
