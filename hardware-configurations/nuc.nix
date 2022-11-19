@@ -29,13 +29,11 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  ## Use the GRUB 2 boot loader.
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.version = 2;
-  ## Define on which hard drive you want to install Grub.
-  #boot.loader.grub.device = "/dev/nvme0n1"; # or "nodev" for efi only
-  # Use systemd bootloader
-  boot.loader.systemd-boot.enable = true;
+  # Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  # Define on which hard drive you want to install Grub.
+  boot.loader.grub.device = "nodev"; # or "nodev" for efi only
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
