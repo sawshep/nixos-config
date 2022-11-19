@@ -32,6 +32,12 @@
   };
   environment.variables.EDITOR = "nvim";
 
+  programs.ssh.extraConfig = ''
+    Host github.com
+      IdentityFile ~/.ssh/github
+      IdentitiesOnly yes
+  '';
+
   programs.bash.promptInit = ''
     if [ "$LOGNAME" = root ] || [ "`id -u`" -eq 0 ] ; then
       PS1='\[\033[01;31m\]\u@\h:\w \$\[\033[00m\] '

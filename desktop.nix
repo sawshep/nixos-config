@@ -261,12 +261,6 @@
       userEmail = "contact@sawyershepherd.org";
     };
 
-    programs.ssh.extraConfig = ''
-      Host github.com
-        IdentityFile ~/.ssh/github
-        IdentitiesOnly yes
-    '';
-
     programs.gpg = {
       enable = true;
       #homedir = "${config.xdg.dataHome}/gnupg";
