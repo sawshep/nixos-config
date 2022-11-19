@@ -26,8 +26,9 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   programs.neovim = {
-  	enable = true;
-	viAlias = true;
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
   };
   environment.variables.EDITOR = "nvim";
 
