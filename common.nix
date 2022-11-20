@@ -35,7 +35,7 @@
   programs.ssh.extraConfig = ''
     Host *
       ServerAliveInterval 30
-      ServerAliveCountMax6
+      ServerAliveCountMax 6
     Host github.com
       IdentityFile ~/.ssh/github
       IdentitiesOnly yes
