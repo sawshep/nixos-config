@@ -217,6 +217,7 @@
 
       bitwarden
       discord
+      prusa-slicer
       easyeffects
       gimp
       imv
