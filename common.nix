@@ -33,6 +33,9 @@
   environment.variables.EDITOR = "nvim";
 
   programs.ssh.extraConfig = ''
+    Host *
+      ServerAliveInterval 30
+      ServerAliveCountMax6
     Host github.com
       IdentityFile ~/.ssh/github
       IdentitiesOnly yes

@@ -150,13 +150,6 @@
   # Must be enabled systemwide to work, unfortunately
   programs.steam.enable = true;
 
-  programs.ssh.extraConfig = ''
-    Host github.com
-      IdentityFile /home/me/.ssh/github
-      IdentitiesOnly yes
-  '';
-
-
   home-manager.users.me = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
