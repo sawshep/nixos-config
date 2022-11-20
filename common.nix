@@ -76,6 +76,7 @@
     rlwrap
     tldr
     tree
+    unzip
     wget
 
   ];
