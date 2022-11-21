@@ -222,6 +222,8 @@
       tor-browser-bundle-bin
       transmission-qt
       yuzu
+      freecad
+      blender
 
       ansible
       dict
