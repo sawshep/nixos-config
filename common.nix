@@ -72,6 +72,7 @@
     killall
     lm_sensors
     lsof
+    macchanger
     moreutils
     networkmanager
     p7zip
