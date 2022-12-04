@@ -209,21 +209,24 @@
     home.packages = with pkgs; [
 
       bitwarden
+      blender
       discord
-      prusa-slicer
       easyeffects
+      freecad
       gimp
       imv
       libreoffice
       nextcloud-client
+      openscad
       pavucontrol
+      prusa-slicer
+      solvespace
       spotify
+      strawberry
       thunderbird
       tor-browser-bundle-bin
       transmission-qt
       yuzu
-      freecad
-      blender
 
       ansible
       dict
