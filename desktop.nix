@@ -226,6 +226,8 @@
       thunderbird
       tor-browser-bundle-bin
       transmission-qt
+      xfce.thunar-archive-plugin
+      xfce.thunar-media-tags-plugin
       yuzu
 
       ansible
