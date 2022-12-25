@@ -68,6 +68,8 @@
 
   users.groups.plocate = { };
 
+  hardware.bluetooth.enable = true;
+
   environment.systemPackages = with pkgs; [
 
     binutils
