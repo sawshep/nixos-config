@@ -186,31 +186,33 @@
     home.packages = with pkgs; [
 
       bitwarden
+      blender
+      digikam
       discord
-      prusa-slicer
       easyeffects
+      freecad
       gimp
       imv
+      kcalc
       libreoffice
       nextcloud-client
       pavucontrol
+      prusa-slicer
       spotify
       thunderbird
       tor-browser-bundle-bin
       transmission-qt
       yuzu
-      freecad
-      blender
 
       ansible
       dict
-      tenacity
       muse
       nnn
       onionshare
       pandoc
       ranger
       screenfetch
+      tenacity
       torsocks
       xboxdrv
       xclip
