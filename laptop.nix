@@ -29,8 +29,25 @@
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = [ pkgs.hplip ]; # HP printer driver
+    browsing = true;
+    drivers = with pkgs; [
+
+      brgenml1cupswrapper
+      brgenml1lpr
+      brlaser
+      cnijfilter2
+      gutenprint
+      gutenprintBin
+      hplip
+      postscript-lexmark
+      samsung-unified-linux-driver
+      splix
+
+    ];
   };
+  # Search for network printers
+  services.avahi.enable = true;
+  services.avahi.openFirewall = true;
 
   #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
