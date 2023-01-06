@@ -64,6 +64,7 @@
   environment.systemPackages = with pkgs; [
 
     apg
+    bc
     file
     git
     glib
