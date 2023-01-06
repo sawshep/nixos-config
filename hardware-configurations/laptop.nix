@@ -21,20 +21,36 @@
     plymouth.enable = true;
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
+    kernelParams = [ "resume_offset=47517297" ];
+    resumeDevice = "/dev/disk/by-uuid/5f412f9a-4adb-4b64-809b-43dd099fa601";
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/5f412f9a-4adb-4b64-809b-43dd099fa601";
-      fsType = "btrfs";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/5f412f9a-4adb-4b64-809b-43dd099fa601";
+    fsType = "btrfs";
+    options = [ "relatime" ];
+  };
 
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/5f412f9a-4adb-4b64-809b-43dd099fa601";
+    fsType = "btrfs";
+    options = [ "subvol=swap" "noatime" ];
+  };
+
+  #systemd.sleep.extraConfig = ''
+  #  [Sleep]
+  #  HibernateMode=shutdown
+  #'';
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/7EB2-92E8";
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices = [ {
+    device = "/swap/swapfile";
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
