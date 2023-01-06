@@ -220,6 +220,8 @@
       thunderbird
       tor-browser-bundle-bin
       transmission-qt
+      xfce.xfce4-pulseaudio-plugin
+      xfce.xfce4-volumed-pulse
       yuzu
 
       ansible
