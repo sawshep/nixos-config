@@ -48,6 +48,7 @@
   # Search for network printers
   services.avahi.enable = true;
   services.avahi.openFirewall = true;
+  services.resolved.enable = true;
 
   #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
