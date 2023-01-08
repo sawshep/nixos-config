@@ -26,6 +26,8 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
+  powerManagement.powertop.enable = true;
+
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
@@ -81,7 +83,7 @@
 
   users.users.me = {
     isNormalUser = true;
-    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" ];
+    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video "];
   };
 
   users.groups.plocate = { };
@@ -105,6 +107,7 @@
     mokutil
     plocate
     podman-compose
+    powertop
     samba
     sqlite
     unixtools.xxd
