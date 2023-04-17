@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./nix-alien.nix ];
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -14,6 +15,12 @@
   nix.settings.auto-optimise-store = true;
 
   networking.networkmanager.enable = true;
+  services.resolved.enable = true;
+
+  # For accessing Samba shares
+  services.gvfs.enable = true;
+
+  services.usbmuxd.enable = true;
 
   virtualisation = {
     podman = {
@@ -51,6 +58,9 @@
     fi
   '';
 
+  programs.gnupg.agent.pinentryFlavor = "tty";
+  programs.gnupg.agent.enable = true;
+
   environment.shellAliases = {
     ll = "ls -l";
     la = "ls -l --almost-all";
@@ -63,28 +73,53 @@
 
   environment.systemPackages = with pkgs; [
 
-    apg
-    bc
-    file
+    autoconf
+    binutils
+    gcc
     git
     glib
+    gnumake
+
+    fuse3
+    ifuse
+    jmtpfs
+    libimobiledevice
+    samba
+
+    apg
     gnupg
-    htop
-    inetutils
-    iotop
-    killall
+    mokutil
+    pinentry
+
+    hdparm
     lm_sensors
-    lsof
     macchanger
-    moreutils
-    networkmanager
-    p7zip
     pciutils
+    usbutils
+
+    bc
+    file
+    htop
+    iotop
+    lsof
+    moreutils
+    plocate
+    pmount
     rlwrap
     tldr
     tree
-    unzip
     wget
+    killall
+
+    ffmpeg
+    inetutils
+    networkmanager
+    podman-compose
+
+    p7zip
+    unrar
+    unzip
+    zip
 
   ];
 }

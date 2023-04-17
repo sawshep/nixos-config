@@ -26,7 +26,10 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
-  powerManagement.powertop.enable = true;
+  #powerManagement.powertop.enable = true;
+
+
+  programs.steam.enable = true;
 
   # Enable CUPS to print documents.
   services.printing = {
@@ -50,7 +53,9 @@
   # Search for network printers
   services.avahi.enable = true;
   services.avahi.openFirewall = true;
-  services.resolved.enable = true;
+
+  services.tor.enable = true;
+  services.tor.client.enable = true;
 
   #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
@@ -98,20 +103,18 @@
 
   environment.systemPackages = with pkgs; [
 
-    binutils
     extundelete
-    fuse3
-    gcc
-    gnumake
     jq
-    mokutil
-    plocate
-    podman-compose
+    libticables2
+    libticalcs2
+    libticonv
+    libtifiles2
+    micropython
+    pico-sdk
     powertop
-    samba
     sqlite
+    steam-run
     unixtools.xxd
-    unrar
     ventoy-bin
     wineWowPackages.stable
     winetricks
@@ -121,6 +124,7 @@
     exiftool
     gobuster
     hashcat
+    hcxtools
     john
     nmap
     traceroute
@@ -136,7 +140,6 @@
     binwalk
     ddrescue
     foremost
-    hdparm
     heimdall
     safecopy
 
@@ -144,9 +147,6 @@
     ruby_3_1
     sbcl
   ];
-
-  # For accessing Samba shares
-  services.gvfs.enable = true;
 
   home-manager.users.me = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
@@ -158,12 +158,14 @@
 
     programs.bash.enable = true;
 
+
     home.sessionPath =  [ "$HOME/bin" ];
 
     home.shellAliases = {
       dict = "dict --config ~/dict.conf";
       hm = "home-manager";
       sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
+      clip = "xclip -selection clipboard";
     };
 
     programs.dircolors = {
@@ -208,18 +210,28 @@
 
       bitwarden
       blender
+      bottles
+      caffeine-ng
       digikam
       discord
       easyeffects
       freecad
+      gcs
       gimp
+      gpa
+      hugo
       imv
       kcalc
+      kdenlive
       libreoffice
+      maxima
+      minetest
       nextcloud-client
       pavucontrol
       prusa-slicer
       spotify
+      strawberry
+      thonny
       thunderbird
       tor-browser-bundle-bin
       transmission-qt
@@ -246,8 +258,46 @@
       scry
       solargraph
       tree-sitter
+      clojure
+      clojure-lsp
+      leiningen
+      clooj
 
     ];
+
+    programs.emacs = {
+      enable = false;
+      package = pkgs.emacs-gtk;
+      extraPackages = emacsPackages: (with emacsPackages; [
+
+        elisp-format
+        evil
+        lispy
+        lispyville
+        magit
+        use-package
+
+      ]);
+      extraConfig = ''
+        (require 'use-package)
+
+        (use-package evil)
+        (use-package magit)
+        (use-package elisp-format)
+        ;(use-package lispy)
+        ;(use-package lispyville)
+        (evil-mode 1)
+        (add-hook 'lispy-mode-hook #'lispyville-mode)
+
+        (recentf-mode 1)
+        (setq history-length 25)
+        (savehist-mode 1)
+        (save-place-mode 1)
+        (global-auto-revert-mode 1)
+        (setq global-auto-revert-non-file-buffers t)
+
+      '';
+    };
 
     programs.firefox.enable = true;
     programs.librewolf.enable = true;
@@ -268,7 +318,6 @@
 
     programs.gpg = {
       enable = true;
-      #homedir = "${config.xdg.dataHome}/gnupg";
     };
 
     programs.neovim = {
@@ -341,7 +390,7 @@
 
     xdg = {
       enable = true;
-      #mimeApps.enable = true;
+      mime.enable = true;
       userDirs = {
         enable = true;
         createDirectories = true;
