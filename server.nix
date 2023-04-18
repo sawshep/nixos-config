@@ -97,14 +97,14 @@
     enable = true;
     allowedTCPPorts = [
 
-      21027 # Syncthing
-      22000
+      22000 # Syncthing
       31415 # SSH
 
     ];
     allowedUDPPorts = [
 
-      22000 # Syncthing
+      21027 # Syncthing
+      22000
 
     ];
   };
