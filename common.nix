@@ -22,6 +22,8 @@
 
   services.usbmuxd.enable = true;
 
+  users.groups.plocate = { };
+
   virtualisation = {
     podman = {
       enable = true;
@@ -101,15 +103,16 @@
     file
     htop
     iotop
+    killall
     lsof
     moreutils
+    nmap
     plocate
     pmount
     rlwrap
     tldr
     tree
     wget
-    killall
 
     ffmpeg
     inetutils
