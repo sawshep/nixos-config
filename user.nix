@@ -88,37 +88,7 @@
         target = "./.librewolf/.stignore";
 	text = ''
           /librewolf.overrides.cfg
-          /mvji40do.default/addonStartup.json.lz4
-          /mvji40do.default/AlternateServices-1.txt
-          /mvji40do.default/AlternateServices.txt
-          /mvji40do.default/broadcast-listeners.json
-          /mvji40do.default/cert_override.txt
-          /mvji40do.default/compatibility.ini
-          /mvji40do.default/containers.json
-          /mvji40do.default/cookies.sqlite
-          /mvji40do.default/cookies.sqlite-wal
-          /mvji40do.default/datareporting
-          /mvji40do.default/enumerate_devices.txt
-          /mvji40do.default/failover.jsc
-          /mvji40do.default/favicons.sqlite
-          /mvji40do.default/favicons.sqlite-wal
-          /mvji40do.default/formhistory.sqlite
-          /mvji40do.default/gmp
-          /mvji40do.default/key4.db
-          /mvji40do.default/notificationstore.json
-          /mvji40do.default/pkcs11.txt
-          /mvji40do.default/places.sqlite-wal
-          /mvji40do.default/security_state
-          /mvji40do.default/serviceworker.txt
-          /mvji40do.default/sessionCheckpoints.json
-          /mvji40do.default/sessionstore-backups
-          /mvji40do.default/SiteSecurityServiceState.txt
-          /mvji40do.default/storage/temporary/
-          /mvji40do.default/storage-sync-v2.sqlite-shm
-          /mvji40do.default/storage-sync-v2.sqlite-wal
-          /mvji40do.default/Telemetry.FailedProfileLocks.txt
-          /mvji40do.default/times.json
-          /mvji40do.default/webappsstore.sqlite
+          /mvji40do.default/lock
 	'';
       };
       dict = {
