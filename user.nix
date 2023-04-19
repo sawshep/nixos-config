@@ -88,41 +88,40 @@
         target = "./.librewolf/.stignore";
 	text = ''
           /librewolf.overrides.cfg
-          /mvji40do.default/
-              addonStartup.json.lz4
-              AlternateServices-1.txt
-              AlternateServices.txt
-              broadcast-listeners.json
-              cert_override.txt
-              compatibility.ini
-              containers.json
-              cookies.sqlite
-              cookies.sqlite-wal
-              datareporting
-              enumerate_devices.txt
-              failover.jsc
-              favicons.sqlite
-              favicons.sqlite-wal
-              formhistory.sqlite
-              gmp
-              key4.db
-              notificationstore.json
-              pkcs11.txt
-              places.sqlite-wal
-              protections.sqlite
-              security_state
-              serviceworker.txt
-              sessionCheckpoints.json
-              sessionstore-backups
-              settings
-              SiteSecurityServiceState.txt
-              storage/temporary/
-              storage-sync-v2.sqlite
-              storage-sync-v2.sqlite-shm
-              storage-sync-v2.sqlite-wal
-              Telemetry.FailedProfileLocks.txt
-              times.json
-              webappsstore.sqlite
+          /mvji40do.default/addonStartup.json.lz4
+          /mvji40do.default/AlternateServices-1.txt
+          /mvji40do.default/AlternateServices.txt
+          /mvji40do.default/broadcast-listeners.json
+          /mvji40do.default/cert_override.txt
+          /mvji40do.default/compatibility.ini
+          /mvji40do.default/containers.json
+          /mvji40do.default/cookies.sqlite
+          /mvji40do.default/cookies.sqlite-wal
+          /mvji40do.default/datareporting
+          /mvji40do.default/enumerate_devices.txt
+          /mvji40do.default/failover.jsc
+          /mvji40do.default/favicons.sqlite
+          /mvji40do.default/favicons.sqlite-wal
+          /mvji40do.default/formhistory.sqlite
+          /mvji40do.default/gmp
+          /mvji40do.default/key4.db
+          /mvji40do.default/notificationstore.json
+          /mvji40do.default/pkcs11.txt
+          /mvji40do.default/places.sqlite-wal
+          /mvji40do.default/protections.sqlite
+          /mvji40do.default/security_state
+          /mvji40do.default/serviceworker.txt
+          /mvji40do.default/sessionCheckpoints.json
+          /mvji40do.default/sessionstore-backups
+          /mvji40do.default/settings
+          /mvji40do.default/SiteSecurityServiceState.txt
+          /mvji40do.default/storage/temporary/
+          /mvji40do.default/storage-sync-v2.sqlite
+          /mvji40do.default/storage-sync-v2.sqlite-shm
+          /mvji40do.default/storage-sync-v2.sqlite-wal
+          /mvji40do.default/Telemetry.FailedProfileLocks.txt
+          /mvji40do.default/times.json
+          /mvji40do.default/webappsstore.sqlite
 	'';
       };
       dict = {
