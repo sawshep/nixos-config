@@ -108,15 +108,12 @@
           /mvji40do.default/notificationstore.json
           /mvji40do.default/pkcs11.txt
           /mvji40do.default/places.sqlite-wal
-          /mvji40do.default/protections.sqlite
           /mvji40do.default/security_state
           /mvji40do.default/serviceworker.txt
           /mvji40do.default/sessionCheckpoints.json
           /mvji40do.default/sessionstore-backups
-          /mvji40do.default/settings
           /mvji40do.default/SiteSecurityServiceState.txt
           /mvji40do.default/storage/temporary/
-          /mvji40do.default/storage-sync-v2.sqlite
           /mvji40do.default/storage-sync-v2.sqlite-shm
           /mvji40do.default/storage-sync-v2.sqlite-wal
           /mvji40do.default/Telemetry.FailedProfileLocks.txt
