@@ -106,7 +106,6 @@
               formhistory.sqlite
               gmp
               key4.db
-              lock
               notificationstore.json
               pkcs11.txt
               places.sqlite-wal
