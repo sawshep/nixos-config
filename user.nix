@@ -116,8 +116,7 @@
               sessionstore-backups
               settings
               SiteSecurityServiceState.txt
-              storage
-              storage.sqlite
+              storage/temporary/
               storage-sync-v2.sqlite
               storage-sync-v2.sqlite-shm
               storage-sync-v2.sqlite-wal
