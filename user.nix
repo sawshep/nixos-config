@@ -38,20 +38,23 @@
     guiAddress = "localhost:8384";
     overrideFolders = true;
     folders = {
-      "desk" = {
+      "Desktop" = {
         path = "/home/me/desk";
       };
-      "doc" = {
+      "Documents" = {
         path = "/home/me/doc";
       };
-      "down" = {
+      "Downloads" = {
         path = "/home/me/down";
       };
-      "music" = {
+      "Music" = {
         path = "/home/me/music";
       };
-      "media" = {
+      "Media" = {
         path = "/home/me/media";
+      };
+      "Librewolf" = {
+      	path = "/home/me/.librewolf";
       };
     };
   };
@@ -81,6 +84,49 @@
     };
 
     home.file = {
+      stignore = {
+        target = "./.librewolf/.stignore";
+	text = ''
+          /librewolf.overrides.cfg
+          /mvji40do.default/
+              addonStartup.json.lz4
+              AlternateServices-1.txt
+              AlternateServices.txt
+              broadcast-listeners.json
+              cert_override.txt
+              compatibility.ini
+              containers.json
+              cookies.sqlite
+              cookies.sqlite-wal
+              datareporting
+              enumerate_devices.txt
+              failover.jsc
+              favicons.sqlite
+              favicons.sqlite-wal
+              formhistory.sqlite
+              gmp
+              key4.db
+              lock
+              notificationstore.json
+              pkcs11.txt
+              places.sqlite-wal
+              protections.sqlite
+              security_state
+              serviceworker.txt
+              sessionCheckpoints.json
+              sessionstore-backups
+              settings
+              SiteSecurityServiceState.txt
+              storage
+              storage.sqlite
+              storage-sync-v2.sqlite
+              storage-sync-v2.sqlite-shm
+              storage-sync-v2.sqlite-wal
+              Telemetry.FailedProfileLocks.txt
+              times.json
+              webappsstore.sqlite
+	'';
+      };
       dict = {
         target = "./.config/dict.conf";
         text = "server dict.org\n";
