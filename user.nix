@@ -143,7 +143,6 @@
       libreoffice
       maxima
       minetest
-      nextcloud-client
       pa_applet
       pavucontrol
       prusa-slicer

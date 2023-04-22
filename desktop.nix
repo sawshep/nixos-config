@@ -216,7 +216,6 @@
       gimp
       imv
       libreoffice
-      nextcloud-client
       openscad
       pavucontrol
       prusa-slicer
