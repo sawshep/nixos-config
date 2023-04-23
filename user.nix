@@ -56,6 +56,9 @@
       "Librewolf" = {
       	path = "/home/me/.librewolf";
       };
+      "Thunderbird" = {
+      	path = "/home/me/.thunderbird";
+      };
     };
   };
 
