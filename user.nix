@@ -140,6 +140,8 @@
       gimp
       gpa
       hugo
+      hunspell
+      hunspellDicts.en-us-large
       imv
       kcalc
       kdenlive

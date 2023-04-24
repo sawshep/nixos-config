@@ -96,8 +96,6 @@
     traceroute
     wireshark
 
-    hunspell
-    hunspellDicts.en-us-large
     libbs2b
     libebur128
     libsndfile
