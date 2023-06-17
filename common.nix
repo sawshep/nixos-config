@@ -103,6 +103,7 @@
     glib
     gnumake
 
+    exfatprogs
     fuse3
     ifuse
     jmtpfs
