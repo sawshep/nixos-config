@@ -93,7 +93,7 @@
   };
   
   networking.firewall = {
-    enable = true;
+    enable = false;
     allowedTCPPorts = [
 
       22000 # Syncthing

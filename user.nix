@@ -37,27 +37,87 @@
     group = "users";
     guiAddress = "localhost:8384";
     overrideFolders = true;
+    devices = {
+	"HP EliteBook 835 G7" = { id = "PDH4BFZ-4FU2BYM-XY2TZNM-YMC3D6Y-G6K2JYE-KKFFVBH-7NRQU55-KA6HNAX"; };
+	"ChangWang CW56-58" = { id = "FE52R5J-66HHL7H-JPQILZO-4V4QEQ6-NYXJRXW-CI6B3VN-6A4NEYI-B76ORQQ"; };
+    };
     folders = {
       "Desktop" = {
         path = "/home/me/desk";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
       };
       "Documents" = {
         path = "/home/me/doc";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
       };
       "Downloads" = {
         path = "/home/me/down";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
       };
       "Music" = {
         path = "/home/me/music";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
       };
       "Media" = {
         path = "/home/me/media";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
       };
       "Librewolf" = {
       	path = "/home/me/.librewolf";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
       };
       "Thunderbird" = {
       	path = "/home/me/.thunderbird";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
       };
     };
   };
