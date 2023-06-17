@@ -29,6 +29,8 @@
     extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video "];
   };
 
+  programs.openvpn3.enable = true;
+
   services.syncthing = {
     enable = true;
     dataDir = "/home/me";
@@ -281,6 +283,7 @@
 
       '';
     };
+
 
     programs.firefox.enable = true;
     programs.librewolf.enable = true;
