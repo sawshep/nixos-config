@@ -28,25 +28,6 @@
 
   programs.steam.enable = true;
 
-  # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    browsing = true;
-    drivers = with pkgs; [
-
-      brgenml1cupswrapper
-      brgenml1lpr
-      brlaser
-      cnijfilter2
-      gutenprint
-      gutenprintBin
-      hplip
-      postscript-lexmark
-      samsung-unified-linux-driver
-      splix
-
-    ];
-  };
   # Search for network printers
   services.avahi.enable = true;
   services.avahi.openFirewall = true;

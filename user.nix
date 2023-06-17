@@ -159,6 +159,7 @@
       transmission-qt
       xfce.xfce4-pulseaudio-plugin
       xfce.xfce4-volumed-pulse
+      system-config-printer
       yuzu
 
       ansible
