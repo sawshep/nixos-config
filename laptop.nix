@@ -10,7 +10,6 @@
       ./hardware-configurations/laptop.nix
       ./common.nix
       ./user.nix
-      <home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.

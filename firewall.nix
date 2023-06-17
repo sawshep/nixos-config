@@ -11,7 +11,6 @@
       ./common.nix
       ./user.nix
       ./server.nix
-      <home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
