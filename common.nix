@@ -142,6 +142,7 @@
 
     ffmpeg
     inetutils
+    dig
     networkmanager
     podman-compose
 
