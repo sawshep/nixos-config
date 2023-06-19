@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtlwifi_new config.boot.kernelPackages.rtl8821cu ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/5bd1c2c9-a580-4904-bad2-d1a68423d934";
