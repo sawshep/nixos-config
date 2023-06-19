@@ -33,8 +33,8 @@
 
   services.syncthing = {
     enable = true;
-    dataDir = "/home/me";
     openDefaultPorts = true;
+    dataDir = "/home/me";
     user = "me";
     group = "users";
     guiAddress = "localhost:8384";

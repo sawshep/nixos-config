@@ -11,45 +11,12 @@
     extraGroups = [ "wheel" ];
   };
 
-  #networking.nat = {
-  #  enable = true;
-  #  internalInterfaces = ["ve-+"];
-  #  externalInterface = "eno1";
-  #  enableIPv6 = true;
-  #};
-
-  #systemd.services.vaultwarden = {
-  #  description = "Vaultwarden Podman Container";
-  #  requires = [ "podman.service" ];
-  #  after = [ "podman.service" ];
-
-  #  serviceConfig = {
-  #    Type = "simple";
-  #    ExecStartPre = ''
-  #      ${pkgs.podman}/bin/podman pull vaultwarden/server
-  #      ${pkgs.podman}/bin/podman stop vaultwarden || true
-  #      ${pkgs.podman}/bin/podman rm vaultwarden || true
-  #    '';
-  #    ExecStart = ''
-  #      ${pkgs.podman}/bin/podman run --name vaultwarden \
-  #        -p 8000:80 \
-  #        -p 3012:3012 \
-  #        -v /var/lib/vaultwarden:/data \
-  #        --restart=always \
-  #        vaultwarden/server
-  #    '';
-  #    ExecStop = "${pkgs.podman}/bin/podman stop vaultwarden";
-  #    ExecReload = "${pkgs.podman}/bin/podman restart vaultwarden";
-  #    TimeoutStartSec = "5m";
-  #    KillMode = "mixed";
-  #  };
-  #};
-
   services.openssh = {
     enable = true;
+    ports = [ 31415 ];
+    openFirewall = true;
     passwordAuthentication = false;
     permitRootLogin = "no";
-    ports = [ 31415 ];
   };
 
   services.fail2ban = {
@@ -57,12 +24,40 @@
     maxretry = 10;
   };
 
+  services.caddy = {
+    enable = true;
+    extraConfig = ''
+      spaceheaterlab.net {
+        root * /srv/www
+
+	redir /jellyfin /jellyfin/
+	reverse_proxy /jellyfin/* localhost:8096
+
+	redir /jellyseerr /jellyseerr/
+	reverse_proxy /jellyseerr/* localhost:5055
+
+	file_server
+	encode gzip
+      }
+    '';
+  };
+
   services.jellyfin.enable = true;
+  services.transmission.enable = true;
+  services.jellyseerr.enable = true;
+  services.prowlarr.enable = true;
+  services.radarr.enable = true;
+  services.sonarr.enable = true;
 
   services.samba = {
-    enable = false;
+    openFirewall = true;
+    package = pkgs.sambaFull; # For printer support
+    enable = true;
     enableNmbd = true;
     securityType = "user";
+      #load printers = yes
+      #printing = cups
+      #printcap name = cups
     extraConfig = ''
       workgroup = WORKGROUP
       server string = Jellyfin Samba %v Share
@@ -79,31 +74,45 @@
       invalid users = root
     '';
     shares = {
+      #printers = {
+      #  path = "/var/spool/samba";
+      #  public = "yes";
+      #  browseable = "yes";
+      #  "guest ok" = "yes";
+      #  writeable = "no";
+      #  printable = "yes";
+      #  "create mode" = "0700";
+      #};
       Jellyfin = {
         path = "/srv/Shares/Jellyfin";
-        browseable = "yes";
-        "read only" = "no";
+	public = "yes";
+        "guest only" = "yes";
         "guest ok" = "yes";
-        "create mask" = "0644";
-        "directory mask" = "0755";
-        #"force user" = "username";
-        #"force group" = "groupname";
+	writable = "yes";
+        "create mask" = "777";
+        browseable = "yes";
       }; 
     };
   };
+
+  # Allow printing over network shares with Samba
+  systemd.tmpfiles.rules = [
+    "d /var/spool/samba 1777 root root -"
+  ];
   
   networking.firewall = {
     enable = false;
     allowedTCPPorts = [
 
+      5355 # LLMNR
+      5357 # WSD
       22000 # Syncthing
-      31415 # SSH
 
     ];
     allowedUDPPorts = [
 
       21027 # Syncthing
-      22000
+      22000 # Syncthing
 
     ];
   };
