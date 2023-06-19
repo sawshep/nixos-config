@@ -1,7 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./nix-alien.nix ];
+  imports = [
+    ./nix-alien.nix
+    "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" # Sops
+    <home-manager/nixos>
+  ];
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
