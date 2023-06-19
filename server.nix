@@ -15,8 +15,10 @@
     enable = true;
     ports = [ 31415 ];
     openFirewall = true;
-    passwordAuthentication = false;
-    permitRootLogin = "no";
+    settings = {
+      passwordAuthentication = false;
+      permitRootLogin = "no";
+    };
   };
 
   services.fail2ban = {
