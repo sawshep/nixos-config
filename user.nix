@@ -17,8 +17,7 @@
   nixpkgs.config.pulseaudio = true;
   services.pipewire = {
     enable = true;
-    media-session.enable = true;
-    wireplumber.enable = false;
+    wireplumber.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
