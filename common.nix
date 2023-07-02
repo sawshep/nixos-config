@@ -3,7 +3,8 @@
 {
   imports = [
     ./nix-alien.nix
-    "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" # Sops
+    # NixOS SOPS
+    "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     <home-manager/nixos>
   ];
   nix.extraOptions = ''
@@ -115,6 +116,7 @@
     samba
 
     apg
+    age
     gnupg
     mokutil
     pinentry
