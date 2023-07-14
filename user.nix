@@ -30,6 +30,8 @@
 
   programs.openvpn3.enable = true;
 
+  programs.steam.enable = true;
+
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -189,6 +191,7 @@
 
     home.packages = with pkgs; [
 
+      anki
       bitwarden
       blender
       bottles
@@ -214,13 +217,14 @@
       prusa-slicer
       spotify
       strawberry
+      system-config-printer
       thonny
       thunderbird
       tor-browser-bundle-bin
       transmission-qt
+      xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
       xfce.xfce4-volumed-pulse
-      system-config-printer
       yuzu
 
       ansible
@@ -237,15 +241,15 @@
       xclip
       youtube-dl
 
+      clojure
+      clojure-lsp
+      clooj
+      leiningen
       rubocop
       rust-analyzer
       scry
       solargraph
       tree-sitter
-      clojure
-      clojure-lsp
-      leiningen
-      clooj
 
     ];
 
