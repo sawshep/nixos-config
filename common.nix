@@ -158,11 +158,13 @@
     tree
     wget
 
+    dig
     ffmpeg
     inetutils
-    dig
     networkmanager
+    iptables
     podman-compose
+    tunctl
 
     p7zip
     unrar
