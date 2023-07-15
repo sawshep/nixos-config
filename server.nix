@@ -14,8 +14,8 @@
     ports = [ 31415 ];
     openFirewall = true;
     settings = {
-      passwordAuthentication = false;
-      permitRootLogin = "no";
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
     };
   };
 
@@ -112,6 +112,7 @@
     allowedTCPPorts = [
 
       22000 # Syncthing
+      31415 # SSH
 
     ];
     allowedUDPPorts = [
