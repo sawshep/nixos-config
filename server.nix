@@ -33,9 +33,6 @@
 	redir /jellyfin /jellyfin/
 	reverse_proxy /jellyfin/* localhost:8096
 
-	redir /jellyseerr /jellyseerr/
-	reverse_proxy /jellyseerr/* localhost:5055
-
 	file_server
 	encode gzip
       }
@@ -111,6 +108,8 @@
     '';
     allowedTCPPorts = [
 
+      80 # HTTP
+      443 # HTTPS
       22000 # Syncthing
       31415 # SSH
 
