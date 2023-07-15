@@ -1,6 +1,20 @@
 { config, pkgs, ... }:
 
 {
+  age.secrets.user-password.file = ./secrets/user-password.age;
+  age.identityPaths = [ "/home/me/.ssh/id_ed25519" ];
+
+  users.users.me = {
+    isNormalUser = true;
+    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video "];
+    passwordFile = config.age.secrets.user-password.path;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHe4JdAXSDsJFeVAlY9vq+y3mFDZIPoBArAIfgt38vEW" # Firewall user
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHshr48iQqsn1H5ErCNVIdxaLMyt5X//ZRuhMg+WIVfq" # Firewall root
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmWMUbI8KGFgjyHgcvwQ30iE2WUGNf1fbJsU0Pi7D2fUxPZ3x657gSSPpIkpdVGQT2bcDBiJLaV9sZW/ky6V1LidI4SWqD4MwnjSz8hRyVdR+Il1Aw6WcJ5qgfa9HtPZEqNqqRYGXOh65SeU/OlR2ZJ1UOOhTx8WkafZQlvI5Ze8NrUAtNwkXBGOwRuyCkIaeq/hlRl4paHV3gBDkkgC5McGMy9Dj2m3ibMEvtmPaMCb/huxvxOY8IsdVW15sbrfWfMlVGCVORzDj65RU46fJ5pGf5rxyMWEoe3+Dynjzdykyt7L1iBdEIAuM+eDN+cSlJsJQcteVEzw5ygKxUH0dn+pIjc+aLCi8UZVBNJYYRO1TemFYXEInGX9dVmCVzg32xvcMnWkvFbgXrzhHDPlLcjHP4vl3n/MV42SiEKHxMnX7Kp+/F0sTZZ5lS2oUUusWwEoPG3QhJI+Ym7v+Ts7TvI1K3W/t95YckikyzrjIso20lsCrandLS/S7fvkwHV7CuoGqAIMJ5W/r3bYuZWqZ+Aqw0AUmrnQ655rPUN/2LD0gRDq/wiUShZ5mz/hkwYVP5Npxni5J2GRkgsAmHk7KrZv2IWs4YkuajzI0PS68WI7ivM4OWZOUxRV9iZfowDd+0rMKakgKvcmUQ4t1R5atrTv4ZAsXsbIRMkMV4MxjdIw==" # Laptop User
+    ];
+  };
+
   services.xserver = {
     enable = true;
     #videoDrivers = [ "" ];
@@ -23,10 +37,6 @@
     pulse.enable = true;
   }; 
 
-  users.users.me = {
-    isNormalUser = true;
-    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video "];
-  };
 
   programs.openvpn3.enable = true;
 

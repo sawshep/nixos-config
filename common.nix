@@ -3,10 +3,10 @@
 {
   imports = [
     ./nix-alien.nix
-    # NixOS SOPS
-    "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     <home-manager/nixos>
+    "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/modules/age.nix"
   ];
+
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -18,6 +18,19 @@
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
 
   nix.settings.auto-optimise-store = true;
+
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+  age.secrets = {
+    openvpn-mullvad-userpass = {
+      file = ./secrets/openvpn-mullvad-userpass.age;
+      owner = "openvpn";
+    };
+    openvpn-mullvad-ca = {
+      file = ./secrets/openvpn-mullvad-ca.age;
+      owner = "openvpn";
+    };
+  };
 
   networking.networkmanager.enable = true;
   services.resolved.enable = true;
@@ -101,6 +114,8 @@
 
   environment.systemPackages = with pkgs; [
 
+    (callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
+
     autoconf
     binutils
     gcc
@@ -117,6 +132,7 @@
 
     apg
     age
+    rage
     gnupg
     mokutil
     pinentry
