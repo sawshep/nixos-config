@@ -201,64 +201,64 @@
 
     home.packages = with pkgs; [
 
-      anki
-      bitwarden
-      blender
-      bottles
-      caffeine-ng
-      digikam
-      discord
-      easyeffects
-      freecad
-      gcs
-      gimp
-      gpa
-      hugo
-      hunspell
-      hunspellDicts.en-us-large
-      imv
-      kcalc
-      kdenlive
-      libreoffice
-      maxima
-      minetest
-      pa_applet
-      pavucontrol
-      prusa-slicer
-      spotify
-      strawberry
-      system-config-printer
-      thonny
-      thunderbird
+      # GUI utilities
+      anki # Flashcards
+      bitwarden # Password manager
+      blender # Modeling
+      bottles # WINE wrapper
+      caffeine-ng # Keep the screen awake
+      digikam # Photo management
+      discord # Chat app
+      easyeffects # Pipewire audio effects
+      freecad # CAD
+      gcs # GURPS character sheet builder
+      gimp # Image editor
+      gpa # GPG frontend
+      hugo # Static site generator
+      hunspell # Spellcheck
+      hunspellDicts.en-us-large # Spellcheck dict
+      imv # Image viewer
+      kcalc # Calculator
+      kdenlive # Video editor
+      libreoffice # Office suite
+      maxima # LISP computer algebra system
+      openscad # Parametric CAD
+      pa_applet # Volume control applet
+      pavucontrol # Volume control
+      prusa-slicer # Slicer for 3D printing
+      spotify # Music streaming service
+      strawberry # Music player
+      system-config-printer # CUPS wrapper
+      thonny # Python IDE for microcontrollers
+      thunderbird # Email client
       tor-browser-bundle-bin
-      transmission-qt
+      transmission-qt # Torrent client
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
       xfce.xfce4-volumed-pulse
-      yuzu
+      yuzu # Switch emulator
 
-      ansible
-      dict
-      muse
-      nnn
-      onionshare
-      pandoc
-      ranger
-      screenfetch
-      tenacity
-      torsocks
-      xboxdrv
-      xclip
-      youtube-dl
+      # Command line utilities
+      dict # Dictionary
+      nnn # File explorer
+      onionshare # P2P file sharing over TOR
+      pandoc # Document converter
+      ranger # File explorer
+      screenfetch # System info
+      tenacity # Audio editor, Audacity fork
+      torsocks # Tunnel program through TOR
+      xboxdrv # XBox controller drivers
+      xclip # Copy to clipboard from CLI
+      youtube-dl # Youtube video downloader
 
-      clojure
+      clojure # LISP dialect
       clojure-lsp
-      clooj
-      leiningen
-      rubocop
+      clooj # Clojure IDE
+      leiningen # Clojure project manager
+      rubocop # Ruby analyzer
       rust-analyzer
-      scry
-      solargraph
+      scry # Crystal analyzer
+      solargraph # Ruby lang server
       tree-sitter
 
     ];
