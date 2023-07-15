@@ -36,6 +36,9 @@
 	file_server
 	encode gzip
       }
+      jellyseerr.spaceheaterlab.net {
+        reverse_proxy localhost:5055
+      }
     '';
   };
 
@@ -108,16 +111,9 @@
     '';
     allowedTCPPorts = [
 
+      # For Caddy
       80 # HTTP
       443 # HTTPS
-      22000 # Syncthing
-      31415 # SSH
-
-    ];
-    allowedUDPPorts = [
-
-      21027 # Syncthing
-      22000 # Syncthing
 
     ];
   };
