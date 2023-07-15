@@ -1,5 +1,2 @@
-configuration.nix
-<<<<<<< HEAD
-hardware-configuration.nix
-=======
->>>>>>> 65d413e (Lots of reorganization, changes)
+/configuration.nix
+/result
