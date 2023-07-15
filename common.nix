@@ -86,9 +86,6 @@
     Host *
       ServerAliveInterval 30
       ServerAliveCountMax 6
-    Host github.com
-      IdentityFile ~/.ssh/github
-      IdentitiesOnly yes
   '';
 
   programs.bash.promptInit = ''
