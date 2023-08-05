@@ -110,17 +110,6 @@
           };
         };
       };
-      "Librewolf" = {
-      	path = "/home/me/.librewolf";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
       "Thunderbird" = {
       	path = "/home/me/.thunderbird";
 	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
