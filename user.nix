@@ -6,7 +6,7 @@
 
   users.users.me = {
     isNormalUser = true;
-    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video "];
+    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video"];
     passwordFile = config.age.secrets.user-password.path;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHe4JdAXSDsJFeVAlY9vq+y3mFDZIPoBArAIfgt38vEW" # Firewall user
@@ -27,15 +27,26 @@
     };
   };
 
-  sound.enable = true;
-  nixpkgs.config.pulseaudio = true;
   services.pipewire = {
     enable = true;
     wireplumber.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   }; 
+
+  # Low latency
+  environment.etc = {
+    "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
+      context.properties = {
+        default.clock.rate = 48000
+        default.clock.quantum = 32
+        default.clock.min-quantum = 32
+        default.clock.max-quantum = 32
+      }
+    '';
+  };
 
 
   programs.openvpn3.enable = true;
@@ -214,6 +225,9 @@
       openscad # Parametric CAD
       pa_applet # Volume control applet
       pavucontrol # Volume control
+      qjackctl
+      helvum
+      guitarix
       prusa-slicer # Slicer for 3D printing
       spotify # Music streaming service
       strawberry # Music player
