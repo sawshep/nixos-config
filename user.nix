@@ -53,6 +53,13 @@
 
   programs.steam.enable = true;
 
+  services.tor = {
+    enable = true;
+    client.enable = true;
+    torsocks.enable = true;
+  };
+
+
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -242,7 +249,6 @@
       ranger # File explorer
       screenfetch # System info
       tenacity # Audio editor, Audacity fork
-      torsocks # Tunnel program through TOR
       xboxdrv # XBox controller drivers
       xclip # Copy to clipboard from CLI
       youtube-dl # Youtube video downloader
