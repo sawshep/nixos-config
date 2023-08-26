@@ -11,6 +11,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHe4JdAXSDsJFeVAlY9vq+y3mFDZIPoBArAIfgt38vEW" # Firewall user
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHshr48iQqsn1H5ErCNVIdxaLMyt5X//ZRuhMg+WIVfq" # Firewall root
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJd0gD46Ddn2Bsl0+MIxkxO8AyupYfXj2Y9Z6xOnkMlt" # Laptop user
+    ];
   };
 
   services.openssh = {
