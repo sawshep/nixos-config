@@ -111,9 +111,12 @@
     enable = true;
     # Block any traffic that Transmission does not tunnel. WIP.
     extraCommands = ''
-      iptables -A OUTPUT -m owner --uid-owner transmission -i \! tun0 -j REJECT
+      #iptables -A OUTPUT -m owner --uid-owner transmission -i \! tun0 -j REJECT
     '';
     allowedTCPPorts = [
+
+      # Blocky
+      53 # DNS
 
       # For Caddy
       80 # HTTP
@@ -121,5 +124,4 @@
 
     ];
   };
-
 }

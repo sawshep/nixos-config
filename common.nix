@@ -33,7 +33,30 @@
   };
 
   networking.networkmanager.enable = true;
-  services.resolved.enable = true;
+
+  services.resolved.enable = false;
+  services.blocky = {
+    enable = true;
+    settings = {
+      upstream.default = [
+        # Cloudflare DoH
+        "https://one.one.one.one/dns-query"
+      ];
+      # For initially solving DoH/DoT Requests when no system Resolver is available.
+      bootstrapDns = {
+        upstream = "https://one.one.one.one/dns-query";
+        ips = [ "1.1.1.1" "1.0.0.1" ];
+      };
+      #Enable Blocking of certian domains.
+      blocking = {
+        blackLists = {
+          #Adblocking
+          ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];
+        };
+      };
+    };
+  };
+
 
   # For accessing Samba shares
   services.gvfs.enable = true;
