@@ -263,6 +263,9 @@
       solargraph # Ruby lang server
       tree-sitter
 
+      winetricks
+      protontricks
+
     ];
 
     programs.emacs = {
