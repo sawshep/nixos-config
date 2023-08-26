@@ -160,13 +160,6 @@
     };
 
     home.file = {
-      stignore = {
-        target = "./.librewolf/.stignore";
-	text = ''
-          /librewolf.overrides.cfg
-          /mvji40do.default/lock
-	'';
-      };
       dict = {
         target = "./.config/dict.conf";
         text = "server dict.org\n";
