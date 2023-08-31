@@ -214,6 +214,8 @@
       gcs # GURPS character sheet builder
       gimp # Image editor
       gpa # GPG frontend
+      guitarix
+      helvum
       hugo # Static site generator
       hunspell # Spellcheck
       hunspellDicts.en-us-large # Spellcheck dict
@@ -225,10 +227,8 @@
       openscad # Parametric CAD
       pa_applet # Volume control applet
       pavucontrol # Volume control
-      qjackctl
-      helvum
-      guitarix
       prusa-slicer # Slicer for 3D printing
+      qjackctl
       spotify # Music streaming service
       strawberry # Music player
       system-config-printer # CUPS wrapper
