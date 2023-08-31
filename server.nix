@@ -44,8 +44,24 @@
       jellyseerr.spaceheaterlab.net {
         reverse_proxy localhost:5055
       }
+      radicale.spaceheaterlab.net {
+        reverse_proxy localhost:5232
+      }
     '';
   };
+
+  services.radicale = {
+    enable = true;
+    settings = {
+      server.hosts = [ "localhost:5232" ];
+      auth = {
+        type = "htpasswd";
+        htpasswd_filename = "/srv/radicale/htpasswd";
+        htpasswd_encryption = "bcrypt";
+      };
+    };
+  };
+
 
   services.jellyfin.enable = true;
   services.jellyseerr.enable = true;
