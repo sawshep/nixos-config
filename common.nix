@@ -32,9 +32,16 @@
     };
   };
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    dns = "none";
+  };
+  networking.nameservers = [
+    "localhost"
+    "1.1.1.1"
+    "1.0.0.1"
+  ];
 
-  services.resolved.enable = false;
   services.blocky = {
     enable = true;
     settings = {
