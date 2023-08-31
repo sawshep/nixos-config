@@ -236,6 +236,8 @@
       thunderbird # Email client
       tor-browser-bundle-bin
       transmission-qt # Torrent client
+      ungoogled-chromium
+      vscodium # IDE
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
       xfce.xfce4-volumed-pulse
