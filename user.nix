@@ -159,6 +159,7 @@
       hm = "home-manager";
       sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
       clip = "xclip -selection clipboard";
+      rot13 = "tr 'A-Za-z' 'N-ZA-Mn-za-m'";
     };
 
     programs.dircolors = {
