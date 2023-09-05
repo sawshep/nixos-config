@@ -37,11 +37,6 @@
     options = [ "subvol=swap" "noatime" ];
   };
 
-  #systemd.sleep.extraConfig = ''
-  #  [Sleep]
-  #  HibernateMode=shutdown
-  #'';
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/7EB2-92E8";
       fsType = "vfat";
@@ -60,4 +55,18 @@
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+       governor = "performance";
+       turbo = "auto";
+      };
+    };
+  };
 }
