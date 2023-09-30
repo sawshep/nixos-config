@@ -253,9 +253,10 @@
       flare-floss # Reverse engineering tool
       foremost # Carve data from binaries
       gobuster # Directory enumeration
-      hashcat # Hash cracker
+      hashcat # GPU hash cracker
       hcxtools # hashcat companion tools
       heimdall # Flash android roms
+      john # CPU hash cracker
       metasploit # Exploitation framework
       routersploit # Exploitation framework for embedded devices
       thc-hydra # Brute forcer
