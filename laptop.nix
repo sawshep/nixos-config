@@ -50,46 +50,27 @@
 
   environment.systemPackages = with pkgs; [
 
-    extundelete
-    jq
     libticables2
     libticalcs2
     libticonv
     libtifiles2
     micropython
     pico-sdk
-    powertop
-    sqlite
-    steam-run
-    unixtools.xxd
     ventoy-bin
     wineWowPackages.stable
-    winetricks
 
-    aircrack-ng
     cudaPackages.cudatoolkit
     exiftool
-    gobuster
-    hashcat
-    hcxtools
-    john
-    traceroute
-    wireshark
+    python311Packages.capstone
+    python311Packages.pefile
+    python311Packages.pycryptodome
+    python311Packages.yara-python
 
     libbs2b
     libebur128
     libsndfile
     tbb
 
-    binwalk
-    ddrescue
-    foremost
-    heimdall
-    safecopy
-
-    python3Full
-    ruby_3_1
-    sbcl
   ];
 
 

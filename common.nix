@@ -155,60 +155,100 @@
 
     (callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
 
+    # Compilation tools
     autoconf
     binutils
     gcc
     git
     glib
     gnumake
+    steam-run # Run alien executables
 
-    exfatprogs
-    fuse3
-    ifuse
-    jmtpfs
-    libimobiledevice
-    samba
+    # Filesystem programs
+    exfatprogs # Debugging utils for exfat
+    fuse3 # Virtual filesystem library
+    ifuse # Mount iDevices
+    extundelete # Recover deleted files from ext
+    jmtpfs # MTP device filesystem
+    libimobiledevice # Detect iDevices
+    samba # Connect to SMB shares
+    safecopy # Data recovery tool
+    ddrescue # Data recovery tool
+    pmount # Mount removable devices as a user
 
-    apg
-    age
-    rage
-    gnupg
-    mokutil
-    pinentry
+    # Encryption utilities
+    apg # Password generator
+    age # Modern encryption tool
+    rage # AGE in Rust
+    gnupg # GNU privacy guard suite
+    mokutil # Machine user key manager
+    pinentry # Secure secret entry
 
-    hdparm
-    lm_sensors
-    macchanger
-    pciutils
-    usbutils
+    # Hardware interfaces
+    hdparm # Control drives
+    lm_sensors # Query temperature sensors
+    macchanger # Change MAC address
+    pciutils # Query PCI busses
+    usbutils # Query USB devices
 
-    bc
-    file
-    htop
-    iotop
-    killall
-    lsof
-    moreutils
-    nmap
-    plocate
-    pmount
-    rlwrap
-    tldr
-    tree
-    wget
+    # Monitoring
+    lsof # List open files
+    htop # Process monitor
+    iotop # I/O monitor
+    powertop # Power usage stats
 
-    dig
-    ffmpeg
-    inetutils
-    networkmanager
-    iptables
+    # Nice-to-Haves
+    screenfetch # System info
+    bc # Calculator
+    dict # Dictionary
+    ed # For /REALLY/ dumb terminals
+    ffmpeg # Audio/video conversion
+    file # Tell what a file is
+    jq # JSON parser
+    killall # Kill process by name
+    moreutils # Extention of coreutils
+    util-linux # Useful linux utils
+    plocate # Find files (quickly)
+    rlwrap # Make programs play nice with arrow keys and keybinds
+    tldr # Cheat-sheet command documentation
+    tree # Display filetree
+    units # Unit conversion
+    unixtools.xxd # Hexdump
+
+    # Network Tools
+    inetutils # Common network clients and servers
+    iptables # Custom granular routing
+    networkmanager # Manages network connections
+    nmap # Network mapper
+    openvpn # OpenVPN 2 client
+    openvpn3 # OpenVPN 3 client
+    termshark # Wireshark TUI
+    traceroute # Trace packet routing
+    tshark # Wireshark CLI
+    tunctl # Manage network tunnels
+    wget # Web get
+    zdns # DNS lookup utility
+
     podman-compose
-    tunctl
 
+    # Compression
     p7zip
     unrar
     unzip
     zip
+
+    # Programming Languages
+    bun # Javascript runtime
+    clojure # JVM-based Lisp
+    crystal # Compiled Ruby-like language
+    ghc # Haskell compiler and interpreter
+    openjdk # Java development kit and runtime environment
+    php # HTML embedded scripting lanugage
+    python3Full # All of Python
+    racket # Dialect of Lisp
+    ruby # The best language
+    sbcl # Common Lisp
+    sqlite # Structured query lanuage implementation
 
   ];
 }

@@ -49,8 +49,6 @@
   };
 
 
-  programs.openvpn3.enable = true;
-
   programs.steam.enable = true;
 
   services.tor = {
@@ -203,23 +201,23 @@
     home.packages = with pkgs; [
 
       # GUI utilities
-      anki # Flashcards
+      anki # Flashcard program
       bitwarden # Password manager
-      blender # Modeling
+      blender # Modeling software
       bottles # WINE wrapper
       caffeine-ng # Keep the screen awake
+      cherrytree # Tree notes app
+      clooj # Clojure IDE
       digikam # Photo management
-      discord # Chat app
+      discord # Messaging and voice call app
       easyeffects # Pipewire audio effects
-      freecad # CAD
+      freecad # Parametric CAD software
       gcs # GURPS character sheet builder
+      ghidra # Reverse engineering suite
       gimp # Image editor
       gpa # GPG frontend
-      guitarix
-      helvum
-      hugo # Static site generator
-      hunspell # Spellcheck
-      hunspellDicts.en-us-large # Spellcheck dict
+      guitarix # Digital amplifier
+      helvum # Pipewire patchbay
       imv # Image viewer
       kcalc # Calculator
       kdenlive # Video editor
@@ -227,9 +225,9 @@
       maxima # LISP computer algebra system
       openscad # Parametric CAD
       pa_applet # Volume control applet
-      pavucontrol # Volume control
+      pavucontrol # PulseAudio volume control
       prusa-slicer # Slicer for 3D printing
-      qjackctl
+      qjackctl # JACK patchbay
       spotify # Music streaming service
       strawberry # Music player
       system-config-printer # CUPS wrapper
@@ -237,37 +235,60 @@
       thunderbird # Email client
       tor-browser-bundle-bin
       transmission-qt # Torrent client
-      ungoogled-chromium
+      ungoogled-chromium # Chromium web browser without the spyware
+      virt-manager
       vscodium # IDE
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
       xfce.xfce4-volumed-pulse
       yuzu # Switch emulator
 
-      # Command line utilities
-      dict # Dictionary
+      # Cybersecurity Tools
+      aircrack-ng # Capture and crack air traffic
+      binwalk # Extract files from binary
+      burpsuite # Web exploitation framework
+      capstone # Dissassembly library
+      crackmapexec # Active Directory exploitation framework
+      exploitdb # Search exploits from command line
+      flare-floss # Reverse engineering tool
+      foremost # Carve data from binaries
+      gobuster # Directory enumeration
+      hashcat # Hash cracker
+      hcxtools # hashcat companion tools
+      heimdall # Flash android roms
+      metasploit # Exploitation framework
+      routersploit # Exploitation framework for embedded devices
+      thc-hydra # Brute forcer
+      volatility3 # Memory forensics tool
+      wireshark # Network capture tool
+      yara # Malware analyzer
+
+      # Command Line Utilities
+      hugo # Static site generator
+      hunspell # Spellcheck
+      hunspellDicts.en-us-large # Spellcheck dict
       nnn # File explorer
       onionshare # P2P file sharing over TOR
       pandoc # Document converter
+      protontricks
       ranger # File explorer
-      screenfetch # System info
       tenacity # Audio editor, Audacity fork
+      winetricks
       xboxdrv # XBox controller drivers
       xclip # Copy to clipboard from CLI
       youtube-dl # Youtube video downloader
 
-      clojure # LISP dialect
-      clojure-lsp
-      clooj # Clojure IDE
+      # Programming Lanugage Support
+      clojure-lsp # Clojure LSP
+      #crystalline # Crystal LSP
       leiningen # Clojure project manager
       rubocop # Ruby analyzer
-      rust-analyzer
+      #ruby-lsp # Ruby LSP
+      #rubyfmt # Ruby formatter
+      rust-analyzer # Rust analyzer
+      rustfmt # Rust formatter
       scry # Crystal analyzer
       solargraph # Ruby lang server
-      tree-sitter
-
-      winetricks
-      protontricks
 
     ];
 
