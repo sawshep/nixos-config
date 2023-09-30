@@ -34,7 +34,7 @@
 
   networking.networkmanager = {
     enable = true;
-    dns = "none";
+    dns = "none"; # We use Blocky instead
   };
   networking.nameservers = [
     "localhost"
