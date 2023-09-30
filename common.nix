@@ -97,8 +97,15 @@
   };
 
   users.groups.plocate = { };
+  users.extraGroups.vboxusers.members = [ "me" ];
 
   virtualisation = {
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+    libvirtd.enable = true;
+
     podman = {
       enable = true;
       dockerCompat = true;
