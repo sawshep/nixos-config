@@ -61,6 +61,11 @@
           ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];
         };
       };
+      caching = {
+        minTime = "5m";
+        maxTime = "30m";
+        prefetching = true;
+      };
     };
   };
 
