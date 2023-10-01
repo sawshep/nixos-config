@@ -198,22 +198,23 @@
     powertop # Power usage stats
 
     # Nice-to-Haves
-    screenfetch # System info
     bc # Calculator
     dict # Dictionary
+    dos2unix # Strip return carriages
     ed # For /REALLY/ dumb terminals
     ffmpeg # Audio/video conversion
     file # Tell what a file is
     jq # JSON parser
     killall # Kill process by name
     moreutils # Extention of coreutils
-    util-linux # Useful linux utils
     plocate # Find files (quickly)
     rlwrap # Make programs play nice with arrow keys and keybinds
+    screenfetch # System info
     tldr # Cheat-sheet command documentation
     tree # Display filetree
     units # Unit conversion
     unixtools.xxd # Hexdump
+    util-linux # Useful linux utils
 
     # Network Tools
     inetutils # Common network clients and servers

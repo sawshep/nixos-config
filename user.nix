@@ -218,6 +218,7 @@
       gpa # GPG frontend
       guitarix # Digital amplifier
       helvum # Pipewire patchbay
+      imhex # Fancy hex editor for RE
       imv # Image viewer
       kcalc # Calculator
       kdenlive # Video editor
