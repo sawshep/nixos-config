@@ -229,6 +229,7 @@
       pavucontrol # PulseAudio volume control
       prusa-slicer # Slicer for 3D printing
       qjackctl # JACK patchbay
+      qownnotes # WYSIWYG Markdown editor
       spotify # Music streaming service
       strawberry # Music player
       system-config-printer # CUPS wrapper
