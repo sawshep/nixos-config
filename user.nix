@@ -231,12 +231,14 @@
       kdenlive # Video editor
       libreoffice # Office suite
       maxima # LISP computer algebra system
+      obsidian # Markdown editor
       openscad # Parametric CAD
       pa_applet # Volume control applet
       pavucontrol # PulseAudio volume control
       prusa-slicer # Slicer for 3D printing
       qjackctl # JACK patchbay
       qownnotes # WYSIWYG Markdown editor
+      remmina # GUI RDP/VNC/SSH
       spotify # Music streaming service
       strawberry # Music player
       system-config-printer # CUPS wrapper
@@ -258,14 +260,18 @@
       burpsuite # Web exploitation framework
       capstone # Dissassembly library
       crackmapexec # Active Directory exploitation framework
+      enum4linux # SMB enumeration
       exploitdb # Search exploits from command line
       flare-floss # Reverse engineering tool
       foremost # Carve data from binaries
-      gobuster # Directory enumeration
+      gobuster # Everything enumeration
+      feroxbuster # Better directory enumeration
       hashcat # GPU hash cracker
       hcxtools # hashcat companion tools
       heimdall # Flash android roms
       john # CPU hash cracker
+      wpscan # Wordpress scanner
+      zap # Web pen testing proxy
       metasploit # Exploitation framework
       routersploit # Exploitation framework for embedded devices
       thc-hydra # Brute forcer
