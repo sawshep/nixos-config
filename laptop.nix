@@ -59,6 +59,9 @@
 
   environment.systemPackages = with pkgs; [
 
+    wireguard-tools
+    wireguard-go
+
     libticables2
     libticalcs2
     libticonv
