@@ -23,16 +23,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  networking = {
-    firewall = {
-      enable = true;
-      interfaces.tun0.allowedTCPPorts = [ 4444 ];
-    };
-    extraHosts = ''
-      10.10.10.222 delivery.htb helpdesk.delivery.htb
-    '';
-  };
-
+  networking.firewall.enable = true;
 
   programs.steam.enable = true;
 
