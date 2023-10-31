@@ -216,7 +216,7 @@
       cherrytree # Tree notes app
       clooj # Clojure IDE
       digikam # Photo management
-      discord # Messaging and voice call app
+      discord-canary # Messaging and voice call app
       easyeffects # Pipewire audio effects
       freecad # Parametric CAD software
       gcs # GURPS character sheet builder
