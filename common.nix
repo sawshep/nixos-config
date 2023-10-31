@@ -171,8 +171,14 @@
     binutils
     gcc
     git
+    m4
+    gperf
+    gitRepo
+    curl
+    procps
     glib
     gnumake
+    ncurses5
     steam-run # Run alien executables
 
     # Filesystem programs

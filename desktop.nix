@@ -22,18 +22,34 @@
 
   networking.hostName = "asustek"; # Define your hostname.
 
+  services.openssh = {
+    enable = true;
+    ports = [ 31415 ];
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  services.fail2ban = {
+    enable = true;
+    maxretry = 10;
+  };
+
   #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
 
   environment.systemPackages = with pkgs; [
 
-    libticables2
-    libticalcs2
-    libticonv
-    libtifiles2
-
     cudaPackages.cudatoolkit
+    libGLU libGL
+    linuxPackages.nvidia_x11
+    xorg.libXi xorg.libXmu freeglut
+    xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
+
     exiftool
+
     python311Packages.capstone
     python311Packages.pefile
     python311Packages.pycryptodome
