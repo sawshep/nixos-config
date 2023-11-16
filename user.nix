@@ -221,6 +221,7 @@
       discord-canary # Messaging and voice call app
       easyeffects # Pipewire audio effects
       freecad # Parametric CAD software
+      freerdp # RDP client
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
       gimp # Image editor
