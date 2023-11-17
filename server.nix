@@ -48,7 +48,7 @@
       radicale.spaceheaterlab.net {
         reverse_proxy localhost:5232
       }
-    ''#;
+    '';
   };
 
   services.radicale = {
