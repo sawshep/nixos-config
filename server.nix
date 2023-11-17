@@ -36,19 +36,19 @@
       spaceheaterlab.net {
         root * /srv/www
 
-	redir /jellyfin /jellyfin/
-	reverse_proxy /jellyfin/* localhost:8096
+	#redir /jellyfin /jellyfin/
+	#reverse_proxy /jellyfin/* localhost:8096
 
 	file_server
 	encode gzip
       }
-      jellyseerr.spaceheaterlab.net {
-        reverse_proxy localhost:5055
-      }
+      #jellyseerr.spaceheaterlab.net {
+      #  reverse_proxy localhost:5055
+      #}
       radicale.spaceheaterlab.net {
         reverse_proxy localhost:5232
       }
-    '';
+    ''#;
   };
 
   services.radicale = {
@@ -64,11 +64,11 @@
   };
 
 
-  services.jellyfin.enable = true;
-  services.jellyseerr.enable = true;
-  services.prowlarr.enable = true;
-  services.radarr.enable = true;
-  services.sonarr.enable = true;
+  services.jellyfin.enable = false;
+  services.jellyseerr.enable = false;
+  services.prowlarr.enable = false;
+  services.radarr.enable = false;
+  services.sonarr.enable = false;
 
   services.openvpn.servers = {
     # This leaks DNS request. It's just for proxying
