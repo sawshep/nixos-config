@@ -31,7 +31,9 @@
       xfce.enable = true;
     };
 
-    displayManager.defaultSession = "xfce";
+    displayManager = {
+      defaultSession = "xfce";
+    };
   };
 
   services.pipewire = {
