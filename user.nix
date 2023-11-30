@@ -80,6 +80,28 @@
 	"ChangWang CW56-58" = { id = "FE52R5J-66HHL7H-JPQILZO-4V4QEQ6-NYXJRXW-CI6B3VN-6A4NEYI-B76ORQQ"; };
     };
     folders = {
+      "Binaries" = {
+        path = "/home/me/bin";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
+      };
+      "Cyber" = {
+        path = "/home/me/cyber";
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	versioning = {
+          type = "staggered";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "7776000"; # 90 days
+          };
+        };
+      };
       "Desktop" = {
         path = "/home/me/desk";
 	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
