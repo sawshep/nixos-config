@@ -33,40 +33,25 @@
   };
 
   networking.networkmanager = {
-    enable = true;
-    dns = "none"; # We use Blocky instead
+     enable = true;
+     dns = "systemd-resolved";
   };
+
   networking.nameservers = [
-    "localhost"
     "1.1.1.1"
     "1.0.0.1"
   ];
 
-  services.blocky = {
+  networking.extraHosts = (builtins.readFile (builtins.fetchurl { url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"; }));
+
+  services.resolved = {
     enable = true;
-    settings = {
-      upstream.default = [
-        # Cloudflare DoH
-        "https://one.one.one.one/dns-query"
-      ];
-      # For initially solving DoH/DoT Requests when no system Resolver is available.
-      bootstrapDns = {
-        upstream = "https://one.one.one.one/dns-query";
-        ips = [ "1.1.1.1" "1.0.0.1" ];
-      };
-      #Enable Blocking of certian domains.
-      blocking = {
-        blackLists = {
-          #Adblocking
-          ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];
-        };
-      };
-      caching = {
-        minTime = "5m";
-        maxTime = "30m";
-        prefetching = true;
-      };
-    };
+    dnssec = "true";
+    domains = [ "~." ];
+    fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+    extraConfig = ''
+      DNSOverTLS=yes
+    '';
   };
 
 
