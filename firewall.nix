@@ -22,6 +22,10 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "xfce4-session";
+  services.xrdp.openFirewall = true;
+
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
