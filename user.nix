@@ -83,7 +83,7 @@
     folders = {
       "Binaries" = {
         path = "/home/me/bin";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
@@ -94,7 +94,7 @@
       };
       "Cyber" = {
         path = "/home/me/cyber";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
@@ -105,7 +105,7 @@
       };
       "Desktop" = {
         path = "/home/me/desk";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
@@ -116,7 +116,7 @@
       };
       "Documents" = {
         path = "/home/me/doc";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
@@ -127,7 +127,7 @@
       };
       "Downloads" = {
         path = "/home/me/down";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
@@ -138,7 +138,7 @@
       };
       "Music" = {
         path = "/home/me/music";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
@@ -149,7 +149,7 @@
       };
       "Media" = {
         path = "/home/me/media";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
@@ -160,7 +160,7 @@
       };
       "Thunderbird" = {
       	path = "/home/me/.thunderbird";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" ];
+	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
 	versioning = {
           type = "staggered";
           params = {
