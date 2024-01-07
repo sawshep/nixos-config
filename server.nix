@@ -2,17 +2,15 @@
 
 { config, pkgs, ... }:
 
+let authorizedKeys = import ./authorized_keys.nix; in
 {
+  age.secrets.user-password.file = ./secrets/user-password.age;
+
   users.users.admin = {
     isNormalUser = true;
-    initialPassword = "password";
     extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHe4JdAXSDsJFeVAlY9vq+y3mFDZIPoBArAIfgt38vEW" # Firewall user
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHshr48iQqsn1H5ErCNVIdxaLMyt5X//ZRuhMg+WIVfq" # Firewall root
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJd0gD46Ddn2Bsl0+MIxkxO8AyupYfXj2Y9Z6xOnkMlt" # Laptop user
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINEjID3NU5MMHJgsqvPXPTpaSAF8O1dq6rbMAeesbkQA me@asustek" # Desktop user
-    ];
+    openssh.authorizedKeys.keys = authorizedKeys;
+    passwordFile = config.age.secrets.user-password.path;
   };
 
   services.openssh = {

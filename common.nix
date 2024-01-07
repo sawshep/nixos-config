@@ -21,16 +21,16 @@
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
-  age.secrets = {
-    openvpn-mullvad-userpass = {
-      file = ./secrets/openvpn-mullvad-userpass.age;
-      owner = "openvpn";
-    };
-    openvpn-mullvad-ca = {
-      file = ./secrets/openvpn-mullvad-ca.age;
-      owner = "openvpn";
-    };
-  };
+  #age.secrets = {
+  #  openvpn-mullvad-userpass = {
+  #    file = ./secrets/openvpn-mullvad-userpass.age;
+  #    owner = "openvpn";
+  #  };
+  #  openvpn-mullvad-ca = {
+  #    file = ./secrets/openvpn-mullvad-ca.age;
+  #    owner = "openvpn";
+  #  };
+  #};
 
   networking.networkmanager = {
      enable = true;
