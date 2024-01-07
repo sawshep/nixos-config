@@ -220,6 +220,7 @@
     home.packages = with pkgs; [
 
       # GUI utilities
+      kdenlive
       anki # Flashcard program
       bitwarden # Password manager
       blender # Modeling software

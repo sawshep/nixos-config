@@ -53,6 +53,7 @@
     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
 
     exiftool
+    ollama
 
     python311Packages.capstone
     python311Packages.pefile

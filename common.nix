@@ -152,6 +152,7 @@
     (callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
 
     # Compilation tools
+    wineWow64Packages.full
     autoconf
     binutils
     gcc
@@ -200,6 +201,7 @@
     powertop # Power usage stats
 
     # Nice-to-Haves
+    magic-wormhole
     bc # Calculator
     dict # Dictionary
     dos2unix # Strip return carriages
