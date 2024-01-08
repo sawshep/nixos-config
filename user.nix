@@ -239,7 +239,6 @@ let authorizedKeys = import ./authorized_keys.nix; in
       kdenlive # Video editor
       libreoffice # Office suite
       maxima # LISP computer algebra system
-      obsidian # Markdown editor
       openscad # Parametric CAD
       pa_applet # Volume control applet
       pavucontrol # PulseAudio volume control

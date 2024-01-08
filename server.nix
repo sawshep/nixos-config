@@ -23,6 +23,12 @@ let authorizedKeys = import ./authorized_keys.nix; in
     };
   };
 
+  #services.guacamole-server.enable = true;
+
+  #servicse.guacamole-client = {
+  #  enable = true;
+  #};
+
   services.fail2ban = {
     enable = true;
     maxretry = 10;
@@ -42,6 +48,11 @@ let authorizedKeys = import ./authorized_keys.nix; in
         }
 
         root * /srv/www
+
+        redir /octoprint /octoprint/
+        reverse_proxy /octoprint/* 10.0.0.5:80 {
+          header_up X-Scheme {scheme}
+        }
 
         file_server
         encode gzip
