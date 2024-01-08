@@ -152,7 +152,6 @@
     (callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
 
     # Compilation tools
-    wineWow64Packages.full
     autoconf
     binutils
     gcc

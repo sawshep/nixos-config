@@ -28,21 +28,24 @@ let authorizedKeys = import ./authorized_keys.nix; in
     maxretry = 10;
   };
 
+  age.secrets.caddy-basicauth.file = ./secrets/caddy-basicauth.age;
+  systemd.services.caddy.serviceConfig = {
+    EnvironmentFile = config.age.secrets.caddy-basicauth.path;
+  };
+
   services.caddy = {
     enable = true;
     extraConfig = ''
       spaceheaterlab.net {
+          basicauth * {
+            {$HTTP_BASIC_AUTH_USER} {$HTTP_BASIC_AUTH_PASSWORD}
+        }
+
         root * /srv/www
 
-	#redir /jellyfin /jellyfin/
-	#reverse_proxy /jellyfin/* localhost:8096
-
-	file_server
-	encode gzip
+        file_server
+        encode gzip
       }
-      #jellyseerr.spaceheaterlab.net {
-      #  reverse_proxy localhost:5055
-      #}
       radicale.spaceheaterlab.net {
         reverse_proxy localhost:5232
       }
