@@ -10,7 +10,7 @@ let authorizedKeys = import ./authorized_keys.nix; in
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = authorizedKeys;
-    passwordFile = config.age.secrets.user-password.path;
+    hashedPasswordFile = config.age.secrets.user-password.path;
   };
 
   services.openssh = {

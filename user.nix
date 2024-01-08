@@ -7,7 +7,7 @@ let authorizedKeys = import ./authorized_keys.nix; in
   users.users.me = {
     isNormalUser = true;
     extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video"];
-    passwordFile = config.age.secrets.user-password.path;
+    hashedPasswordFile = config.age.secrets.user-password.path;
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 
@@ -56,12 +56,12 @@ let authorizedKeys = import ./authorized_keys.nix; in
     group = "users";
     guiAddress = "localhost:8384";
     overrideFolders = true;
-    devices = {
+    settings.devices = {
 	"HP EliteBook 835 G7" = { id = "PDH4BFZ-4FU2BYM-XY2TZNM-YMC3D6Y-G6K2JYE-KKFFVBH-7NRQU55-KA6HNAX"; };
 	"ChangWang CW56-58" = { id = "FE52R5J-66HHL7H-JPQILZO-4V4QEQ6-NYXJRXW-CI6B3VN-6A4NEYI-B76ORQQ"; };
 	"ASUSTeK" = { id = "O2RXYBG-MXB3BJG-HDB4R5U-QBIMCPI-4BAHWJD-KRZ56HQ-TFGPDJA-MNKPLAM"; };
     };
-    folders = {
+    settings.folders = {
       "Binaries" = {
         path = "/home/me/bin";
 	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
