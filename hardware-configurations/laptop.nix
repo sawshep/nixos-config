@@ -18,7 +18,7 @@
       availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
     };
-    plymouth.enable = true;
+    plymouth.enable = false;
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     kernelParams = [ "resume_offset=47517297" ];
