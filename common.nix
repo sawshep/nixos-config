@@ -242,6 +242,7 @@
     zip
 
     # Programming Languages
+    powershell
     bun # Javascript runtime
     clojure # JVM-based Lisp
     crystal # Compiled Ruby-like language
