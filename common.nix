@@ -91,11 +91,16 @@
     };
     libvirtd.enable = true;
 
-    podman = {
+    docker = {
       enable = true;
-      dockerCompat = true;
+      enableOnBoot = false;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
     };
   };
+
 
   boot.supportedFilesystems = [ "ntfs" ];
 
