@@ -9,10 +9,6 @@
     ];
 
   boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
     initrd = {
       luks.devices."drv".device = "/dev/disk/by-uuid/f8f2adb7-6f21-4f38-b659-d38435487e1d";
       availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];

@@ -1,41 +1,19 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configurations/desktop.nix
-      ./common.nix
-      ./user.nix
+      ./modules/common.nix
+      ./modules/user.nix
+      ./modules/headless.nix
     ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  networking.hostName = "asustek"; # Define your hostname.
-
-  services.openssh = {
-    enable = true;
-    ports = [ 31415 ];
-    openFirewall = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
-  };
-
-  services.fail2ban = {
-    enable = true;
-    maxretry = 10;
-  };
+  networking.hostName = "codebreaker";
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "xfce4-session";

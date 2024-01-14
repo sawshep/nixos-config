@@ -1,38 +1,22 @@
-# Hardware agnostic server configuration
-
 { config, pkgs, ... }:
 
-let authorizedKeys = import ./authorized_keys.nix; in
 {
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configurations/firewall.nix
+      ./modules/common.nix
+      ./modules/user.nix
+      ./modules/headless.nix
+    ];
+
+  networking.hostName = "changwang-cw56-58"; # Define your hostname.
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "xfce4-session";
+  services.xrdp.openFirewall = true;
+
   age.secrets.user-password.file = ./secrets/user-password.age;
 
-  users.users.admin = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = authorizedKeys;
-    hashedPasswordFile = config.age.secrets.user-password.path;
-  };
-
-  services.openssh = {
-    enable = true;
-    ports = [ 31415 ];
-    openFirewall = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
-  };
-
-  #services.guacamole-server.enable = true;
-
-  #servicse.guacamole-client = {
-  #  enable = true;
-  #};
-
-  services.fail2ban = {
-    enable = true;
-    maxretry = 10;
-  };
 
   age.secrets.caddy-basicauth.file = ./secrets/caddy-basicauth.age;
   systemd.services.caddy.serviceConfig = {
@@ -154,4 +138,12 @@ let authorizedKeys = import ./authorized_keys.nix; in
 
     ];
   };
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "22.11"; # Did you read the comment?
 }

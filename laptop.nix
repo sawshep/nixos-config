@@ -1,30 +1,19 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configurations/elitebook-835-g7.nix
-      ./common.nix
-      ./user.nix
+      ./modules/common.nix
+      ./modules/user.nix
     ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/".options = [ "noatime" "nodiratime" "compression=lzo" "discard" ];
 
   networking.hostName = "elitebook-835-g7"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
   networking.firewall.enable = true;
 
+  # Just generate the host key for Agenix
   services.openssh = {
     enable = true;
     openFirewall = false;
@@ -86,12 +75,6 @@
     tbb
 
   ];
-
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

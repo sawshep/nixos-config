@@ -2,7 +2,7 @@
 
 let authorizedKeys = import ./authorized_keys.nix; in
 {
-  age.secrets.user-password.file = ./secrets/user-password.age;
+  age.secrets.user-password.file = ../secrets/user-password.age;
 
   users.users.me = {
     isNormalUser = true;
