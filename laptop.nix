@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configurations/laptop.nix
+      ./hardware-configurations/elitebook-835-g7.nix
       ./common.nix
       ./user.nix
     ];
@@ -16,7 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+  fileSystems."/".options = [ "noatime" "nodiratime" "compression=lzo" "discard" ];
 
   networking.hostName = "elitebook-835-g7"; # Define your hostname.
   # Pick only one of the below networking options.
