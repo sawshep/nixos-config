@@ -46,7 +46,7 @@
     "1.0.0.1"
   ];
 
-  networking.extraHosts = (builtins.readFile (builtins.fetchurl { url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"; }));
+  networking.extraHosts = builtins.readFile (builtins.fetchurl { url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"; });
 
   services.resolved = {
     enable = true;

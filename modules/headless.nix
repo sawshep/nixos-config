@@ -1,23 +1,30 @@
-age.secrets.user-password.file = ../secrets/user-password.age;
+{ config, pkgs, ... }:
 
-users.users.admin = {
-  isNormalUser = true;
-  extraGroups = [ "wheel" ];
-  openssh.authorizedKeys.keys = (import ./authorized_keys.nix);
-  hashedPasswordFile = config.age.secrets.user-password.path;
-};
+let
+  authorizedKeys = import ./authorized_keys.nix;
+in
+{
+  age.secrets.user-password.file = ../secrets/user-password.age;
 
-services.openssh = {
-  enable = true;
-  ports = [ 31415 ];
-  openFirewall = true;
-  settings = {
-    PasswordAuthentication = false;
-    PermitRootLogin = "no";
+  users.users.admin = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = authorizedKeys;
+    hashedPasswordFile = config.age.secrets.user-password.path;
   };
-};
 
-services.fail2ban = {
-  enable = true;
-  maxretry = 10;
-};
+  services.openssh = {
+    enable = true;
+    ports = [ 31415 ];
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  services.fail2ban = {
+    enable = true;
+    maxretry = 10;
+  };
+}

@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 let
   nix-alien-pkgs = import (

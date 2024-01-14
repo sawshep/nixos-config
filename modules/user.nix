@@ -11,147 +11,149 @@ let authorizedKeys = import ./authorized_keys.nix; in
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 
-  services.xserver = {
-    enable = true;
+  services = {
 
-    # Keymap
-    layout = "us";
-    xkbVariant = "";
+    xserver = {
+      enable = true;
 
-    exportConfiguration = true;
+      # Keymap
+      layout = "us";
+      xkbVariant = "";
 
-    desktopManager = {
-      xterm.enable = false;
-      xfce.enable = true;
+      exportConfiguration = true;
+
+      desktopManager = {
+        xterm.enable = false;
+        xfce.enable = true;
+      };
+
+      displayManager = {
+        defaultSession = "xfce";
+      };
     };
 
-    displayManager = {
-      defaultSession = "xfce";
+    pipewire = {
+      enable = true;
+      wireplumber.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    tor = {
+      enable = true;
+      client.enable = true;
+      torsocks.enable = true;
+    };
+
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      dataDir = "/home/me";
+      user = "me";
+      group = "users";
+      guiAddress = "localhost:8384";
+      overrideFolders = true;
+      settings.devices = {
+          "HP EliteBook 835 G7" = { id = "PDH4BFZ-4FU2BYM-XY2TZNM-YMC3D6Y-G6K2JYE-KKFFVBH-7NRQU55-KA6HNAX"; };
+          "ChangWang CW56-58" = { id = "FE52R5J-66HHL7H-JPQILZO-4V4QEQ6-NYXJRXW-CI6B3VN-6A4NEYI-B76ORQQ"; };
+          "ASUSTeK" = { id = "O2RXYBG-MXB3BJG-HDB4R5U-QBIMCPI-4BAHWJD-KRZ56HQ-TFGPDJA-MNKPLAM"; };
+      };
+      settings.folders = {
+        "Binaries" = {
+          path = "/home/me/bin";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+        "Cyber" = {
+          path = "/home/me/cyber";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+        "Desktop" = {
+          path = "/home/me/desk";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+        "Documents" = {
+          path = "/home/me/doc";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+        "Downloads" = {
+          path = "/home/me/down";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+        "Music" = {
+          path = "/home/me/music";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+        "Media" = {
+          path = "/home/me/media";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+        "Thunderbird" = {
+          path = "/home/me/.thunderbird";
+          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          versioning = {
+            type = "staggered";
+            params = {
+              cleanInterval = "3600";
+              maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+      };
     };
   };
-
-  services.pipewire = {
-    enable = true;
-    wireplumber.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  }; 
 
   programs.steam.enable = true;
-
-  services.tor = {
-    enable = true;
-    client.enable = true;
-    torsocks.enable = true;
-  };
-
-
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    dataDir = "/home/me";
-    user = "me";
-    group = "users";
-    guiAddress = "localhost:8384";
-    overrideFolders = true;
-    settings.devices = {
-	"HP EliteBook 835 G7" = { id = "PDH4BFZ-4FU2BYM-XY2TZNM-YMC3D6Y-G6K2JYE-KKFFVBH-7NRQU55-KA6HNAX"; };
-	"ChangWang CW56-58" = { id = "FE52R5J-66HHL7H-JPQILZO-4V4QEQ6-NYXJRXW-CI6B3VN-6A4NEYI-B76ORQQ"; };
-	"ASUSTeK" = { id = "O2RXYBG-MXB3BJG-HDB4R5U-QBIMCPI-4BAHWJD-KRZ56HQ-TFGPDJA-MNKPLAM"; };
-    };
-    settings.folders = {
-      "Binaries" = {
-        path = "/home/me/bin";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-      "Cyber" = {
-        path = "/home/me/cyber";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-      "Desktop" = {
-        path = "/home/me/desk";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-      "Documents" = {
-        path = "/home/me/doc";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-      "Downloads" = {
-        path = "/home/me/down";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-      "Music" = {
-        path = "/home/me/music";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-      "Media" = {
-        path = "/home/me/media";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-      "Thunderbird" = {
-      	path = "/home/me/.thunderbird";
-	devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-	versioning = {
-          type = "staggered";
-          params = {
-            cleanInterval = "3600";
-            maxAge = "7776000"; # 90 days
-          };
-        };
-      };
-    };
-  };
 
   home-manager.users.me = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
