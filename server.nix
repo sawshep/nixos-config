@@ -17,7 +17,6 @@
 
   age.secrets.user-password.file = ./secrets/user-password.age;
 
-
   age.secrets.caddy-basicauth.file = ./secrets/caddy-basicauth.age;
   systemd.services.caddy.serviceConfig = {
     EnvironmentFile = config.age.secrets.caddy-basicauth.path;
@@ -33,10 +32,12 @@
 
         root * /srv/www
 
-        redir /octoprint /octoprint/
-        reverse_proxy /octoprint/* 10.0.0.5:80 {
-          header_up X-Scheme {scheme}
-        }
+        #handle /octoprint/* {
+	#  rewrite * /
+        #  reverse_proxy http://10.0.0.5:80 #{
+        #    #header_up X-Scheme {scheme}
+        #  #}
+	#}
 
         file_server
         encode gzip
