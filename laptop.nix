@@ -8,7 +8,7 @@
       ./modules/user.nix
     ];
 
-  fileSystems."/".options = [ "noatime" "nodiratime" "compression=lzo" "discard" ];
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
   networking.hostName = "elitebook-835-g7"; # Define your hostname.
   networking.firewall.enable = true;
