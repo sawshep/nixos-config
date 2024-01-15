@@ -256,7 +256,7 @@ let authorizedKeys = import ./authorized_keys.nix; in
       tor-browser-bundle-bin
       transmission-qt # Torrent client
       ungoogled-chromium # Chromium web browser without the spyware
-      virt-manager
+      virt-manager # VM GUI
       vscodium # IDE
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
@@ -354,12 +354,6 @@ let authorizedKeys = import ./authorized_keys.nix; in
 
     programs.firefox.enable = true;
     programs.librewolf.enable = true;
-    #programs.librewolf = {
-    #  enable = true;
-    #  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    #    ipfs-companion
-    #  ];
-    #};
     programs.mpv.enable = true;
     programs.zathura.enable = true;
 
