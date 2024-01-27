@@ -13,7 +13,22 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  networking.hostName = "codebreaker";
+  networking.hostName = "codebreaker"; # Define your hostname.
+
+  services.openssh = {
+    enable = true;
+    ports = [ 31415 ];
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  services.fail2ban = {
+    enable = true;
+    maxretry = 10;
+  };
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "xfce4-session";
@@ -25,6 +40,7 @@
   environment.systemPackages = with pkgs; [
 
     cudaPackages.cudatoolkit
+    cudaPackages.cudnn
     libGLU libGL
     linuxPackages.nvidia_x11
     xorg.libXi xorg.libXmu freeglut
@@ -44,6 +60,10 @@
     tbb
 
   ];
+
+  environment.variables = {
+    CUDA_PATH = "${pkgs.cudatoolkit}";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

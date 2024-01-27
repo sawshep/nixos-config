@@ -44,7 +44,13 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ];
+  };
+
+    systemd.services.nvidia-control-devices = {
+    wantedBy = [
+      "multi-user.target"
+    ];
+    serviceConfig.ExecStart = "${config.boot.kernelPackages.nvidiaPackages.beta}/bin/nvidia-smi";
   };
 
 
