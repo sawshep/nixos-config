@@ -199,6 +199,8 @@ in
     gnupg # GNU privacy guard suite
     mokutil # Machine user key manager
     pinentry # Secure secret entry
+    openssl
+    cryptsetup
 
     # Hardware interfaces
     hdparm # Control drives
