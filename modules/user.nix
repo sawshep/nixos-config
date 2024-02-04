@@ -1,15 +1,19 @@
 { config, pkgs, ... }:
 
-let authorizedKeys = import ./authorized_keys.nix; in
+let
+  authorizedKeys = import ./authorized_keys.nix;
+in
 {
   age.secrets.user-password.file = ../secrets/user-password.age;
 
   users.users.me = {
     isNormalUser = true;
-    extraGroups = [ "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video"];
+    extraGroups = [ "libvirtd" "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video"];
     hashedPasswordFile = config.age.secrets.user-password.path;
     openssh.authorizedKeys.keys = authorizedKeys;
   };
+
+  programs.virt-manager.enable = true;
 
   services = {
 
@@ -256,7 +260,6 @@ let authorizedKeys = import ./authorized_keys.nix; in
       tor-browser-bundle-bin
       transmission-qt # Torrent client
       ungoogled-chromium # Chromium web browser without the spyware
-      virt-manager # VM GUI
       vscodium # IDE
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
