@@ -233,6 +233,7 @@ in
     nmap # Network mapper
     openvpn # OpenVPN 2 client
     openvpn3 # OpenVPN 3 client
+    wireguard-tools
     termshark # Wireshark TUI
     traceroute # Trace packet routing
     tshark # Wireshark CLI

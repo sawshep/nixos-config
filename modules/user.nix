@@ -168,6 +168,8 @@ in
     };
   };
 
+  programs.virt-manager.enable = true;
+
   programs.steam.enable = true;
 
   home-manager.users.me = { pkgs, ... }: {
@@ -246,6 +248,7 @@ in
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
       gimp # Image editor
+      gnome.cheese # Webcam viewer
       gpa # GPG frontend
       guitarix # Digital amplifier
       helvum # Pipewire patchbay
@@ -272,6 +275,8 @@ in
       tor-browser-bundle-bin
       transmission_4-qt # Torrent client
       ungoogled-chromium # Chromium web browser without the spyware
+      virt-manager # VM GUI
+      virglrenderer # 3D acceleration for QEMU
       vscodium # IDE
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
@@ -315,6 +320,7 @@ in
       sshuttle # SSH proxy
       tenacity # Audio editor, Audacity fork
       tetex
+      v4l-utils # Camera utilities
       winetricks
       xboxdrv # XBox controller drivers
       xclip # Copy to clipboard from CLI
