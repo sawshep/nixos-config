@@ -11,7 +11,7 @@
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
   networking.hostName = "elitebook-835-g7"; # Define your hostname.
-  networking.firewall.enable = true;
+  networking.firewall.enable = false;
 
   # Just generate the host key for Agenix
   services.openssh = {

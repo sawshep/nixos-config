@@ -43,25 +43,21 @@ in
 
   networking.networkmanager = {
      enable = true;
-     dns = "systemd-resolved";
+     dns = "default";
   };
 
-  networking.nameservers = [
-    "1.1.1.1"
-    "1.0.0.1"
-  ];
 
-  networking.extraHosts = builtins.readFile (builtins.fetchurl { url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"; });
+  #networking.extraHosts = builtins.readFile (builtins.fetchurl { url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"; });
 
-  services.resolved = {
-    enable = true;
-    dnssec = "true";
-    domains = [ "~." ];
-    fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-    extraConfig = ''
-      DNSOverTLS=yes
-    '';
-  };
+  #services.resolved = {
+  #  enable = true;
+  #  dnssec = "true";
+  #  domains = [ "~." ];
+  #  fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+  #  extraConfig = ''
+  #    DNSOverTLS=yes
+  #  '';
+  #};
 
 
   # For accessing Samba shares
