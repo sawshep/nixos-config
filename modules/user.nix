@@ -21,8 +21,10 @@ in
       enable = true;
 
       # Keymap
-      layout = "us";
-      xkbVariant = "";
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
 
       exportConfiguration = true;
 
@@ -31,14 +33,23 @@ in
         xfce.enable = true;
       };
 
-      displayManager = {
-        defaultSession = "xfce";
-      };
+    };
+
+    displayManager = {
+      defaultSession = "xfce";
     };
 
     pipewire = {
       enable = true;
       wireplumber.enable = true;
+      wireplumber.extraConfig = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+        };
+      };
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
@@ -220,7 +231,6 @@ in
     home.packages = with pkgs; [
 
       # GUI utilities
-      kdenlive
       anki # Flashcard program
       bitwarden # Password manager
       blender # Modeling software
@@ -231,7 +241,7 @@ in
       digikam # Photo management
       discord-canary # Messaging and voice call app
       easyeffects # Pipewire audio effects
-      freecad # Parametric CAD software
+      #freecad # Parametric CAD software
       freerdp # RDP client
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
@@ -242,6 +252,7 @@ in
       imhex # Fancy hex editor for RE
       imv # Image viewer
       kcalc # Calculator
+      kdenlive
       kdenlive # Video editor
       libreoffice # Office suite
       maxima # LISP computer algebra system
@@ -252,19 +263,20 @@ in
       qjackctl # JACK patchbay
       qownnotes # WYSIWYG Markdown editor
       remmina # GUI RDP/VNC/SSH
+      signal-desktop # Secure messaging app
       spotify # Music streaming service
       strawberry # Music player
       system-config-printer # CUPS wrapper
       thonny # Python IDE for microcontrollers
       thunderbird # Email client
       tor-browser-bundle-bin
-      transmission-qt # Torrent client
+      transmission_4-qt # Torrent client
       ungoogled-chromium # Chromium web browser without the spyware
       vscodium # IDE
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
       xfce.xfce4-volumed-pulse
-      yuzu # Switch emulator
+      #yuzu # Switch emulator
 
       # Cybersecurity Tools
       aircrack-ng # Capture and crack air traffic
@@ -285,7 +297,7 @@ in
       wpscan # Wordpress scanner
       zap # Web pen testing proxy
       metasploit # Exploitation framework
-      routersploit # Exploitation framework for embedded devices
+      #routersploit # Exploitation framework for embedded devices
       thc-hydra # Brute forcer
       volatility3 # Memory forensics tool
       wireshark # Network capture tool
@@ -300,11 +312,13 @@ in
       pandoc # Document converter
       protontricks
       ranger # File explorer
+      sshuttle # SSH proxy
       tenacity # Audio editor, Audacity fork
+      tetex
       winetricks
       xboxdrv # XBox controller drivers
       xclip # Copy to clipboard from CLI
-      youtube-dl # Youtube video downloader
+      yt-dlp # Youtube video downloader
 
       # Programming Lanugage Support
       clojure-lsp # Clojure LSP
@@ -315,7 +329,7 @@ in
       #rubyfmt # Ruby formatter
       rust-analyzer # Rust analyzer
       rustfmt # Rust formatter
-      scry # Crystal analyzer
+      #scry # Crystal analyzer
       solargraph # Ruby lang server
 
     ];
@@ -375,10 +389,10 @@ in
 
       coc = {
         enable = true;
-        settings.crystal = {
-          command = "scry";
-          filetypes = [ "crystal" "cr" ];
-        };
+        #settings.crystal = {
+        #  command = "scry";
+        #  filetypes = [ "crystal" "cr" ];
+        #};
       };
 
       viAlias = true;
@@ -430,6 +444,7 @@ in
         set number relativenumber
         set cursorline
         set tw=60
+        set spell spelllang=en
         set encoding=UTF-8
         set mouse=a
         noremap Y y$

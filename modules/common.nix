@@ -139,7 +139,7 @@ in
     fi
   '';
 
-  programs.gnupg.agent.pinentryFlavor = "tty";
+  #programs.gnupg.agent.pinentryPackage = "";
   programs.gnupg.agent.enable = true;
 
   environment.shellAliases = {
@@ -252,7 +252,7 @@ in
     powershell
     bun # Javascript runtime
     clojure # JVM-based Lisp
-    crystal # Compiled Ruby-like language
+    #crystal # Compiled Ruby-like language
     ghc # Haskell compiler and interpreter
     openjdk # Java development kit and runtime environment
     php # HTML embedded scripting lanugage

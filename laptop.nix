@@ -34,16 +34,15 @@
   services.tor.enable = true;
   services.tor.client.enable = true;
 
-  #virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "me" ];
-
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
+      Disable = "Headset";
     };
   };
   services.blueman.enable = true;
