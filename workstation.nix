@@ -12,6 +12,7 @@
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   networking.hostName = "codebreaker"; # Define your hostname.
 
@@ -40,11 +41,10 @@
   environment.systemPackages = with pkgs; [
 
     cudaPackages.cudatoolkit
-    cudaPackages.cudnn
-    libGLU libGL
-    linuxPackages.nvidia_x11
-    xorg.libXi xorg.libXmu freeglut
-    xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
+    #libGLU libGL
+    #linuxPackages.nvidia_x11
+    #xorg.libXi xorg.libXmu freeglut
+    #xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
 
     exiftool
     ollama

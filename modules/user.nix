@@ -13,8 +13,6 @@ in
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 
-  programs.virt-manager.enable = true;
-
   services = {
 
     xserver = {
@@ -275,7 +273,6 @@ in
       tor-browser-bundle-bin
       transmission_4-qt # Torrent client
       ungoogled-chromium # Chromium web browser without the spyware
-      virt-manager # VM GUI
       virglrenderer # 3D acceleration for QEMU
       vscodium # IDE
       xfce.thunar-archive-plugin
