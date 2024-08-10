@@ -27,10 +27,6 @@
 
   programs.steam.enable = true;
 
-  # Search for network printers
-  services.avahi.enable = true;
-  services.avahi.openFirewall = true;
-
   services.tor.enable = true;
   services.tor.client.enable = true;
 

@@ -85,6 +85,12 @@ in
 
     ];
   };
+  # Search for network printers
+  services.avahi = {
+    enable = true;
+    openFirewall = true;
+    nssmdns = true;
+  };
 
   users.groups.plocate = { };
 
