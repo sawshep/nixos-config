@@ -10,7 +10,8 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "ahci" "thunderbolt" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "i2c-dev" "i2c-piix4" "kvm-amd" ];
+  boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
@@ -30,6 +31,8 @@
 
   swapDevices = [ ];
 
+  hardware.i2c.enable = true;
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.nvidia = {
@@ -40,10 +43,9 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

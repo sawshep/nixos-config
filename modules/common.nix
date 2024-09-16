@@ -89,7 +89,7 @@ in
   services.avahi = {
     enable = true;
     openFirewall = true;
-    nssmdns = true;
+    nssmdns4 = true;
   };
 
   users.groups.plocate = { };

@@ -49,6 +49,10 @@
     exiftool
     ollama
 
+    openrgb
+    i2c-tools
+    liquidctl
+
     python311Packages.capstone
     python311Packages.pefile
     python311Packages.pycryptodome
