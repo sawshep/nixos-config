@@ -25,6 +25,8 @@
     ];
   };
 
+  virtualisation.spiceUSBRedirection.enable = true;
+
   programs.steam.enable = true;
 
   services.tor.enable = true;
@@ -42,6 +44,7 @@
     };
   };
   services.blueman.enable = true;
+
 
   environment.systemPackages = with pkgs; [
 

@@ -250,6 +250,8 @@ in
       xfce.xfce4-whiskermenu-plugin
 
       # GUI utilities
+      #freecad # Parametric CAD software
+      #yuzu # Switch emulator
       anki # Flashcard program
       bitwarden # Password manager
       blender # Modeling software
@@ -260,12 +262,12 @@ in
       digikam # Photo management
       discord-canary # Messaging and voice call app
       easyeffects # Pipewire audio effects
-      #freecad # Parametric CAD software
       freerdp # RDP client
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
       gimp-with-plugins # Image editor
       cheese # Webcam viewer
+      gnuradio # SDR toolchain
       gpa # GPG frontend
       guitarix # Digital amplifier
       helvum # Pipewire patchbay
@@ -292,16 +294,19 @@ in
       tor-browser-bundle-bin
       transmission_4-qt # Torrent client
       ungoogled-chromium # Chromium web browser without the spyware
+      urh # SDR analysis
       virglrenderer # 3D acceleration for QEMU
       vscodium # IDE
-      #yuzu # Switch emulator
+      xfce.thunar-archive-plugin
+      xfce.xfce4-pulseaudio-plugin
+      xfce.xfce4-volumed-pulse
 
       # Cybersecurity Tools
       aircrack-ng # Capture and crack air traffic
       binwalk # Extract files from binary
       burpsuite # Web exploitation framework
       capstone # Dissassembly library
-      crackmapexec # Active Directory exploitation framework
+      netexec # Active Directory exploitation framework
       enum4linux # SMB enumeration
       exploitdb # Search exploits from command line
       flare-floss # Reverse engineering tool

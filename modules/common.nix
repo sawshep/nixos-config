@@ -28,6 +28,12 @@ in
 
   nix.settings.auto-optimise-store = true;
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   #age.secrets = {
