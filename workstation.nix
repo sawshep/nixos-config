@@ -12,9 +12,27 @@
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
+
   nixpkgs.config.nvidia.acceptLicense = true;
 
   networking.hostName = "codebreaker"; # Define your hostname.
+
+  networking.hosts = {
+    "10.0.0.4" = ["radicale.spaceheaterlab.net"];
+    "10.0.0.6" = ["manage.spaceheaterlab.net"];
+  };
+
+  services.hardware.openrgb = {
+    enable = true;
+    #package = pkgs.openrgb-with-all-plugins;
+    motherboard = "amd";
+    #server = {
+    #  port = 6742;
+    #};
+  };
+
+
+  hardware.hackrf.enable = true;
 
   services.openssh = {
     enable = true;
@@ -36,6 +54,7 @@
   services.xrdp.openFirewall = true;
 
   #virtualisation.virtualbox.host.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
 
   environment.systemPackages = with pkgs; [
