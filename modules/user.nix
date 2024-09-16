@@ -14,12 +14,13 @@ in
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 
-  services = {
+  hardware.bluetooth.enable = true;
 
+  services = {
     xserver = {
       enable = true;
+      excludePackages = [ pkgs.xterm ];
 
-      # Keymap
       xkb = {
         layout = "us";
         variant = "";
@@ -41,19 +42,13 @@ in
     pipewire = {
       enable = true;
       wireplumber.enable = true;
-      wireplumber.extraConfig = {
-        "monitor.bluez.properties" = {
-          "bluez5.enable-sbc-xq" = true;
-          "bluez5.enable-msbc" = true;
-          "bluez5.enable-hw-volume" = true;
-          "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-        };
-      };
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
     };
+
+    blueman.enable = true;
 
     tor = {
       enable = true;
@@ -171,6 +166,17 @@ in
 
   programs.steam.enable = true;
 
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      thunar-volman
+    ];
+  };
+
+  programs.xfconf.enable = true;
+
   home-manager.users.me = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
@@ -179,9 +185,7 @@ in
     home.username = "me";
     home.homeDirectory = "/home/me";
 
-    programs.bash.enable = true;
-
-    home.sessionPath =  [ "$HOME/bin" ];
+    home.sessionPath = [ "$HOME/bin" ];
 
     home.shellAliases = {
       dict = "dict --config ~/dict.conf";
@@ -213,6 +217,8 @@ in
             "SKIP_HOST_UPDATE": true,
             "IS_MAXIMIZED": false,
             "IS_MINIMIZED": false,
+            "MIN_WIDTH": 0,
+            "MIN_HEIGHT": 0,
             "WINDOW_BOUNDS": {
               "x": 245,
               "y": 582,
@@ -225,6 +231,23 @@ in
     };
 
     home.packages = with pkgs; [
+
+      drawing # Like Paint
+      evince # document viewer
+      font-manager
+      file-roller # archive manager
+      gnome-disk-utility # Simply manage disks
+      gparted # Disk partitioner
+      inkscape
+      xfce.gigolo
+      xfce.catfish
+      xfce.orage
+      xfce.xfburn
+      xfce.xfce4-fsguard-plugin
+      xfce.thunar-archive-plugin
+      xfce.xfce4-pulseaudio-plugin
+      xfce.xfce4-volumed-pulse
+      xfce.xfce4-whiskermenu-plugin
 
       # GUI utilities
       anki # Flashcard program
@@ -241,8 +264,8 @@ in
       freerdp # RDP client
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
-      gimp # Image editor
-      gnome.cheese # Webcam viewer
+      gimp-with-plugins # Image editor
+      cheese # Webcam viewer
       gpa # GPG frontend
       guitarix # Digital amplifier
       helvum # Pipewire patchbay
@@ -271,9 +294,6 @@ in
       ungoogled-chromium # Chromium web browser without the spyware
       virglrenderer # 3D acceleration for QEMU
       vscodium # IDE
-      xfce.thunar-archive-plugin
-      xfce.xfce4-pulseaudio-plugin
-      xfce.xfce4-volumed-pulse
       #yuzu # Switch emulator
 
       # Cybersecurity Tools
@@ -331,47 +351,77 @@ in
       #scry # Crystal analyzer
       solargraph # Ruby lang server
 
+      matcha-gtk-theme
+      zuki-themes
+      elementary-xfce-icon-theme
+      xfce.xfce4-icon-theme
     ];
 
-    programs.emacs = {
-      enable = false;
-      package = pkgs.emacs-gtk;
-      extraPackages = emacsPackages: (with emacsPackages; [
-
-        elisp-format
-        evil
-        lispy
-        lispyville
-        magit
-        use-package
-
-      ]);
-      extraConfig = ''
-        (require 'use-package)
-
-        (use-package evil)
-        (use-package magit)
-        (use-package elisp-format)
-        ;(use-package lispy)
-        ;(use-package lispyville)
-        (evil-mode 1)
-        (add-hook 'lispy-mode-hook #'lispyville-mode)
-
-        (recentf-mode 1)
-        (setq history-length 25)
-        (savehist-mode 1)
-        (save-place-mode 1)
-        (global-auto-revert-mode 1)
-        (setq global-auto-revert-non-file-buffers t)
-
-      '';
+    xfconf.settings = {
+      xfce4-terminal = {
+        "binding-ambiguous-width" = "TERMINAL_AMBIGUOUS_WIDTH_BINDING_WIDE";
+        "color-background" = "#24241f1f3131";
+        "color-background-vary" = true;
+        "color-bold-is-bright" = true;
+        "color-bold-use-default" = true;
+        "color-cursor" = "#dcdcdc";
+        "color-cursor-use-default" = true;
+        "color-foreground" = "#dcdcdc";
+        "color-palette" = "#3f3f3f;#705050;#60b48a;#dfaf8f;#9ab8d7;#dc8cc3;#8cd0d3;#dcdcdc;#709080;#dca3a3;#72d5a3;#f0dfaf;#94bff3;#ec93d3;#93e0e3;#ffffff";
+        "color-selection-use-default" = true;
+        "color-use-theme" = false;
+        "dropdown-show-borders" = false;
+        "font-use-system" = false;
+        "misc-bell" = false;
+        "misc-bell-urgent" = false;
+        "misc-cursor-blinks" = true;
+        "misc-cursor-shape" = "TERMINAL_CURSOR_SHAPE_IBEAM";
+        "misc-hyperlinks-enabled" = true;
+        "misc-middle-click-opens-uri" = false;
+        "misc-mouse-autohide" = false;
+        "misc-right-click-action" = "TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU";
+        "misc-show-unsafe-paste-dialog" = false;
+        "misc-slim-tabs" = true;
+        "scrolling-unlimited" = true;
+        "tab-activity-color" = "#aa0000";
+        "title-mode" = "TERMINAL_TITLE_REPLACE";
+      };
+    xfwm4 = {
+      "borderless_maximize" = true;
+      "box_move" = true;
+      "box_resize" = true;
+      "mousewheel_rollup" = false;
     };
 
+    };
+
+    gtk = {
+      enable = true;
+        iconTheme = {
+        name = "elementary-Xfce-dark";
+        package = pkgs.elementary-xfce-icon-theme;
+      };
+      theme = {
+        name = "zukitre-dark";
+        package = pkgs.zuki-themes;
+      };
+      gtk3.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
+      gtk4.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
+    };
 
     programs.firefox.enable = true;
     programs.librewolf.enable = true;
     programs.mpv.enable = true;
     programs.zathura.enable = true;
+
 
     programs.git = {
       enable = true;
