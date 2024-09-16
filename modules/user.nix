@@ -8,6 +8,7 @@ in
 
   users.users.me = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     extraGroups = [ "libvirtd" "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video"];
     hashedPasswordFile = config.age.secrets.user-password.path;
     openssh.authorizedKeys.keys = authorizedKeys;
@@ -188,11 +189,6 @@ in
       sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
       clip = "xclip -selection clipboard";
       rot13 = "tr 'A-Za-z' 'N-ZA-Mn-za-m'";
-    };
-
-    programs.dircolors = {
-      enable = true;
-      enableBashIntegration = true;
     };
 
     home.file = {

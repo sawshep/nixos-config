@@ -145,6 +145,33 @@ in
     fi
   '';
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableLsColors = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    histSize = 999999999;
+    histFile = "$XDG_DATA_HOME/zsh/history";
+
+    shellInit = ''
+      backward-kill-dir () {
+        local WORDCHARS=$\{WORDCHARS/\/}
+        zle backward-kill-word
+        zle -f kill
+      }
+      zle -N backward-kill-dir
+      bindkey '^[^?' backward-kill-dir
+      bindkey '^[[H' beginning-of-line
+      bindkey '^[[F' end-of-line
+    '';
+
+    promptInit = ''
+        PS1='%m:%~ %# '
+    '';
+  };
+
   #programs.gnupg.agent.pinentryPackage = "";
   programs.gnupg.agent.enable = true;
 
