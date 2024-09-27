@@ -14,8 +14,11 @@
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
+
   networking.hostId = "5df741a2";
+
+  boot.zfs.forceImportRoot = false;
+  boot.zfs.extraPools = [ "zfspool" ];
 
 
   fileSystems."/" =
