@@ -102,6 +102,7 @@ in
 
   virtualisation = {
     libvirtd.enable = true;
+    libvirtd.qemu.swtpm.enable = true;
 
     docker = {
       enable = true;
