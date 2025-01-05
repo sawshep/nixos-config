@@ -163,6 +163,10 @@ in
     histFile = "$XDG_DATA_HOME/zsh/history";
 
     shellInit = ''
+      WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ '$'\n'
+      autoload -Uz select-word-style
+      select-word-style normal
+      zstyle ':zle:*' word-style unspecified
       backward-kill-dir () {
         local WORDCHARS=$\{WORDCHARS/\/}
         zle backward-kill-word
@@ -172,6 +176,10 @@ in
       bindkey '^[^?' backward-kill-dir
       bindkey '^[[H' beginning-of-line
       bindkey '^[[F' end-of-line
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+      bindkey "^[[1;3C" forward-word
+      bindkey "^[[1;3D" backward-word
     '';
 
     promptInit = ''
