@@ -251,6 +251,7 @@ in
 
       # GUI utilities
       #freecad # Parametric CAD software
+      #rizinPlugins.rz-ghidra
       #yuzu # Switch emulator
       anki # Flashcard program
       bitwarden # Password manager
@@ -259,6 +260,10 @@ in
       caffeine-ng # Keep the screen awake
       cherrytree # Tree notes app
       clooj # Clojure IDE
+      #cutter
+      #cutterPlugins.jsdec
+      #cutterPlugins.rz-ghidra
+      #cutterPlugins.sigdb
       digikam # Photo management
       discord-canary # Messaging and voice call app
       easyeffects # Pipewire audio effects
@@ -284,8 +289,11 @@ in
       prusa-slicer # Slicer for 3D printing
       qjackctl # JACK patchbay
       qownnotes # WYSIWYG Markdown editor
+      radare2
       remmina # GUI RDP/VNC/SSH
+      rizin
       signal-desktop # Secure messaging app
+      slack
       spotify # Music streaming service
       strawberry # Music player
       system-config-printer # CUPS wrapper
@@ -294,7 +302,6 @@ in
       tor-browser-bundle-bin
       transmission_4-qt # Torrent client
       ungoogled-chromium # Chromium web browser without the spyware
-      urh # SDR analysis
       virglrenderer # 3D acceleration for QEMU
       vscodium # IDE
       xfce.thunar-archive-plugin
@@ -331,7 +338,7 @@ in
       hunspell # Spellcheck
       hunspellDicts.en-us-large # Spellcheck dict
       nnn # File explorer
-      onionshare # P2P file sharing over TOR
+      #onionshare # P2P file sharing over TOR
       pandoc # Document converter
       protontricks
       ranger # File explorer
@@ -340,7 +347,6 @@ in
       tetex
       v4l-utils # Camera utilities
       winetricks
-      xboxdrv # XBox controller drivers
       xclip # Copy to clipboard from CLI
       yt-dlp # Youtube video downloader
 

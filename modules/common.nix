@@ -81,7 +81,6 @@ in
       brgenml1cupswrapper
       brgenml1lpr
       brlaser
-      cnijfilter2
       gutenprint
       gutenprintBin
       hplip
