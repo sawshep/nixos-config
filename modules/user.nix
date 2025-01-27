@@ -247,6 +247,7 @@ in
       xfce.thunar-archive-plugin
       xfce.xfce4-pulseaudio-plugin
       xfce.xfce4-volumed-pulse
+      xfce.exo
       xfce.xfce4-whiskermenu-plugin
 
       # GUI utilities
@@ -255,9 +256,12 @@ in
       #yuzu # Switch emulator
       anki # Flashcard program
       bitwarden # Password manager
+      networkmanager-fortisslvpn
+      openfortivpn # Fortinet vpn services
       blender # Modeling software
       bottles # WINE wrapper
       caffeine-ng # Keep the screen awake
+      cheese # Webcam viewer
       cherrytree # Tree notes app
       clooj # Clojure IDE
       #cutter
@@ -271,7 +275,6 @@ in
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
       gimp-with-plugins # Image editor
-      cheese # Webcam viewer
       gnuradio # SDR toolchain
       gpa # GPG frontend
       guitarix # Digital amplifier
@@ -282,6 +285,7 @@ in
       kdenlive
       kdenlive # Video editor
       libreoffice # Office suite
+      marktext # Markdown editor
       maxima # LISP computer algebra system
       openscad # Parametric CAD
       pa_applet # Volume control applet
