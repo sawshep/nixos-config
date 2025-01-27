@@ -52,7 +52,8 @@
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  hardware.graphics.extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ];
+  #hardware.graphics.extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ];
+  #hardware.graphics.extraPackages = with pkgs; [ rocm-opencl-runtime ];
 
   services.tlp = {
     enable = true;

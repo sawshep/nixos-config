@@ -41,6 +41,7 @@
     General = {
       Enable = "Source,Sink,Media,Socket";
       Disable = "Headset";
+      UserspaceHID = true;
     };
   };
   services.blueman.enable = true;
