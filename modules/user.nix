@@ -147,17 +147,6 @@ in
             };
           };
         };
-        "Thunderbird" = {
-          path = "/home/me/.thunderbird";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
       };
     };
   };
