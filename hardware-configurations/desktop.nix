@@ -13,13 +13,8 @@
   boot.kernelModules = [ "i2c-dev" "i2c-piix4" "kvm-amd" ];
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "zfs" ];
 
   networking.hostId = "5df741a2";
-
-  boot.zfs.forceImportRoot = false;
-  boot.zfs.extraPools = [ "zfspool" ];
-
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/9206e249-388e-4f1b-9fbd-8044c6ac0eb1";
