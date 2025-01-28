@@ -141,6 +141,10 @@ in
     Host *
       ServerAliveInterval 30
       ServerAliveCountMax 6
+    Host github.com
+      HostName github.com
+      User git
+      IdentityFile ~/.ssh/github
   '';
 
   programs.bash.promptInit = ''

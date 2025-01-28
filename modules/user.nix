@@ -431,6 +431,11 @@ in
       enable = true;
       userName = "Sawyer Shepherd";
       userEmail = "contact@sawyershepherd.org";
+      extraConfig = {
+        core = {
+          sshCommand = "ssh -i ~/.ssh/github";
+        };
+      };
     };
 
     programs.gpg = {
