@@ -57,8 +57,11 @@
   virtualisation.spiceUSBRedirection.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
 
+  services.teamviewer.enable = true;
+
   environment.systemPackages = with pkgs; [
 
+    teamviewer
     cudaPackages.cudatoolkit
     #libGLU libGL
     #linuxPackages.nvidia_x11

@@ -177,7 +177,6 @@ in
     home.sessionPath = [ "$HOME/bin" ];
 
     home.shellAliases = {
-      dict = "dict --config ~/dict.conf";
       hm = "home-manager";
       sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
       clip = "xclip -selection clipboard";
@@ -185,10 +184,6 @@ in
     };
 
     home.file = {
-      dict = {
-        target = "./.config/dict.conf";
-        text = "server dict.org\n";
-      };
       sbcl = {
         target = "./.config/sbclrc";
         text = ''
@@ -241,7 +236,6 @@ in
 
       # GUI utilities
       #freecad # Parametric CAD software
-      #rizinPlugins.rz-ghidra
       #yuzu # Switch emulator
       anki # Flashcard program
       bitwarden # Password manager
@@ -263,8 +257,7 @@ in
       freerdp # RDP client
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
-      gimp-with-plugins # Image editor
-      gnuradio # SDR toolchain
+      gimp # Image editor
       gpa # GPG frontend
       guitarix # Digital amplifier
       helvum # Pipewire patchbay

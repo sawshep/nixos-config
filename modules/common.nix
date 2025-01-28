@@ -232,7 +232,6 @@ in
     samba # Connect to SMB shares
     safecopy # Data recovery tool
     ddrescue # Data recovery tool
-    pmount # Mount removable devices as a user
 
     # Encryption utilities
     apg # Password generator
@@ -260,7 +259,6 @@ in
     # Nice-to-Haves
     magic-wormhole
     bc # Calculator
-    dict # Dictionary
     dos2unix # Strip return carriages
     ed # For /REALLY/ dumb terminals
     ffmpeg # Audio/video conversion
@@ -283,7 +281,7 @@ in
     networkmanager # Manages network connections
     nmap # Network mapper
     openvpn # OpenVPN 2 client
-    openvpn3 # OpenVPN 3 client
+    #openvpn3 # OpenVPN 3 client
     wireguard-tools
     termshark # Wireshark TUI
     traceroute # Trace packet routing
