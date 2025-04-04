@@ -20,6 +20,7 @@ in
 
   services = {
     ollama.enable = true;
+    fwupd.enable = true;
     redshift = {
       enable = true;
       brightness = {
