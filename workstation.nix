@@ -13,23 +13,27 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  systemd.services.nvidia-control-devices = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.ExecStart = "${pkgs.linuxPackages.nvidia_x11.bin}/bin/nvidia-smi";
-  };
-
   nixpkgs.config.nvidia.acceptLicense = true;
 
-  networking.hostName = "codebreaker"; # Define your hostname.
+  networking = {
+    useDHCP = false;
+    defaultGateway = "10.0.0.1";
+    interfaces.wlp8s0.ipv4.addresses = [
+      { address = "10.0.0.7"; prefixLength = 24; }
+    ];
+    hostName = "codebreaker"; # Define your hostname.
 
-  networking.hosts = {
-    "10.0.0.5" = ["radicale.spaceheaterlab.net"];
-    "10.0.0.6" = ["lab.cyberhawks.org"];
-  };
+    hosts = {
+      "10.0.0.5" = ["radicale.spaceheaterlab.net"];
+      "10.0.0.6" = ["lab.cyberhawks.org"];
+      "10.0.0.7" = ["ai.spaceheaterlab.net"];
+    };
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 80 443 ];
+    firewall = {
+      enable = true;
+      # For Caddy -> Open WebUI
+      allowedTCPPorts = [ 80 443 ];
+    };
   };
 
   services.syncthing.openDefaultPorts = true;
@@ -45,7 +49,13 @@
 
   services.caddy = {
     enable = true;
-    virtualHosts."10.0.0.24" = {
+    virtualHosts."10.0.0.7" = {
+        extraConfig = ''
+          tls internal
+          reverse_proxy http://localhost:8080
+        '';
+      };
+    virtualHosts."ai.spaceheaterlab.net" = {
         extraConfig = ''
           tls internal
           reverse_proxy http://localhost:8080
