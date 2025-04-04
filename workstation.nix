@@ -120,6 +120,9 @@
   virtualisation.spiceUSBRedirection.enable = true;
   users.extraGroups.vboxusers.members = [ "me" ];
 
+  services.i2pd.proto.i2cp.enable = true;
+  users.extraGroups.i2c.members = [ "me" ];
+
   services.teamviewer.enable = true;
 
   environment.systemPackages = with pkgs; [

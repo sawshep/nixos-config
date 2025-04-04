@@ -232,191 +232,195 @@ in
 
     home.packages = with pkgs; [
 
-      drawing # Like Paint
-      evince # document viewer
-      font-manager
-      mate.engrampa # archive manager
-      gnome-disk-utility # Simply manage disks
-      gparted # Disk partitioner
-      inkscape
-      xfce.gigolo
-      xfce.catfish
-      xfce.orage
-      xfce.xfburn
-      xfce.xfce4-fsguard-plugin
-      xfce.thunar-archive-plugin
-      xfce.xfce4-pulseaudio-plugin
-      xfce.xfce4-volumed-pulse
-      xfce.exo
-      xfce.xfce4-whiskermenu-plugin
-
-      # GUI utilities
-      #cutter
-      #cutterPlugins.jsdec
-      #cutterPlugins.rz-ghidra
-      #cutterPlugins.sigdb
-      #freecad # Parametric CAD software
-      #yuzu # Switch emulator
+      aircrack-ng # Capture and crack air traffic
+      amber-theme
+      ameba
+      andromeda-gtk-theme
       anki # Flashcard program
+      arc-icon-theme
+      bash-language-server
+      beauty-line-icon-theme
+      binwalk # Extract files from binary
       bitwarden # Password manager
       blender # Modeling software
       bottles # WINE wrapper
+      burpsuite # Web exploitation framework
       caffeine-ng # Keep the screen awake
+      capstone # Dissassembly library
       cheese # Webcam viewer
       cherrytree # Tree notes app
+      clang-tools
       clooj # Clojure IDE
+      colloid-icon-theme
+      cppcheck
+      crystal
+      crystalline
+      deadnix
       digikam # Photo management
       discord-canary # Messaging and voice call app
+      dracula-icon-theme
+      drawing # Like Paint
       easyeffects # Pipewire audio effects
+      elementary-xfce-icon-theme
+      enum4linux # SMB enumeration
+      eslint
+      evince # document viewer
+      exploitdb # Search exploits from command line
+      feroxbuster # Better directory enumeration
+      file-roller # archive manager
+      flare-floss # Reverse engineering tool
+      font-manager
+      foremost # Carve data from binaries
       freerdp # RDP client
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
       gimp # Image editor
+      gnome-disk-utility # Simply manage disks
+      gnome-resources # Process monitor
+      gobuster # Everything enumeration
+      google-java-format
+      gopls
       gpa # GPG frontend
+      gparted # Disk partitioner
       guitarix # Digital amplifier
+      hashcat # GPU hash cracker
+      hcxtools # hashcat companion tools
+      heimdall # Flash android roms
       helvum # Pipewire patchbay
+      hugo # Static site generator
+      hunspell # Spellcheck
+      hunspellDicts.en-us-large # Spellcheck dict
       imhex # Fancy hex editor for RE
       imv # Image viewer
+      inkscape
+      inkscape-with-extensions
+      jdt-language-server
+      jetbrains-mono
+      john # CPU hash cracker
       kdePackages.kcalc # Calculator
-      obs-studio
       kdePackages.kdenlive # Video editor
+      kora-icon-theme
       libreoffice # Office suite
+      lua-language-server
+      marksman
       marktext # Markdown editor
+      marwaita
+      matcha-gtk-theme
+      mate.engrampa # archive manager
+      mate.mate-icon-theme
       maxima # LISP computer algebra system
+      metasploit # Exploitation framework
+      mint-l-icons
+      mint-y-icons
+      musescore
       musescore # Music notation software
-      networkmanager-fortisslvpn
+      netexec # Active Directory exploitation framework
+      nixpkgs-fmt
+      nixpkgs-lint
+      nnn # File explorer
+      nordzy-icon-theme
+      numix-gtk-theme
+      numix-icon-theme
+      obs-studio
       openfortivpn # Fortinet vpn services
       openscad # Parametric CAD
       pa_applet # Volume control applet
+      pandoc # Document converter
+      papirus-icon-theme
       pavucontrol # PulseAudio volume control
+      plano-theme
+      protontricks
       prusa-slicer # Slicer for 3D printing
+      python312Packages.flake8 # Python linter
+      python312Packages.python-lsp-server
       qjackctl # JACK patchbay
+      qogir-icon-theme
       qownnotes # WYSIWYG Markdown editor
       radare2
+      ranger # File explorer
       remmina # GUI RDP/VNC/SSH
+      reversal-icon-theme
       rizin
+      rose-pine-icon-theme
+      rubocop # Ruby analyzer
+      rubocop # Ruby linter
+      rubyPackages.solargraph # Ruby LSP
+      rubyfmt # Ruby formatter
+      rust-analyzer # Rust LSP
+      rust-analyzer # Rust analyzer
+      rustfmt # Rust formatter
+      shellcheck
       signal-desktop # Secure messaging app
       slack
+      solargraph # Ruby lang server
       spotify # Music streaming service
+      sshuttle # SSH proxy
+      statix
+      stilo-themes
       strawberry # Music player
       system-config-printer # CUPS wrapper
+      tela-circle-icon-theme
+      tela-icon-theme
+      tenacity # Audio editor, Audacity fork
+      tetex
+      thc-hydra # Brute forcer
       thonny # Python IDE for microcontrollers
       thunderbird # Email client
       tor-browser-bundle-bin
       transmission_4-qt # Torrent client
-      ungoogled-chromium # Chromium web browser without the spyware
-      virglrenderer # 3D acceleration for QEMU
-      vscodium # IDE
-      xfce.thunar-archive-plugin
-      xfce.xfce4-pulseaudio-plugin
-      xfce.xfce4-volumed-pulse
-
-      # Cybersecurity Tools
-      aircrack-ng # Capture and crack air traffic
-      binwalk # Extract files from binary
-      burpsuite # Web exploitation framework
-      capstone # Dissassembly library
-      netexec # Active Directory exploitation framework
-      enum4linux # SMB enumeration
-      exploitdb # Search exploits from command line
-      flare-floss # Reverse engineering tool
-      foremost # Carve data from binaries
-      gobuster # Everything enumeration
-      feroxbuster # Better directory enumeration
-      hashcat # GPU hash cracker
-      hcxtools # hashcat companion tools
-      heimdall # Flash android roms
-      john # CPU hash cracker
-      wpscan # Wordpress scanner
-      zap # Web pen testing proxy
-      metasploit # Exploitation framework
-      #routersploit # Exploitation framework for embedded devices
-      thc-hydra # Brute forcer
-      volatility3 # Memory forensics tool
-      wireshark # Network capture tool
-      yara # Malware analyzer
-
-      # Command Line Utilities
-      hugo # Static site generator
-      hunspell # Spellcheck
-      hunspellDicts.en-us-large # Spellcheck dict
-      nnn # File explorer
-      #onionshare # P2P file sharing over TOR
-      pandoc # Document converter
-      protontricks
-      ranger # File explorer
-      sshuttle # SSH proxy
-      tenacity # Audio editor, Audacity fork
-      tetex
-      v4l-utils # Camera utilities
-      winetricks
-      xclip # Copy to clipboard from CLI
-      yt-dlp # Youtube video downloader
-
-      # Programming Lanugage Support
-      clang-tools
-      cppcheck
       tree-sitter
-      python312Packages.python-lsp-server
-      python312Packages.flake8 # Python linter
-      crystalline
-      crystal
-      ameba
-      gopls
       typescript-language-server
-      eslint
-      lua-language-server
-      jdt-language-server
-      google-java-format
-      vscode-langservers-extracted
-      bash-language-server
-      shellcheck
-      rubocop # Ruby linter
-      marksman
-      nixpkgs-fmt
-      nixpkgs-lint
-      statix
-      deadnix
-      rubyfmt # Ruby formatter
-      rust-analyzer # Rust LSP
-      rustfmt # Rust formatter
-      rubyPackages.solargraph # Ruby LSP
-
-      jetbrains-mono
-      amber-theme
-      andromeda-gtk-theme
-      arc-icon-theme
-      beauty-line-icon-theme
-      colloid-icon-theme
-      dracula-icon-theme
-      elementary-xfce-icon-theme
-      kora-icon-theme
-      marwaita
-      matcha-gtk-theme
-      mate.mate-icon-theme
-      mint-l-icons
-      mint-y-icons
-      nordzy-icon-theme
-      numix-gtk-theme
-      numix-icon-theme
-      papirus-icon-theme
-      plano-theme
-      qogir-icon-theme
-      reversal-icon-theme
-      rose-pine-icon-theme
-      stilo-themes
-      tela-circle-icon-theme
-      tela-icon-theme
+      ungoogled-chromium # Chromium web browser without the spyware
+      v4l-utils # Camera utilities
       vimix-icon-theme
+      virglrenderer # 3D acceleration for QEMU
+      volatility3 # Memory forensics tool
+      vscode-langservers-extracted
+      vscodium # IDE
       whitesur-gtk-theme
       whitesur-icon-theme
       windows10-icons
+      winetricks
+      wireshark # Network capture tool
+      wpscan # Wordpress scanner
+      xclip # Copy to clipboard from CLI
+      xfce.catfish
+      xfce.exo
+      xfce.gigolo
+      xfce.orage
+      xfce.thunar-archive-plugin
+      xfce.thunar-volman
+      xfce.xfburn
+      xfce.xfce4-appfinder
+      xfce.xfce4-clipman-plugin
+      xfce.xfce4-cpugraph-plugin
+      xfce.xfce4-dict
+      xfce.xfce4-fsguard-plugin
+      xfce.xfce4-genmon-plugin
       xfce.xfce4-icon-theme
+      xfce.xfce4-netload-plugin
+      xfce.xfce4-panel
+      xfce.xfce4-pulseaudio-plugin
+      xfce.xfce4-sensors-plugin
+      xfce.xfce4-systemload-plugin
+      xfce.xfce4-volumed-pulse
+      xfce.xfce4-weather-plugin
+      xfce.xfce4-whiskermenu-plugin
+      xfce.xfce4-xkb-plugin
+      xfce.xfdashboard
       xfce.xfwm4-themes
       xorg.xcursorthemes
+      xorg.xev
+      xsel
+      xtitle
+      xwinmosaic
+      yara # Malware analyzer
       yaru-remix-theme
       yaru-theme
+      yt-dlp # Youtube video downloader
+      zap # Web pen testing proxy
       zuki-themes
+
     ];
 
     xfconf.settings = {
