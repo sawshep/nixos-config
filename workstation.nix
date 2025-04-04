@@ -38,6 +38,15 @@
 
   services.syncthing.openDefaultPorts = true;
 
+  # Antivirus
+  services.clamav = {
+    daemon.enable = true;
+    updater.enable = true;
+    scanner.enable = true;
+    # Provides extra signatures
+    fangfrisch.enable = true;
+  };
+
   services.ollama = {
     enable = true;
     environmentVariables = {
@@ -116,6 +125,7 @@
   environment.systemPackages = with pkgs; [
 
     teamviewer
+    clamtk
 
     cudaPackages.cuda_gdb
     cudaPackages.cudatoolkit
