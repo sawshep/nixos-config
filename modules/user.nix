@@ -502,14 +502,6 @@ in
     programs.neovim = {
       enable = true;
 
-      coc = {
-        enable = true;
-        #settings.crystal = {
-        #  command = "scry";
-        #  filetypes = [ "crystal" "cr" ];
-        #};
-      };
-
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
@@ -520,51 +512,107 @@ in
 
       plugins = with pkgs.vimPlugins; [
 
-        lightline-vim
-        nnn-vim
+        lualine-nvim
+	nvim-web-devicons
+
         neoterm
+        nvim-tree-lua
+
         nvim-treesitter
-        vim-fugitive
-        vim-lightline-coc
-        vim-nix
+
         vim-sandwich
-        vim-slime
-        vim-vinegar
-        vimspector
+        nvim-lspconfig
+	cmp-nvim-lsp
+	nvim-cmp
+	cmp-buffer
+	cmp-path
+	luasnip
 
-        coc-css
-        coc-git
-        coc-highlight
-        coc-html
-        coc-java
-        coc-json
-        coc-pairs
-        coc-prettier
-        coc-pyright
-        coc-rls
-        coc-solargraph
-        coc-yaml
-
+	vim-nix
       ];
-      extraConfig = ''
-        set signcolumn=yes
-        set ignorecase
-        set smartcase
-        filetype plugin indent on
-        set tabstop=4
-        set softtabstop=0
-        set expandtab
-        set shiftwidth=4
-        set smarttab
-        set number relativenumber
-        set cursorline
-        set tw=60
-        set spell spelllang=en
-        set encoding=UTF-8
-        set mouse=a
-        noremap Y y$
-        let g:slime_target = "neovim"
-        tnoremap <Esc> <C-\><C-n>
+      extraLuaConfig = ''
+        -- Basic settings
+        vim.opt.signcolumn = "yes"
+        vim.opt.ignorecase = true
+        vim.opt.smartcase = true
+        vim.opt.incsearch = true
+        vim.opt.number = true
+        vim.opt.relativenumber = true
+        vim.opt.cursorline = true
+        vim.opt.showmode = false
+        vim.opt.splitbelow = true
+        vim.opt.splitright = true
+        vim.opt.tabstop = 4
+        vim.opt.softtabstop = 0
+        vim.opt.expandtab = true
+        vim.opt.shiftwidth = 4
+        vim.opt.smarttab = true
+        vim.opt.textwidth = 60
+        vim.opt.spell = true
+        vim.opt.spelllang = { "en" }
+        vim.opt.mouse = "a"
+        vim.cmd("filetype plugin indent on")
+        
+        -- Keymaps
+        local map = vim.api.nvim_set_keymap
+        local opts = { noremap = true, silent = true }
+        
+        -- Visual mode tab/shift-tab
+        map("v", "<Tab>", ">gv", {})
+        map("v", "<S-Tab>", "<gv", {})
+        
+        -- Yank to end of line
+        map("n", "Y", "y$", opts)
+        
+        -- Terminal mode: exit with Esc
+        map("t", "<Esc>", [[<C-\><C-n>]], opts)
+        
+        -- Resize windows
+        map("n", "<C-Up>", ":resize +2<CR>", opts)
+        map("n", "<C-Down>", ":resize -2<CR>", opts)
+        map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+        map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+	-- LSP Setup
+	local lspconfig = require('lspconfig')
+	lspconfig.clangd.setup {}
+
+	-- Autocompletion
+	local cmp = require'cmp'
+	cmp.setup {
+	  snippet = {
+	    expand = function(args)
+	      require('luasnip').lsp_expand(args.body)
+	    end,
+	  },
+	  sources = {
+	    { name = 'nvim_lsp' },
+	    { name = 'buffer' },
+	    { name = 'path' },
+	  },
+	  mapping = cmp.mapping.preset.insert({
+	    ['<Tab>'] = cmp.mapping.select_next_item(),
+	    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+	    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+	  }),
+	}
+
+	-- Treesitter
+	require'nvim-treesitter.configs'.setup {
+	  highlight = { enable = true },
+	}
+
+        -- Tree
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+
+        -- optionally enable 24-bit colour
+        vim.opt.termguicolors = true
+
+        -- empty setup using defaults
+        require("nvim-tree").setup()
+
+	-- Lualine
+	require('lualine').setup()
       '';
     };
 
