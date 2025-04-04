@@ -19,6 +19,7 @@ in
   location.provider = "geoclue2";
 
   services = {
+    ollama.enable = true;
     redshift = {
       enable = true;
       brightness = {
@@ -233,7 +234,7 @@ in
       drawing # Like Paint
       evince # document viewer
       font-manager
-      file-roller # archive manager
+      mate.engrampa # archive manager
       gnome-disk-utility # Simply manage disks
       gparted # Disk partitioner
       inkscape
@@ -249,22 +250,20 @@ in
       xfce.xfce4-whiskermenu-plugin
 
       # GUI utilities
+      #cutter
+      #cutterPlugins.jsdec
+      #cutterPlugins.rz-ghidra
+      #cutterPlugins.sigdb
       #freecad # Parametric CAD software
       #yuzu # Switch emulator
       anki # Flashcard program
       bitwarden # Password manager
-      networkmanager-fortisslvpn
-      openfortivpn # Fortinet vpn services
       blender # Modeling software
       bottles # WINE wrapper
       caffeine-ng # Keep the screen awake
       cheese # Webcam viewer
       cherrytree # Tree notes app
       clooj # Clojure IDE
-      #cutter
-      #cutterPlugins.jsdec
-      #cutterPlugins.rz-ghidra
-      #cutterPlugins.sigdb
       digikam # Photo management
       discord-canary # Messaging and voice call app
       easyeffects # Pipewire audio effects
@@ -277,12 +276,15 @@ in
       helvum # Pipewire patchbay
       imhex # Fancy hex editor for RE
       imv # Image viewer
-      kcalc # Calculator
-      kdenlive
-      kdenlive # Video editor
+      kdePackages.kcalc # Calculator
+      obs-studio
+      kdePackages.kdenlive # Video editor
       libreoffice # Office suite
       marktext # Markdown editor
       maxima # LISP computer algebra system
+      musescore # Music notation software
+      networkmanager-fortisslvpn
+      openfortivpn # Fortinet vpn services
       openscad # Parametric CAD
       pa_applet # Volume control applet
       pavucontrol # PulseAudio volume control
@@ -351,21 +353,69 @@ in
       yt-dlp # Youtube video downloader
 
       # Programming Lanugage Support
-      clojure-lsp # Clojure LSP
-      #crystalline # Crystal LSP
-      leiningen # Clojure project manager
-      rubocop # Ruby analyzer
-      #ruby-lsp # Ruby LSP
-      #rubyfmt # Ruby formatter
-      rust-analyzer # Rust analyzer
+      clang-tools
+      cppcheck
+      tree-sitter
+      python312Packages.python-lsp-server
+      python312Packages.flake8 # Python linter
+      crystalline
+      crystal
+      ameba
+      gopls
+      typescript-language-server
+      eslint
+      lua-language-server
+      jdt-language-server
+      google-java-format
+      vscode-langservers-extracted
+      bash-language-server
+      shellcheck
+      rubocop # Ruby linter
+      marksman
+      nixpkgs-fmt
+      nixpkgs-lint
+      statix
+      deadnix
+      rubyfmt # Ruby formatter
+      rust-analyzer # Rust LSP
       rustfmt # Rust formatter
-      #scry # Crystal analyzer
-      solargraph # Ruby lang server
+      rubyPackages.solargraph # Ruby LSP
 
-      matcha-gtk-theme
-      zuki-themes
+      jetbrains-mono
+      amber-theme
+      andromeda-gtk-theme
+      arc-icon-theme
+      beauty-line-icon-theme
+      colloid-icon-theme
+      dracula-icon-theme
       elementary-xfce-icon-theme
+      kora-icon-theme
+      marwaita
+      matcha-gtk-theme
+      mate.mate-icon-theme
+      mint-l-icons
+      mint-y-icons
+      nordzy-icon-theme
+      numix-gtk-theme
+      numix-icon-theme
+      papirus-icon-theme
+      plano-theme
+      qogir-icon-theme
+      reversal-icon-theme
+      rose-pine-icon-theme
+      stilo-themes
+      tela-circle-icon-theme
+      tela-icon-theme
+      vimix-icon-theme
+      whitesur-gtk-theme
+      whitesur-icon-theme
+      windows10-icons
       xfce.xfce4-icon-theme
+      xfce.xfwm4-themes
+      xorg.xcursorthemes
+      yaru-remix-theme
+      yaru-theme
+      zuki-themes
     ];
 
     xfconf.settings = {
@@ -408,22 +458,22 @@ in
 
     gtk = {
       enable = true;
-        iconTheme = {
-        name = "elementary-Xfce-dark";
-        package = pkgs.elementary-xfce-icon-theme;
+      iconTheme = {
+        name = "Reversal";
+        package = pkgs.reversal-icon-theme;
       };
       theme = {
-        name = "zukitre-dark";
-        package = pkgs.zuki-themes;
+        name = "WhiteSur-Light";
+        package = pkgs.whitesur-gtk-theme;
       };
       gtk3.extraConfig = {
         Settings = ''
-          gtk-application-prefer-dark-theme=1
+          gtk-application-prefer-dark-theme=0
         '';
       };
       gtk4.extraConfig = {
         Settings = ''
-          gtk-application-prefer-dark-theme=1
+          gtk-application-prefer-dark-theme=0
         '';
       };
     };
