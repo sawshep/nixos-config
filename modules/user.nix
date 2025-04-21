@@ -349,6 +349,7 @@ in
       rust-analyzer # Rust LSP
       rust-analyzer # Rust analyzer
       rustfmt # Rust formatter
+      s-tui
       shellcheck
       signal-desktop # Secure messaging app
       slack
@@ -358,6 +359,7 @@ in
       statix
       stilo-themes
       strawberry # Music player
+      stress
       system-config-printer # CUPS wrapper
       tela-circle-icon-theme
       tela-icon-theme
@@ -370,6 +372,7 @@ in
       transmission_4-qt # Torrent client
       tree-sitter
       typescript-language-server
+      undervolt
       ungoogled-chromium # Chromium web browser without the spyware
       v4l-utils # Camera utilities
       vimix-icon-theme
