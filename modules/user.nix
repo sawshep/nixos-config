@@ -2,6 +2,9 @@
 
 let
   authorizedKeys = import ./authorized_keys.nix;
+  pkgs-unstable = import <nixpkgs-unstable> {
+    config.allowUnfree = true;
+  };
 in
 {
   age.secrets.user-password.file = ../secrets/user-password.age;
@@ -20,6 +23,7 @@ in
 
   services = {
     ollama.enable = true;
+    ollama.package = pkgs-unstable.ollama;
     fwupd.enable = true;
     redshift = {
       enable = true;
