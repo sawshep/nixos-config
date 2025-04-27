@@ -246,6 +246,7 @@ in
       beauty-line-icon-theme
       binwalk # Extract files from binary
       bitwarden # Password manager
+      darktable
       blender # Modeling software
       bottles # WINE wrapper
       burpsuite # Web exploitation framework
@@ -297,7 +298,6 @@ in
       imhex # Fancy hex editor for RE
       imv # Image viewer
       inkscape
-      inkscape-with-extensions
       jdt-language-server
       jetbrains-mono
       john # CPU hash cracker
