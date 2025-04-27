@@ -39,13 +39,13 @@
   services.syncthing.openDefaultPorts = true;
 
   # Antivirus
-  services.clamav = {
-    daemon.enable = true;
-    updater.enable = true;
-    scanner.enable = true;
-    # Provides extra signatures
-    fangfrisch.enable = true;
-  };
+  #services.clamav = {
+  #  daemon.enable = true;
+  #  updater.enable = true;
+  #  scanner.enable = true;
+  #  # Provides extra signatures
+  #  fangfrisch.enable = true;
+  #};
 
   services.ollama = {
     enable = true;
