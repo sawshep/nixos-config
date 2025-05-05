@@ -175,6 +175,9 @@ in
 
   programs.steam.enable = true;
 
+  programs.obs-studio.enable = true;
+  programs.obs-studio.enableVirtualCamera = true;
+
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
@@ -325,7 +328,6 @@ in
       nordzy-icon-theme
       numix-gtk-theme
       numix-icon-theme
-      obs-studio
       openfortivpn # Fortinet vpn services
       openscad # Parametric CAD
       pa_applet # Volume control applet
@@ -494,7 +496,6 @@ in
     programs.librewolf.enable = true;
     programs.mpv.enable = true;
     programs.zathura.enable = true;
-
 
     programs.git = {
       enable = true;
