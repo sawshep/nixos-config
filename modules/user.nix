@@ -189,6 +189,8 @@ in
 
   programs.xfconf.enable = true;
 
+  environment.systemPackages = with pkgs; [ xfce.xfce4-whiskermenu-plugin ];
+
   home-manager.users.me = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
 
@@ -414,7 +416,6 @@ in
       xfce.xfce4-systemload-plugin
       xfce.xfce4-volumed-pulse
       xfce.xfce4-weather-plugin
-      xfce.xfce4-whiskermenu-plugin
       xfce.xfce4-xkb-plugin
       xfce.xfdashboard
       xfce.xfwm4-themes
