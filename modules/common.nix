@@ -228,6 +228,7 @@ in
     ifuse # Mount iDevices
     extundelete # Recover deleted files from ext
     jmtpfs # MTP device filesystem
+    e2fsprogs
     libimobiledevice # Detect iDevices
     samba # Connect to SMB shares
     safecopy # Data recovery tool
