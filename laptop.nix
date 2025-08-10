@@ -15,7 +15,7 @@
 
   # Just generate the host key for Agenix
   services.openssh = {
-    enable = true;
+    enable = false;
     openFirewall = false;
     hostKeys = [
       {
@@ -23,6 +23,9 @@
          type = "ed25519";
       }
     ];
+    settings = {
+      PasswordAuthentication = false;
+    };
   };
 
   virtualisation.spiceUSBRedirection.enable = true;
