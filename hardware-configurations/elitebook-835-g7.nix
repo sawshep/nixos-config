@@ -14,11 +14,32 @@
       availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
     };
-    plymouth.enable = false;
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
-    kernelParams = [ "resume_offset=47517297" ];
+    kernelParams = [
+      "resume_offset=47517297"
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
     resumeDevice = "/dev/disk/by-uuid/5f412f9a-4adb-4b64-809b-43dd099fa601";
+    plymouth = {
+      enable = true;
+      theme = "nixos-bgrt";
+      themePackages = with pkgs; [
+      	nixos-bgrt-plymouth
+      ];
+    };
+
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
   };
 
   fileSystems."/" = {
