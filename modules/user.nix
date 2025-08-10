@@ -189,7 +189,9 @@ in
 
   programs.xfconf.enable = true;
 
-  environment.systemPackages = with pkgs; [ xfce.xfce4-whiskermenu-plugin ];
+  environment.systemPackages = with pkgs;[
+      xfce.xfce4-whiskermenu-plugin
+  ];
 
   home-manager.users.me = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;

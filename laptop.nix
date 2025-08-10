@@ -40,15 +40,7 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
-      Disable = "Headset";
-      UserspaceHID = true;
-    };
-  };
   services.blueman.enable = true;
-
 
   environment.systemPackages = with pkgs; [
 
@@ -61,7 +53,6 @@
     libtifiles2
     micropython
     pico-sdk
-    ventoy-bin
     wineWowPackages.stable
 
     cudaPackages.cudatoolkit
