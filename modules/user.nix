@@ -12,12 +12,13 @@ in
   users.users.me = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "libvirtd" "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video"];
+    extraGroups = [ "libvirtd" "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video" "plugdev" ];
     hashedPasswordFile = config.age.secrets.user-password.path;
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 
   hardware.bluetooth.enable = true;
+  hardware.rtl-sdr.enable = true;
 
   location.provider = "geoclue2";
 
@@ -242,8 +243,11 @@ in
       };
     };
 
+    services.mpris-proxy.enable = true;
+
     home.packages = with pkgs; [
 
+      pkgs-unstable.goose-cli
       aircrack-ng # Capture and crack air traffic
       amber-theme
       ameba
@@ -254,6 +258,8 @@ in
       beauty-line-icon-theme
       binwalk # Extract files from binary
       bitwarden # Password manager
+      signal-desktop
+      gnuradio # SDR framework
       darktable
       blender # Modeling software
       bottles # WINE wrapper
@@ -361,8 +367,7 @@ in
       rust-analyzer # Rust analyzer
       rustfmt # Rust formatter
       s-tui
-      shellcheck
-      signal-desktop # Secure messaging app
+      #signal-desktop # Secure messaging app
       slack
       solargraph # Ruby lang server
       spotify # Music streaming service
