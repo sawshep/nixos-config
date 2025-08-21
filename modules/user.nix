@@ -206,6 +206,7 @@ in
       sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
       clip = "xclip -selection clipboard";
       rot13 = "tr 'A-Za-z' 'N-ZA-Mn-za-m'";
+      orca-slicer = "__GLX_VENDOR_LIBRARY_NAME=mesa __EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json LC_ALL=en_US.UTF-8 QT_QPA_PLATFORM=xcb strace orca-slicer";
     };
 
     home.file = {
@@ -338,7 +339,7 @@ in
       pavucontrol # PulseAudio volume control
       plano-theme
       protontricks
-      prusa-slicer # Slicer for 3D printing
+      orca-slicer # Slicer for 3D printing
       python312Packages.flake8 # Python linter
       python312Packages.python-lsp-server
       qjackctl # JACK patchbay
