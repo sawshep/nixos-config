@@ -561,7 +561,7 @@ in
         vim.opt.expandtab = true
         vim.opt.shiftwidth = 4
         vim.opt.smarttab = true
-        vim.opt.textwidth = 60
+        vim.opt.textwidth = 80
         vim.opt.spell = true
         vim.opt.spelllang = { "en" }
         vim.opt.mouse = "a"
