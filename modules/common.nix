@@ -76,8 +76,14 @@ in
   services.printing = {
     enable = true;
     browsing = true;
+    extraConf = ''
+      BrowseLocalProtocols dnssd
+      BrowseProtocols all
+    '';
     drivers = with pkgs; [
 
+      cups-filters
+      cups-browsed
       brgenml1cupswrapper
       brgenml1lpr
       brlaser
@@ -95,6 +101,10 @@ in
     enable = true;
     openFirewall = true;
     nssmdns4 = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
   };
 
   users.groups.plocate = { };
