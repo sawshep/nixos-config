@@ -383,7 +383,6 @@ in
       tetex
       thc-hydra # Brute forcer
       thonny # Python IDE for microcontrollers
-      thunderbird # Email client
       tor-browser-bundle-bin
       transmission_4-qt # Torrent client
       tree-sitter
@@ -505,6 +504,15 @@ in
     programs.librewolf.enable = true;
     programs.mpv.enable = true;
     programs.zathura.enable = true;
+    programs.thunderbird = {
+      enable = true;
+      settings = {
+        intl.date_time.pattern_override.time_short = "h:mm a";
+      };
+      profiles.Me = {
+        isDefault = true;
+      };
+    };
 
     programs.git = {
       enable = true;
