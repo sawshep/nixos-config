@@ -87,13 +87,13 @@ in
       overrideFolders = true;
       settings.devices = {
           "HP EliteBook 835 G7" = { id = "PDH4BFZ-4FU2BYM-XY2TZNM-YMC3D6Y-G6K2JYE-KKFFVBH-7NRQU55-KA6HNAX"; };
-          "ChangWang CW56-58" = { id = "FE52R5J-66HHL7H-JPQILZO-4V4QEQ6-NYXJRXW-CI6B3VN-6A4NEYI-B76ORQQ"; };
+          "NAS" = { id = "TAESSIS-MV6E3ID-BNKTN7P-K36MHEP-YHF73BP-5OIN2Q7-U3BOCXC-7D6SUQ3"; };
           "ASUSTeK" = { id = "O2RXYBG-MXB3BJG-HDB4R5U-QBIMCPI-4BAHWJD-KRZ56HQ-TFGPDJA-MNKPLAM"; };
       };
       settings.folders = {
         "Binaries" = {
-          path = "/home/me/bin";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          path = "~/bin";
+          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
           versioning = {
             type = "staggered";
             params = {
@@ -103,8 +103,8 @@ in
           };
         };
         "Cyber" = {
-          path = "/home/me/cyber";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          path = "~/cyber";
+          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
           versioning = {
             type = "staggered";
             params = {
@@ -114,8 +114,8 @@ in
           };
         };
         "Desktop" = {
-          path = "/home/me/desk";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          path = "~/desk";
+          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
           versioning = {
             type = "staggered";
             params = {
@@ -125,8 +125,8 @@ in
           };
         };
         "Documents" = {
-          path = "/home/me/doc";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          path = "~/doc";
+          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
           versioning = {
             type = "staggered";
             params = {
@@ -136,8 +136,8 @@ in
           };
         };
         "Downloads" = {
-          path = "/home/me/down";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          path = "~/down";
+          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
           versioning = {
             type = "staggered";
             params = {
@@ -147,8 +147,8 @@ in
           };
         };
         "Music" = {
-          path = "/home/me/music";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          path = "~/music";
+          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
           versioning = {
             type = "staggered";
             params = {
@@ -158,8 +158,8 @@ in
           };
         };
         "Media" = {
-          path = "/home/me/media";
-          devices = [ "ChangWang CW56-58" "HP EliteBook 835 G7" "ASUSTeK" ];
+          path = "~/media";
+          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
           versioning = {
             type = "staggered";
             params = {
