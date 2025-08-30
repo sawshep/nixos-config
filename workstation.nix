@@ -51,7 +51,7 @@
     enable = true;
     environmentVariables = {
       CUDA_VISIBLE_DEVICES = "0,1";
-      OLLAMA_LLM_LIBRARY = "cuda_v11";
+      #OLLAMA_LLM_LIBRARY = "cuda_v11";
     };
     acceleration = "cuda";
   };
@@ -72,7 +72,7 @@
       };
   };
 
-  services.open-webui.enable = true;
+  services.open-webui.enable = false;
   services.open-webui.openFirewall = true;
 
   services.hardware.openrgb = {
