@@ -19,7 +19,20 @@ in
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;  # Enables better codec support
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
   hardware.rtl-sdr.enable = true;
 
   location.provider = "geoclue2";
@@ -65,10 +78,30 @@ in
     pipewire = {
       enable = true;
       wireplumber.enable = true;
+      wireplumber.extraConfig.bluetoothEnhancements = {
+        "monitor.bluez.properties" = {
+          # Enable high-quality codecs
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          
+          # Enable AAC codec support (important for AirPods)
+          "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
+          
+          # Enable all Bluetooth roles for proper profile switching
+          "bluez5.roles" = [ "a2dp_sink" "a2dp_source" "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+        };
+      };
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+
+      #config.pipewire = {
+      #  "context.properties" = {
+      #    "link.max-buffers" = 16;
+      #  };
+      #};
     };
 
     blueman.enable = true;
@@ -194,6 +227,9 @@ in
 
   environment.systemPackages = with pkgs;[
       xfce.xfce4-whiskermenu-plugin
+      typora
+      pipewire
+      fdk_aac
   ];
 
   home-manager.users.me = { pkgs, ... }: {
