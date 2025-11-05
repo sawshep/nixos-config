@@ -96,6 +96,8 @@ in
 
     ];
   };
+
+  networking.domain = "home.arpa";
   # Search for network printers
   services.avahi = {
     enable = true;
@@ -103,7 +105,8 @@ in
     nssmdns4 = true;
     publish = {
       enable = true;
-      userServices = true;
+      domain = true;
+      addresses = true;
     };
   };
 
