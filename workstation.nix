@@ -47,14 +47,14 @@
   #  fangfrisch.enable = true;
   #};
 
-  services.ollama = {
-    enable = true;
-    environmentVariables = {
-      CUDA_VISIBLE_DEVICES = "0,1";
-      #OLLAMA_LLM_LIBRARY = "cuda_v11";
-    };
-    acceleration = "cuda";
-  };
+  #services.ollama = {
+  #  enable = false;
+  #  environmentVariables = {
+  #    CUDA_VISIBLE_DEVICES = "0,1";
+  #    #OLLAMA_LLM_LIBRARY = "cuda_v11";
+  #  };
+  #  acceleration = "cuda";
+  #};
 
   services.caddy = {
     enable = true;
@@ -121,24 +121,23 @@
     teamviewer
     clamtk
 
-    cudaPackages.cuda_gdb
-    cudaPackages.cudatoolkit
-    cudaPackages.cudnn
-    cudaPackages.cutensor
-    cudaPackages.libcublas
-    cudaPackages.libcufft
-    cudaPackages.libcufile
-    cudaPackages.libcurand
-    cudaPackages.libnpp
-    cudaPackages.libnvjpeg
-    cudaPackages.nvidia_fs
-    cudaPackages.saxpy
+    #cudaPackages.cuda_gdb
+    #cudaPackages.cudatoolkit
+    #cudaPackages.cudnn
+    #cudaPackages.cutensor
+    #cudaPackages.libcublas
+    #cudaPackages.libcufft
+    #cudaPackages.libcufile
+    #cudaPackages.libcurand
+    #cudaPackages.libnpp
+    #cudaPackages.libnvjpeg
+    #cudaPackages.nvidia_fs
+    #cudaPackages.saxpy
 
 
     exiftool
-    ollama
+    #ollama
 
-    openrgb
     i2c-tools
     liquidctl
 

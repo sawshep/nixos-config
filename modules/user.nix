@@ -38,8 +38,8 @@ in
   location.provider = "geoclue2";
 
   services = {
-    ollama.enable = true;
-    ollama.package = pkgs-unstable.ollama;
+    #ollama.enable = true;
+    #ollama.package = pkgs-unstable.ollama;
     fwupd.enable = true;
     redshift = {
       enable = true;
@@ -209,7 +209,18 @@ in
 
   programs.virt-manager.enable = true;
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        pkgsi686Linux.libva  # Video acceleration
+        pkgsi686Linux.libvdpau
+        pkgsi686Linux.gtk3
+        pkgsi686Linux.glibc
+        pkgsi686Linux.SDL2
+      ];
+    };
+  };
 
   programs.obs-studio.enable = true;
   programs.obs-studio.enableVirtualCamera = true;
