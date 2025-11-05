@@ -225,11 +225,14 @@ in
 
   programs.xfconf.enable = true;
 
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
       xfce.xfce4-whiskermenu-plugin
       typora
       pipewire
       fdk_aac
+      asunder
+      lame
+      abcde
   ];
 
   home-manager.users.me = { pkgs, ... }: {

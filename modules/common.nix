@@ -277,6 +277,7 @@ in
     dos2unix # Strip return carriages
     ed # For /REALLY/ dumb terminals
     ffmpeg # Audio/video conversion
+    lame
     file # Tell what a file is
     jq # JSON parser
     killall # Kill process by name
