@@ -258,6 +258,9 @@ in
       beauty-line-icon-theme
       binwalk # Extract files from binary
       bitwarden # Password manager
+      gqrx # Radio receiver
+      inspectrum # Spectrum inspector
+      rtl-sdr-librtlsdr
       signal-desktop
       gnuradio # SDR framework
       darktable
