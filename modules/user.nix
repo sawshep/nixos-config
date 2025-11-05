@@ -59,7 +59,7 @@ in
 
       xkb = {
         layout = "us";
-        variant = "";
+        variant = "altgr-intl";
       };
 
       exportConfiguration = true;
@@ -242,6 +242,8 @@ in
 
     home.sessionPath = [ "$HOME/bin" ];
 
+    programs.zsh.enable = true;
+
     home.shellAliases = {
       hm = "home-manager";
       sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
@@ -285,7 +287,6 @@ in
 
     home.packages = with pkgs; [
 
-      pkgs-unstable.goose-cli
       aircrack-ng # Capture and crack air traffic
       amber-theme
       ameba
@@ -550,7 +551,7 @@ in
       settings = {
         intl.date_time.pattern_override.time_short = "h:mm a";
       };
-      profiles.Me = {
+      profiles."mukqrcxm.default" = {
         isDefault = true;
       };
     };
