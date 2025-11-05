@@ -75,15 +75,6 @@
   services.open-webui.enable = false;
   services.open-webui.openFirewall = true;
 
-  services.hardware.openrgb = {
-    enable = true;
-    #package = pkgs.openrgb-with-all-plugins;
-    motherboard = "amd";
-    #server = {
-    #  port = 6742;
-    #};
-  };
-
   nixpkgs.config.cudaSupport = true;
   nix.settings = {
     substituters = [
