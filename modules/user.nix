@@ -9,6 +9,8 @@ in
 {
   age.secrets.user-password.file = ../secrets/user-password.age;
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   users.users.me = {
     isNormalUser = true;
     shell = pkgs.zsh;
