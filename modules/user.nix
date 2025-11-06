@@ -237,6 +237,7 @@ in
   programs.xfconf.enable = true;
 
   environment.systemPackages = with pkgs; [
+      pkgs-unstable.satdump
       xfce.xfce4-whiskermenu-plugin
       typora
       pipewire
