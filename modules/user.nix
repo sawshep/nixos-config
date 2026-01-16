@@ -238,6 +238,7 @@ in
 
   environment.systemPackages = with pkgs; [
       pkgs-unstable.satdump
+      bluez-alsa
       xfce.xfce4-whiskermenu-plugin
       typora
       pipewire
