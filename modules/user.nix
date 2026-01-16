@@ -498,6 +498,11 @@ in
     ];
 
     xfconf.settings = {
+      keyboard-layout = {
+        "Default/XkbDisable" = false;
+        "Default/XkbLayout" = "us";
+        "Default/XkbVariant" = "altgr-intl";
+      };
       xfce4-terminal = {
         "binding-ambiguous-width" = "TERMINAL_AMBIGUOUS_WIDTH_BINDING_WIDE";
         "color-background" = "#24241f1f3131";
