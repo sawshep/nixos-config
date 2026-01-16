@@ -302,6 +302,7 @@ in
 
     home.packages = with pkgs; [
 
+      #signal-desktop # Secure messaging app
       aircrack-ng # Capture and crack air traffic
       amber-theme
       ameba
@@ -312,12 +313,7 @@ in
       beauty-line-icon-theme
       binwalk # Extract files from binary
       bitwarden # Password manager
-      gqrx # Radio receiver
-      inspectrum # Spectrum inspector
-      rtl-sdr-librtlsdr
-      signal-desktop
-      gnuradio # SDR framework
-      darktable
+      calibre # Book management software
       blender # Modeling software
       bottles # WINE wrapper
       burpsuite # Web exploitation framework
@@ -331,6 +327,7 @@ in
       cppcheck
       crystal
       crystalline
+      darktable
       deadnix
       digikam # Photo management
       discord-canary # Messaging and voice call app
@@ -348,16 +345,19 @@ in
       font-manager
       foremost # Carve data from binaries
       freerdp # RDP client
+      freetube # Youtube client
       gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
       gimp # Image editor
       gnome-disk-utility # Simply manage disks
       gnome-resources # Process monitor
+      gnuradio # SDR framework
       gobuster # Everything enumeration
       google-java-format
       gopls
       gpa # GPG frontend
       gparted # Disk partitioner
+      gqrx # Radio receiver
       guitarix # Digital amplifier
       hashcat # GPU hash cracker
       hcxtools # hashcat companion tools
@@ -369,6 +369,7 @@ in
       imhex # Fancy hex editor for RE
       imv # Image viewer
       inkscape
+      inspectrum # Spectrum inspector
       jdt-language-server
       jetbrains-mono
       john # CPU hash cracker
@@ -398,13 +399,14 @@ in
       numix-icon-theme
       openfortivpn # Fortinet vpn services
       openscad # Parametric CAD
+      orca-slicer # Slicer for 3D printing
       pa_applet # Volume control applet
       pandoc # Document converter
       papirus-icon-theme
       pavucontrol # PulseAudio volume control
       plano-theme
+      prismlauncher # Minecraft launcher
       protontricks
-      orca-slicer # Slicer for 3D printing
       python312Packages.flake8 # Python linter
       python312Packages.python-lsp-server
       qjackctl # JACK patchbay
@@ -416,6 +418,7 @@ in
       reversal-icon-theme
       rizin
       rose-pine-icon-theme
+      rtl-sdr-librtlsdr
       rubocop # Ruby analyzer
       rubocop # Ruby linter
       rubyPackages.solargraph # Ruby LSP
@@ -424,7 +427,7 @@ in
       rust-analyzer # Rust analyzer
       rustfmt # Rust formatter
       s-tui
-      #signal-desktop # Secure messaging app
+      signal-desktop
       slack
       solargraph # Ruby lang server
       spotify # Music streaming service
