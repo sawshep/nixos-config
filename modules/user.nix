@@ -9,6 +9,14 @@ in
 {
   age.secrets.user-password.file = ../secrets/user-password.age;
 
+  boot.plymouth = {
+    enable = true;
+    theme = "nixos-bgrt";
+    themePackages = with pkgs; [
+      nixos-bgrt-plymouth
+    ];
+  };
+
   systemd.services.NetworkManager-wait-online.enable = false;
 
   users.users.me = {

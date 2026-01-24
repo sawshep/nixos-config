@@ -25,13 +25,6 @@
       "rd.systemd.show_status=auto"
     ];
     resumeDevice = "/dev/disk/by-uuid/5f412f9a-4adb-4b64-809b-43dd099fa601";
-    plymouth = {
-      enable = true;
-      theme = "nixos-bgrt";
-      themePackages = with pkgs; [
-      	nixos-bgrt-plymouth
-      ];
-    };
 
     # Enable "Silent boot"
     consoleLogLevel = 3;
