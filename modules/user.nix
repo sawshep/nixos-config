@@ -27,6 +27,11 @@ in
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 
+  services.udev.extraRules = ''
+    # Allow members of plugdev group to access USB devices
+    SUBSYSTEM=="usb", MODE="0664", GROUP="plugdev"
+  '';
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
