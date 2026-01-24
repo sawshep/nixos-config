@@ -245,7 +245,6 @@ in
   programs.xfconf.enable = true;
 
   environment.systemPackages = with pkgs; [
-      pkgs-unstable.satdump
       bluez-alsa
       xfce.xfce4-whiskermenu-plugin
       typora
@@ -311,7 +310,6 @@ in
 
     home.packages = with pkgs; [
 
-      #signal-desktop # Secure messaging app
       aircrack-ng # Capture and crack air traffic
       amber-theme
       ameba
@@ -319,20 +317,20 @@ in
       anki # Flashcard program
       arc-icon-theme
       bash-language-server
-      beauty-line-icon-theme
       binwalk # Extract files from binary
-      bitwarden # Password manager
-      calibre # Book management software
+      bitwarden-desktop # Password manager
       blender # Modeling software
       bottles # WINE wrapper
       burpsuite # Web exploitation framework
       caffeine-ng # Keep the screen awake
+      calibre # Book management software
       capstone # Dissassembly library
       cheese # Webcam viewer
       cherrytree # Tree notes app
       clang-tools
       clooj # Clojure IDE
       colloid-icon-theme
+      comaps # Mapping software
       cppcheck
       crystal
       crystalline
@@ -359,7 +357,7 @@ in
       ghidra # Reverse engineering suite
       gimp # Image editor
       gnome-disk-utility # Simply manage disks
-      gnome-resources # Process monitor
+      gnucash # Double-entry accounting
       gnuradio # SDR framework
       gobuster # Everything enumeration
       google-java-format
@@ -384,7 +382,8 @@ in
       john # CPU hash cracker
       kdePackages.kcalc # Calculator
       kdePackages.kdenlive # Video editor
-      kora-icon-theme
+      lexend
+      libgourou # Process ebooks from command line
       libreoffice # Office suite
       lua-language-server
       marksman
@@ -397,21 +396,17 @@ in
       metasploit # Exploitation framework
       mint-l-icons
       mint-y-icons
-      musescore
       musescore # Music notation software
       netexec # Active Directory exploitation framework
       nixpkgs-fmt
       nixpkgs-lint
       nnn # File explorer
       nordzy-icon-theme
-      numix-gtk-theme
-      numix-icon-theme
       openfortivpn # Fortinet vpn services
       openscad # Parametric CAD
       orca-slicer # Slicer for 3D printing
       pa_applet # Volume control applet
       pandoc # Document converter
-      papirus-icon-theme
       pavucontrol # PulseAudio volume control
       plano-theme
       prismlauncher # Minecraft launcher
@@ -424,6 +419,7 @@ in
       radare2
       ranger # File explorer
       remmina # GUI RDP/VNC/SSH
+      resources # Process monitor
       reversal-icon-theme
       rizin
       rose-pine-icon-theme
@@ -436,7 +432,7 @@ in
       rust-analyzer # Rust analyzer
       rustfmt # Rust formatter
       s-tui
-      signal-desktop
+      signal-desktop # Secure messaging app
       slack
       solargraph # Ruby lang server
       spotify # Music streaming service
@@ -452,7 +448,7 @@ in
       tetex
       thc-hydra # Brute forcer
       thonny # Python IDE for microcontrollers
-      tor-browser-bundle-bin
+      tor-browser
       transmission_4-qt # Torrent client
       tree-sitter
       typescript-language-server
@@ -515,6 +511,10 @@ in
         "Default/XkbLayout" = "us";
         "Default/XkbVariant" = "altgr-intl";
       };
+      xsettings = {
+        "Gtk/FontName" = "Lexend Light 12";
+        "Gtk/MonospaceFontName" = "JetBrains Mono 12";
+      };
       xfce4-terminal = {
         "binding-ambiguous-width" = "TERMINAL_AMBIGUOUS_WIDTH_BINDING_WIDE";
         "color-background" = "#24241f1f3131";
@@ -528,7 +528,7 @@ in
         "color-selection-use-default" = true;
         "color-use-theme" = false;
         "dropdown-show-borders" = false;
-        "font-use-system" = false;
+        "font-use-system" = true;
         "misc-bell" = false;
         "misc-bell-urgent" = false;
         "misc-cursor-blinks" = true;
@@ -548,6 +548,7 @@ in
       "box_move" = true;
       "box_resize" = true;
       "mousewheel_rollup" = false;
+      "general/title_font" = "Lexend Bold 12";
     };
 
     };
@@ -555,21 +556,21 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Reversal";
+        name = "Reversal-dark";
         package = pkgs.reversal-icon-theme;
       };
       theme = {
-        name = "WhiteSur-Light";
+        name = "WhiteSur-Dark";
         package = pkgs.whitesur-gtk-theme;
       };
       gtk3.extraConfig = {
         Settings = ''
-          gtk-application-prefer-dark-theme=0
+          gtk-application-prefer-dark-theme=1
         '';
       };
       gtk4.extraConfig = {
         Settings = ''
-          gtk-application-prefer-dark-theme=0
+          gtk-application-prefer-dark-theme=1
         '';
       };
     };

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
 in
 {
   imports = [
@@ -254,7 +254,7 @@ in
     rage # AGE in Rust
     gnupg # GNU privacy guard suite
     mokutil # Machine user key manager
-    pinentry # Secure secret entry
+    pinentry-curses # Secure secret entry
     openssl
     cryptsetup
 
@@ -322,7 +322,7 @@ in
     ghc # Haskell compiler and interpreter
     openjdk # Java development kit and runtime environment
     php # HTML embedded scripting lanugage
-    python3Full # All of Python
+    python3 # All of Python
     racket # Dialect of Lisp
     ruby # The best language
     sbcl # Common Lisp
