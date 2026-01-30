@@ -15,7 +15,7 @@ in
   users.users.me = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "libvirtd" "pulse" "jackaudio" "audio" "wheel" "networkmanager" "video" "plugdev" ];
+    extraGroups = [ "libvirtd" "audio" "wheel" "networkmanager" "video" "plugdev" ];
     hashedPasswordFile = config.age.secrets.user-password.path;
     openssh.authorizedKeys.keys = authorizedKeys;
   };
@@ -124,12 +124,6 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-
-      #config.pipewire = {
-      #  "context.properties" = {
-      #    "link.max-buffers" = 16;
-      #  };
-      #};
     };
 
     blueman.enable = true;
@@ -172,10 +166,8 @@ in
   programs.xfconf.enable = true;
 
   environment.systemPackages = with pkgs; [
-      bluez-alsa
       xfce.xfce4-whiskermenu-plugin
       typora
-      pipewire
       fdk_aac
       asunder
       lame
@@ -339,10 +331,7 @@ in
       rizin
       rtl-sdr-librtlsdr
       rubocop # Ruby analyzer
-      rubocop # Ruby linter
-      rubyPackages.solargraph # Ruby LSP
       rubyfmt # Ruby formatter
-      rust-analyzer # Rust LSP
       rust-analyzer # Rust analyzer
       rustfmt # Rust formatter
       s-tui
@@ -561,9 +550,9 @@ in
 
     programs.git = {
       enable = true;
-      userName = "Sawyer Shepherd";
-      userEmail = "contact@sawyershepherd.org";
-      extraConfig = {
+      settings.user.name = "Sawyer Shepherd";
+      settings.user.email = "contact@sawyershepherd.org";
+      settings = {
         core = {
           sshCommand = "ssh -i ~/.ssh/github";
         };
@@ -587,23 +576,21 @@ in
 
       plugins = with pkgs.vimPlugins; [
 
-        lualine-nvim
-	nvim-web-devicons
-
-        neoterm
-        nvim-tree-lua
-
-        nvim-treesitter
-
-        vim-sandwich
-        nvim-lspconfig
-	cmp-nvim-lsp
-	nvim-cmp
 	cmp-buffer
+	cmp-nvim-lsp
 	cmp-path
 	luasnip
-
+	nvim-cmp
+	nvim-web-devicons
 	vim-nix
+        lualine-nvim
+        neoterm
+        nvim-lspconfig
+        nvim-tree-lua
+        nvim-treesitter
+        vim-sandwich
+        wezterm-nvim
+
       ];
       extraLuaConfig = ''
         -- Basic settings
