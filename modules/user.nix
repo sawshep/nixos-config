@@ -7,6 +7,7 @@ let
   };
 in
 {
+  imports = [ ./syncthing.nix ];
   age.secrets.user-password.file = ../secrets/user-password.age;
 
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -139,99 +140,6 @@ in
       torsocks.enable = true;
     };
 
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      dataDir = "/home/me";
-      user = "me";
-      group = "users";
-      guiAddress = "localhost:8384";
-      overrideFolders = true;
-      settings.devices = {
-          "HP EliteBook 835 G7" = { id = "PDH4BFZ-4FU2BYM-XY2TZNM-YMC3D6Y-G6K2JYE-KKFFVBH-7NRQU55-KA6HNAX"; };
-          "NAS" = { id = "TAESSIS-MV6E3ID-BNKTN7P-K36MHEP-YHF73BP-5OIN2Q7-U3BOCXC-7D6SUQ3"; };
-          "ASUSTeK" = { id = "O2RXYBG-MXB3BJG-HDB4R5U-QBIMCPI-4BAHWJD-KRZ56HQ-TFGPDJA-MNKPLAM"; };
-      };
-      settings.folders = {
-        "Binaries" = {
-          path = "~/bin";
-          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
-        "Cyber" = {
-          path = "~/cyber";
-          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
-        "Desktop" = {
-          path = "~/desk";
-          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
-        "Documents" = {
-          path = "~/doc";
-          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
-        "Downloads" = {
-          path = "~/down";
-          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
-        "Music" = {
-          path = "~/music";
-          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
-        "Media" = {
-          path = "~/media";
-          devices = [ "NAS" "HP EliteBook 835 G7" "ASUSTeK" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "7776000"; # 90 days
-            };
-          };
-        };
-      };
-    };
   };
 
   programs.virt-manager.enable = true;
