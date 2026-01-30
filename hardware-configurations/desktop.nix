@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "ahci" "thunderbolt" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "i2c-dev" "i2c-piix4" "kvm-amd" ];
-  boot.kernelParams = [ "acpi_enforce_resources=lax" ];
+  boot.kernelParams = [ "acpi_enforce_resources=lax" "nvidia-drm.modeset=1" ];
   boot.extraModulePackages = [ ];
 
   networking.hostId = "5df741a2";
@@ -39,7 +39,7 @@
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
   hardware.graphics = {
     enable = true;
