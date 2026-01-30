@@ -236,6 +236,7 @@ in
       bash-language-server
       binwalk # Extract files from binary
       bitwarden-desktop # Password manager
+      chirp # Handheld radio programmer
       blender # Modeling software
       bottles # WINE wrapper
       burpsuite # Web exploitation framework
