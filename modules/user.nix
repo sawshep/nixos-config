@@ -237,6 +237,7 @@ in
       binwalk # Extract files from binary
       bitwarden-desktop # Password manager
       chirp # Handheld radio programmer
+      blanket # Noise generator
       blender # Modeling software
       bottles # WINE wrapper
       burpsuite # Web exploitation framework
