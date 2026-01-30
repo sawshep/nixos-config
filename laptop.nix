@@ -13,6 +13,15 @@
   networking.hostName = "elitebook-835-g7"; # Define your hostname.
   networking.firewall.enable = false;
 
+  boot.plymouth = {
+    enable = true;
+    theme = "nixos-bgrt";
+    themePackages = with pkgs; [
+      nixos-bgrt-plymouth
+    ];
+  };
+
+
   # Just generate the host key for Agenix
   services.openssh = {
     enable = false;
