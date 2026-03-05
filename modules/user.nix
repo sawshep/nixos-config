@@ -169,6 +169,7 @@ in
 
   environment.systemPackages = with pkgs; [
       xfce.xfce4-whiskermenu-plugin
+      kdePackages.elisa # Music player
       typora
       fdk_aac
       asunder
@@ -238,7 +239,6 @@ in
       bash-language-server
       binwalk # Extract files from binary
       bitwarden-desktop # Password manager
-      chirp # Handheld radio programmer
       blanket # Noise generator
       blender # Modeling software
       bottles # WINE wrapper
@@ -248,7 +248,9 @@ in
       capstone # Dissassembly library
       cheese # Webcam viewer
       cherrytree # Tree notes app
+      chirp # Handheld radio programmer
       clang-tools
+      claude-code # CLI coding agent
       clooj # Clojure IDE
       comaps # Mapping software
       cppcheck
@@ -343,8 +345,10 @@ in
       signal-desktop # Secure messaging app
       slack
       solargraph # Ruby lang server
+      sox # Audio transformation toolkit
       spotify # Music streaming service
       sshuttle # SSH proxy
+
       statix
       strawberry # Music player
       stress
