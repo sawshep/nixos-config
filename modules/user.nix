@@ -50,6 +50,7 @@ in
   services = {
     #ollama.enable = true;
     #ollama.package = pkgs-unstable.ollama;
+    mullvad-vpn.enable = true;
     fwupd.enable = true;
     redshift = {
       enable = true;
@@ -309,6 +310,7 @@ in
       mate.engrampa # archive manager
       maxima # LISP computer algebra system
       metasploit # Exploitation framework
+      mullvad-vpn # VPN client
       musescore # Music notation software
       netexec # Active Directory exploitation framework
       nixpkgs-fmt
