@@ -15,7 +15,7 @@ in
   users.users.me = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "libvirtd" "audio" "wheel" "networkmanager" "video" "plugdev" ];
+    extraGroups = [ "dialout" "libvirtd" "audio" "wheel" "networkmanager" "video" "plugdev" ];
     hashedPasswordFile = config.age.secrets.user-password.path;
     openssh.authorizedKeys.keys = authorizedKeys;
   };
@@ -23,6 +23,7 @@ in
   services.udev.extraRules = ''
     # Allow members of plugdev group to access USB devices
     SUBSYSTEM=="usb", MODE="0664", GROUP="plugdev"
+    SUBSYSTEM=="tty", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="bef3", OWNER="me", MODE="0600"
   '';
 
   hardware.bluetooth = {
