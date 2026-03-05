@@ -298,6 +298,7 @@ in
       jdt-language-server
       jetbrains-mono
       john # CPU hash cracker
+      joplin-desktop # Notes management program
       kdePackages.kcalc # Calculator
       kdePackages.kdenlive # Video editor
       lexend
@@ -327,7 +328,6 @@ in
       python312Packages.flake8 # Python linter
       python312Packages.python-lsp-server
       qjackctl # JACK patchbay
-      qownnotes # WYSIWYG Markdown editor
       radare2
       ranger # File explorer
       remmina # GUI RDP/VNC/SSH
