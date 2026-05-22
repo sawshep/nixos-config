@@ -26,6 +26,8 @@ in
     SUBSYSTEM=="tty", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="bef3", OWNER="me", MODE="0600"
   '';
 
+  services.mullvad-vpn.enable = true;
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -301,10 +303,12 @@ in
       jetbrains-mono
       john # CPU hash cracker
       joplin-desktop # Notes management program
+      joplin-desktop # Notes platform
       kdePackages.kcalc # Calculator
       kdePackages.kdenlive # Video editor
       lexend
       libgourou # Process ebooks from command line
+      libguestfs
       libreoffice # Office suite
       lua-language-server
       marksman
@@ -327,6 +331,7 @@ in
       pavucontrol # PulseAudio volume control
       prismlauncher # Minecraft launcher
       protontricks
+      pwgen
       python312Packages.flake8 # Python linter
       python312Packages.python-lsp-server
       qjackctl # JACK patchbay

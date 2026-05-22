@@ -121,20 +121,6 @@
     teamviewer
     clamtk
 
-    #cudaPackages.cuda_gdb
-    #cudaPackages.cudatoolkit
-    #cudaPackages.cudnn
-    #cudaPackages.cutensor
-    #cudaPackages.libcublas
-    #cudaPackages.libcufft
-    #cudaPackages.libcufile
-    #cudaPackages.libcurand
-    #cudaPackages.libnpp
-    #cudaPackages.libnvjpeg
-    #cudaPackages.nvidia_fs
-    #cudaPackages.saxpy
-
-
     exiftool
     #ollama
 
