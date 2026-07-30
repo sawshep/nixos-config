@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
 in
 {
   imports = [
@@ -65,7 +65,6 @@ in
   #  '';
   #};
 
-
   # For accessing Samba shares
   services.gvfs.enable = true;
 
@@ -125,7 +124,6 @@ in
       };
     };
   };
-
 
   boot.supportedFilesystems = [ "ntfs" ];
 

@@ -27,6 +27,8 @@ in
   '';
 
   services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+
 
   hardware.bluetooth = {
     enable = true;
@@ -132,12 +134,6 @@ in
 
     blueman.enable = true;
 
-    tor = {
-      enable = true;
-      client.enable = true;
-      torsocks.enable = true;
-    };
-
   };
 
   programs.virt-manager.enable = true;
@@ -160,7 +156,7 @@ in
 
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-media-tags-plugin
       thunar-volman
@@ -170,13 +166,19 @@ in
   programs.xfconf.enable = true;
 
   environment.systemPackages = with pkgs; [
-      xfce.xfce4-whiskermenu-plugin
-      kdePackages.elisa # Music player
-      typora
-      fdk_aac
-      asunder
-      lame
-      abcde
+
+    abcde # CD ripping software
+    asunder
+    exiftool
+    fdk_aac
+    kdePackages.elisa # Music player
+    lame
+    typora
+    wineWow64Packages.stable
+    wireguard-go
+    wireguard-tools
+    xfce4-whiskermenu-plugin
+
   ];
 
   home-manager.users.me = { pkgs, ... }: {
@@ -193,23 +195,11 @@ in
 
     home.shellAliases = {
       hm = "home-manager";
-      sbcl = "rlwrap sbcl --userinit ~/.config/sbclrc";
       clip = "xclip -selection clipboard";
       rot13 = "tr 'A-Za-z' 'N-ZA-Mn-za-m'";
-      orca-slicer = "__GLX_VENDOR_LIBRARY_NAME=mesa __EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json LC_ALL=en_US.UTF-8 QT_QPA_PLATFORM=xcb orca-slicer";
     };
 
     home.file = {
-      sbcl = {
-        target = "./.config/sbclrc";
-        text = ''
-          #-quicklisp
-          (let ((quicklisp-init (merge-pathnames ".local/share/quicklisp/setup.lisp"
-          				       (user-homedir-pathname))))
-            (when (probe-file quicklisp-init)
-              (load quicklisp-init)))
-        '';
-      };
       discord = {
         target = "./.config/discord/settings.json";
         text = ''
@@ -236,118 +226,108 @@ in
 
       aircrack-ng # Capture and crack air traffic
       amber-theme
-      ameba
       anki # Flashcard program
       bash-language-server
       binwalk # Extract files from binary
+<<<<<<< HEAD
       bitwarden-desktop # Password manager
       blanket # Noise generator
       blender # Modeling software
       bottles # WINE wrapper
       burpsuite # Web exploitation framework
+=======
+      #bitwarden-desktop # Password manager
+>>>>>>> 5ec683c (Clean up packages and update to 26.05)
       caffeine-ng # Keep the screen awake
       calibre # Book management software
-      capstone # Dissassembly library
+      catfish # File search
       cheese # Webcam viewer
-      cherrytree # Tree notes app
       chirp # Handheld radio programmer
+<<<<<<< HEAD
       clang-tools
       claude-code # CLI coding agent
       clooj # Clojure IDE
+=======
+>>>>>>> 5ec683c (Clean up packages and update to 26.05)
       comaps # Mapping software
-      cppcheck
-      crystal
-      crystalline
-      darktable
-      deadnix
-      digikam # Photo management
+      crosspipe # Pipewire patchbay
+      darktable # RAW photo editor
       discord-canary # Messaging and voice call app
       drawing # Like Paint
       easyeffects # Pipewire audio effects
-      enum4linux # SMB enumeration
-      eslint
       evince # document viewer
-      exploitdb # Search exploits from command line
-      feroxbuster # Better directory enumeration
+      fastmail-desktop # Mail client
       file-roller # archive manager
-      flare-floss # Reverse engineering tool
       font-manager
-      foremost # Carve data from binaries
       freerdp # RDP client
       freetube # Youtube client
-      gcs # GURPS character sheet builder
       ghidra # Reverse engineering suite
+      gigolo # Easily mount remote fs
       gimp # Image editor
       gnome-disk-utility # Simply manage disks
       gnucash # Double-entry accounting
       gnuradio # SDR framework
-      gobuster # Everything enumeration
-      google-java-format
-      gopls
       gpa # GPG frontend
       gparted # Disk partitioner
       gqrx # Radio receiver
       guitarix # Digital amplifier
       hashcat # GPU hash cracker
       hcxtools # hashcat companion tools
-      heimdall # Flash android roms
-      helvum # Pipewire patchbay
       hugo # Static site generator
       hunspell # Spellcheck
       hunspellDicts.en-us-large # Spellcheck dict
       imhex # Fancy hex editor for RE
       imv # Image viewer
-      inkscape
+      inkscape # Vector image editor
       inspectrum # Spectrum inspector
+<<<<<<< HEAD
       jdt-language-server
       jetbrains-mono
       john # CPU hash cracker
       joplin-desktop # Notes management program
+=======
+      jetbrains-mono # Monospace font
+>>>>>>> 5ec683c (Clean up packages and update to 26.05)
       joplin-desktop # Notes platform
       kdePackages.kcalc # Calculator
       kdePackages.kdenlive # Video editor
-      lexend
+      lexend # Font for reading proficiency
       libgourou # Process ebooks from command line
       libguestfs
       libreoffice # Office suite
-      lua-language-server
-      marksman
       marktext # Markdown editor
-      marwaita
+      marwaita # GTK theme
       mate.engrampa # archive manager
+<<<<<<< HEAD
       maxima # LISP computer algebra system
       metasploit # Exploitation framework
       mullvad-vpn # VPN client
+=======
+>>>>>>> 5ec683c (Clean up packages and update to 26.05)
       musescore # Music notation software
-      netexec # Active Directory exploitation framework
-      nixpkgs-fmt
-      nixpkgs-lint
-      nnn # File explorer
-      openfortivpn # Fortinet vpn services
-      openscad # Parametric CAD
-      orca-slicer # Slicer for 3D printing
+      orage # Desktop calendar
       pa_applet # Volume control applet
       pandoc # Document converter
       pavucontrol # PulseAudio volume control
       prismlauncher # Minecraft launcher
       protontricks
       pwgen
+<<<<<<< HEAD
       python312Packages.flake8 # Python linter
       python312Packages.python-lsp-server
       qjackctl # JACK patchbay
       radare2
       ranger # File explorer
+=======
+      qjackctl # JACK patchbay
+>>>>>>> 5ec683c (Clean up packages and update to 26.05)
       remmina # GUI RDP/VNC/SSH
       resources # Process monitor
       reversal-icon-theme
-      rizin
       rtl-sdr-librtlsdr
-      rubocop # Ruby analyzer
-      rubyfmt # Ruby formatter
-      rust-analyzer # Rust analyzer
-      rustfmt # Rust formatter
-      s-tui
+      s-tui # "stress" terminal monitoring tool
       signal-desktop # Secure messaging app
+<<<<<<< HEAD
       slack
       solargraph # Ruby lang server
       sox # Audio transformation toolkit
@@ -355,55 +335,47 @@ in
       sshuttle # SSH proxy
 
       statix
+=======
+      spotify # Music streaming service
+      sshuttle # SSH proxy
+>>>>>>> 5ec683c (Clean up packages and update to 26.05)
       strawberry # Music player
-      stress
+      stress # Benchmarking
       system-config-printer # CUPS wrapper
       tenacity # Audio editor, Audacity fork
-      tetex
-      thc-hydra # Brute forcer
+      tetex # LaTex distribution
       thonny # Python IDE for microcontrollers
-      tor-browser
-      transmission_4-qt # Torrent client
-      tree-sitter
-      typescript-language-server
       undervolt
       ungoogled-chromium # Chromium web browser without the spyware
       v4l-utils # Camera utilities
       virglrenderer # 3D acceleration for QEMU
-      volatility3 # Memory forensics tool
-      vscode-langservers-extracted
       vscodium # IDE
       winetricks
       wireshark # Network capture tool
-      wpscan # Wordpress scanner
       xclip # Copy to clipboard from CLI
-      xfce.catfish
-      xfce.exo
-      xfce.gigolo
-      xfce.orage
-      xfce.xfburn
-      xfce.xfce4-appfinder
-      xfce.xfce4-clipman-plugin
-      xfce.xfce4-cpugraph-plugin
-      xfce.xfce4-dict
-      xfce.xfce4-fsguard-plugin
-      xfce.xfce4-genmon-plugin
-      xfce.xfce4-netload-plugin
-      xfce.xfce4-panel
-      xfce.xfce4-pulseaudio-plugin
-      xfce.xfce4-sensors-plugin
-      xfce.xfce4-systemload-plugin
-      xfce.xfce4-volumed-pulse
-      xfce.xfce4-weather-plugin
-      xfce.xfce4-xkb-plugin
-      xfce.xfdashboard
-      xorg.xev
-      xsel
-      xtitle
-      xwinmosaic
-      yara # Malware analyzer
+      xfburn # Burn CDs
+      xfce4-appfinder
+      xfce4-clipman-plugin
+      xfce4-cpugraph-plugin
+      xfce4-dict
+      xfce4-fsguard-plugin
+      xfce4-genmon-plugin
+      xfce4-netload-plugin
+      xfce4-panel
+      xfce4-pulseaudio-plugin
+      xfce4-sensors-plugin
+      xfce4-systemload-plugin
+      xfce4-volumed-pulse
+      xfce4-weather-plugin
+      xfce4-xkb-plugin
+      xfdashboard
       yt-dlp # Youtube video downloader
-      zap # Web pen testing proxy
+
+      # Supporting Nix
+      statix # Linter
+      deadnix # Find dead expressions
+      nixpkgs-fmt
+      nixpkgs-lint
 
     ];
 
@@ -549,7 +521,6 @@ in
     };
 
     programs.firefox.enable = true;
-    programs.librewolf.enable = true;
     programs.mpv.enable = true;
     programs.zathura.enable = true;
     programs.thunderbird = {
@@ -588,25 +559,25 @@ in
       withRuby = true;
       withPython3 = true;
 
-      plugins = with pkgs.vimPlugins; [
+      #plugins = with pkgs.vimPlugins; [
 
-	cmp-buffer
-	cmp-nvim-lsp
-	cmp-path
-	luasnip
-	nvim-cmp
-	nvim-web-devicons
-	vim-nix
-        lualine-nvim
-        neoterm
-        nvim-lspconfig
-        nvim-tree-lua
-        nvim-treesitter
-        vim-sandwich
-        wezterm-nvim
+      #  cmp-buffer
+      #  cmp-nvim-lsp
+      #  cmp-path
+      #  luasnip
+      #  nvim-cmp
+      #  nvim-web-devicons
+      #  vim-nix
+      #  lualine-nvim
+      #  neoterm
+      #  nvim-lspconfig
+      #  nvim-tree-lua
+      #  nvim-treesitter
+      #  vim-sandwich
+      #  wezterm-nvim
 
-      ];
-      extraLuaConfig = ''
+      #];
+      initLua = ''
         -- Basic settings
         vim.opt.signcolumn = "yes"
         vim.opt.ignorecase = true

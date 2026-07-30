@@ -13,14 +13,21 @@
   networking.hostName = "elitebook-835-g7"; # Define your hostname.
   networking.firewall.enable = false;
 
-  boot.plymouth = {
-    enable = true;
-    theme = "nixos-bgrt";
-    themePackages = with pkgs; [
-      nixos-bgrt-plymouth
-    ];
-  };
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "spinner";
+    };
 
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "rd.udev.log_level=3"
+      "rd.systemd.show_status=auto"
+    ];
+    loader.timeout = 0;
+  };
 
   # Just generate the host key for Agenix
   services.openssh = {
@@ -41,9 +48,6 @@
 
   programs.steam.enable = true;
 
-  services.tor.enable = true;
-  services.tor.client.enable = true;
-
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
   services.fprintd = {
@@ -53,33 +57,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
-
-  environment.systemPackages = with pkgs; [
-
-    wireguard-tools
-    wireguard-go
-
-    libticables2
-    libticalcs2
-    libticonv
-    libtifiles2
-    micropython
-    pico-sdk
-    wineWowPackages.stable
-
-    cudaPackages.cudatoolkit
-    exiftool
-    python311Packages.capstone
-    python311Packages.pefile
-    python311Packages.pycryptodome
-    python311Packages.yara-python
-
-    libbs2b
-    libebur128
-    libsndfile
-    tbb
-
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
