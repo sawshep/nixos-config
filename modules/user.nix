@@ -181,7 +181,17 @@ in
 
   ];
 
-  home-manager.users.me = { pkgs, ... }: {
+  home-manager.users.me = { pkgs, ... }:
+  let
+    prismlauncherNoNativeGlfw = pkgs.prismlauncher.override {
+      # Minecraft 26.1.2 / LWJGL 3.4.1 expects Mojang's GLFW IME symbols
+      # such as glfwSetPreeditCallback. nixpkgs' glfw3-minecraft 3.4 does
+      # not provide them, so let LWJGL use the native GLFW from its jar.
+      glfw3-minecraft = pkgs.runCommand "prismlauncher-no-native-glfw" { } ''
+        mkdir -p $out/lib
+      '';
+    };
+  in {
     nixpkgs.config.allowUnfree = true;
 
     # Home Manager needs a bit of information about you and the
@@ -197,6 +207,7 @@ in
       hm = "home-manager";
       clip = "xclip -selection clipboard";
       rot13 = "tr 'A-Za-z' 'N-ZA-Mn-za-m'";
+      prismlauncher = "__GLX_VENDOR_LIBRARY_NAME=nvidia prismlauncher";
     };
 
     home.file = {
@@ -229,26 +240,13 @@ in
       anki # Flashcard program
       bash-language-server
       binwalk # Extract files from binary
-<<<<<<< HEAD
       bitwarden-desktop # Password manager
-      blanket # Noise generator
-      blender # Modeling software
-      bottles # WINE wrapper
-      burpsuite # Web exploitation framework
-=======
-      #bitwarden-desktop # Password manager
->>>>>>> 5ec683c (Clean up packages and update to 26.05)
       caffeine-ng # Keep the screen awake
       calibre # Book management software
       catfish # File search
       cheese # Webcam viewer
       chirp # Handheld radio programmer
-<<<<<<< HEAD
-      clang-tools
-      claude-code # CLI coding agent
-      clooj # Clojure IDE
-=======
->>>>>>> 5ec683c (Clean up packages and update to 26.05)
+      pkgs-unstable.codex
       comaps # Mapping software
       crosspipe # Pipewire patchbay
       darktable # RAW photo editor
@@ -280,14 +278,7 @@ in
       imv # Image viewer
       inkscape # Vector image editor
       inspectrum # Spectrum inspector
-<<<<<<< HEAD
-      jdt-language-server
-      jetbrains-mono
-      john # CPU hash cracker
-      joplin-desktop # Notes management program
-=======
       jetbrains-mono # Monospace font
->>>>>>> 5ec683c (Clean up packages and update to 26.05)
       joplin-desktop # Notes platform
       kdePackages.kcalc # Calculator
       kdePackages.kdenlive # Video editor
@@ -298,47 +289,28 @@ in
       marktext # Markdown editor
       marwaita # GTK theme
       mate.engrampa # archive manager
-<<<<<<< HEAD
-      maxima # LISP computer algebra system
-      metasploit # Exploitation framework
       mullvad-vpn # VPN client
-=======
->>>>>>> 5ec683c (Clean up packages and update to 26.05)
       musescore # Music notation software
       orage # Desktop calendar
       pa_applet # Volume control applet
       pandoc # Document converter
       pavucontrol # PulseAudio volume control
-      prismlauncher # Minecraft launcher
+      prismlauncherNoNativeGlfw # Minecraft launcher
       protontricks
       pwgen
-<<<<<<< HEAD
-      python312Packages.flake8 # Python linter
-      python312Packages.python-lsp-server
       qjackctl # JACK patchbay
-      radare2
-      ranger # File explorer
-=======
-      qjackctl # JACK patchbay
->>>>>>> 5ec683c (Clean up packages and update to 26.05)
       remmina # GUI RDP/VNC/SSH
       resources # Process monitor
       reversal-icon-theme
       rtl-sdr-librtlsdr
       s-tui # "stress" terminal monitoring tool
       signal-desktop # Secure messaging app
-<<<<<<< HEAD
-      slack
-      solargraph # Ruby lang server
       sox # Audio transformation toolkit
       spotify # Music streaming service
       sshuttle # SSH proxy
 
-      statix
-=======
       spotify # Music streaming service
       sshuttle # SSH proxy
->>>>>>> 5ec683c (Clean up packages and update to 26.05)
       strawberry # Music player
       stress # Benchmarking
       system-config-printer # CUPS wrapper

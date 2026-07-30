@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  lmstudio-nix = builtins.fetchTarball "https://github.com/Daaboulex/lmstudio-nix/archive/main.tar.gz";
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -7,6 +10,7 @@
       ./modules/common.nix
       ./modules/user.nix
       ./modules/headless.nix
+      "${lmstudio-nix}/nixos-module.nix"
     ];
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
@@ -31,7 +35,7 @@
 
     firewall = {
       enable = true;
-      # For Caddy -> Open WebUI
+      # For Caddy -> LM Studio
       allowedTCPPorts = [ 80 443 ];
     };
   };
@@ -47,13 +51,11 @@
   #  fangfrisch.enable = true;
   #};
 
-  #services.ollama = {
-  #  enable = false;
-  #  environmentVariables = {
-  #    CUDA_VISIBLE_DEVICES = "0,1";
-  #    #OLLAMA_LLM_LIBRARY = "cuda_v11";
-  #  };
-  #  acceleration = "cuda";
+  #services.lmstudio = {
+  #  enable = true;
+  #  port = 1234;          # API port (default: 1234)
+  #  openFirewall = false;  # Open firewall for API port
+  #  dataDir = "/var/lib/lmstudio";  # Model storage directory
   #};
 
   services.caddy = {
@@ -61,27 +63,26 @@
     virtualHosts."10.0.0.7" = {
         extraConfig = ''
           tls internal
-          reverse_proxy http://localhost:8080
+          reverse_proxy http://localhost:1234
         '';
       };
-    virtualHosts."ai.spaceheaterlab.net" = {
+    virtualHosts."ai.sawyers.cloud" = {
         extraConfig = ''
           tls internal
-          reverse_proxy http://localhost:8080
+          reverse_proxy http://localhost:1234
         '';
       };
   };
 
-  services.open-webui.enable = false;
-  services.open-webui.openFirewall = true;
-
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = false;
   nix.settings = {
-    substituters = [
+    extra-substituters = [
       "https://cuda-maintainers.cachix.org"
+      "https://cache.flox.dev"
     ];
-    trusted-public-keys = [
+    extra-trusted-public-keys = [
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
     ];
   };
 
@@ -121,8 +122,9 @@
     teamviewer
     clamtk
 
+    lmstudio
+
     exiftool
-    #ollama
 
     i2c-tools
     liquidctl
@@ -138,10 +140,6 @@
     tbb
 
   ];
-
-  environment.variables = {
-    CUDA_PATH = "${pkgs.cudatoolkit}";
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

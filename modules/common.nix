@@ -318,7 +318,7 @@ in
     clojure # JVM-based Lisp
     #crystal # Compiled Ruby-like language
     ghc # Haskell compiler and interpreter
-    openjdk # Java development kit and runtime environment
+    jdk25_headless # Java development kit and runtime environment
     php # HTML embedded scripting lanugage
     python3 # All of Python
     racket # Dialect of Lisp
