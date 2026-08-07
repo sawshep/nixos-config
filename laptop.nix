@@ -2,9 +2,11 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configurations/elitebook-835-g7.nix
       ./modules/common.nix
+      ./modules/desktop.nix
       ./modules/user.nix
     ];
 
@@ -35,8 +37,8 @@
     openFirewall = false;
     hostKeys = [
       {
-         path = "/etc/ssh/ssh_host_ed25519_key";
-         type = "ed25519";
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
       }
     ];
     settings = {
@@ -67,4 +69,3 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
-

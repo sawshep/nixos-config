@@ -26,17 +26,13 @@ in
     SUBSYSTEM=="tty", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="bef3", OWNER="me", MODE="0600"
   '';
 
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
-
-
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
     settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
-        Experimental = true;  # Enables better codec support
+        Experimental = true; # Enables better codec support
         FastConnectable = true;
       };
       Policy = {
@@ -52,8 +48,6 @@ in
   networking.firewall.allowedUDPPorts = [ 25565 ];
 
   services = {
-    #ollama.enable = true;
-    #ollama.package = pkgs-unstable.ollama;
     mullvad-vpn.enable = true;
     fwupd.enable = true;
     redshift = {
@@ -68,47 +62,6 @@ in
         night = 3700;
       };
     };
-    xserver = {
-      enable = true;
-      excludePackages = [ pkgs.xterm ];
-
-      xkb = {
-        layout = "us";
-        variant = "altgr-intl";
-      };
-
-      exportConfiguration = true;
-
-      desktopManager = {
-        xterm.enable = false;
-        xfce.enable = true;
-      };
-
-      displayManager = {
-        lightdm = {
-          enable = true;
-          greeters.gtk = {
-            enable = true;
-            iconTheme = {
-              name = "Reversal-dark";
-              package = pkgs.reversal-icon-theme;
-            };
-            theme = {
-              name = "WhiteSur-Dark";
-              package = pkgs.whitesur-gtk-theme;
-            };
-            cursorTheme = {
-              name = "WhiteSur-cursors";
-              package = pkgs.whitesur-cursors;
-              size = 24;
-            };
-          };
-        };
-        defaultSession = "xfce";
-      };
-
-    };
-
     pipewire = {
       enable = true;
       wireplumber.enable = true;
@@ -118,10 +71,10 @@ in
           "bluez5.enable-sbc-xq" = true;
           "bluez5.enable-msbc" = true;
           "bluez5.enable-hw-volume" = true;
-          
+
           # Enable AAC codec support (important for AirPods)
           "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
-          
+
           # Enable all Bluetooth roles for proper profile switching
           "bluez5.roles" = [ "a2dp_sink" "a2dp_source" "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
         };
@@ -142,7 +95,7 @@ in
     enable = true;
     package = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [
-        pkgsi686Linux.libva  # Video acceleration
+        pkgsi686Linux.libva # Video acceleration
         pkgsi686Linux.libvdpau
         pkgsi686Linux.gtk3
         pkgsi686Linux.glibc
@@ -163,8 +116,6 @@ in
     ];
   };
 
-  programs.xfconf.enable = true;
-
   environment.systemPackages = with pkgs; [
 
     abcde # CD ripping software
@@ -181,7 +132,7 @@ in
 
   ];
 
-  home-manager.users.me = { pkgs, ... }:
+  home-manager.users.me = { config, pkgs, ... }:
   let
     prismlauncherNoNativeGlfw = pkgs.prismlauncher.override {
       # Minecraft 26.1.2 / LWJGL 3.4.1 expects Mojang's GLFW IME symbols
@@ -191,7 +142,8 @@ in
         mkdir -p $out/lib
       '';
     };
-  in {
+  in
+  {
     nixpkgs.config.allowUnfree = true;
 
     # Home Manager needs a bit of information about you and the
@@ -201,7 +153,10 @@ in
 
     home.sessionPath = [ "$HOME/bin" ];
 
-    programs.zsh.enable = true;
+      programs.zsh = {
+        enable = true;
+        dotDir = "${config.xdg.configHome}/zsh";
+    };
 
     home.shellAliases = {
       hm = "home-manager";
@@ -236,11 +191,10 @@ in
     home.packages = with pkgs; [
 
       aircrack-ng # Capture and crack air traffic
-      amber-theme
       anki # Flashcard program
       bash-language-server
       binwalk # Extract files from binary
-      bitwarden-desktop # Password manager
+      pkgs-unstable.bitwarden-desktop # Password manager
       caffeine-ng # Keep the screen awake
       calibre # Book management software
       catfish # File search
@@ -249,7 +203,7 @@ in
       pkgs-unstable.codex
       comaps # Mapping software
       crosspipe # Pipewire patchbay
-      darktable # RAW photo editor
+      pkgs-unstable.darktable # RAW photo editor
       discord-canary # Messaging and voice call app
       drawing # Like Paint
       easyeffects # Pipewire audio effects
@@ -278,17 +232,14 @@ in
       imv # Image viewer
       inkscape # Vector image editor
       inspectrum # Spectrum inspector
-      jetbrains-mono # Monospace font
-      joplin-desktop # Notes platform
+      pkgs-unstable.joplin-desktop # Notes platform
       kdePackages.kcalc # Calculator
       kdePackages.kdenlive # Video editor
-      lexend # Font for reading proficiency
       libgourou # Process ebooks from command line
       libguestfs
       libreoffice # Office suite
       marktext # Markdown editor
-      marwaita # GTK theme
-      mate.engrampa # archive manager
+    engrampa # archive manager
       mullvad-vpn # VPN client
       musescore # Music notation software
       orage # Desktop calendar
@@ -301,7 +252,6 @@ in
       qjackctl # JACK patchbay
       remmina # GUI RDP/VNC/SSH
       resources # Process monitor
-      reversal-icon-theme
       rtl-sdr-librtlsdr
       s-tui # "stress" terminal monitoring tool
       signal-desktop # Secure messaging app
@@ -351,148 +301,10 @@ in
 
     ];
 
-    xfconf.settings = {
-      keyboard-layout = {
-        "Default/XkbDisable" = false;
-        "Default/XkbLayout" = "us";
-        "Default/XkbVariant" = "altgr-intl";
-      };
-      xsettings = {
-        "Gtk/FontName" = "Lexend Light 12";
-        "Gtk/MonospaceFontName" = "JetBrains Mono 12";
-      };
-      xfce4-terminal = {
-        "binding-ambiguous-width" = "TERMINAL_AMBIGUOUS_WIDTH_BINDING_WIDE";
-        "color-background" = "#24241f1f3131";
-        "color-background-vary" = true;
-        "color-bold-is-bright" = true;
-        "color-bold-use-default" = true;
-        "color-cursor" = "#dcdcdc";
-        "color-cursor-use-default" = true;
-        "color-foreground" = "#dcdcdc";
-        "color-palette" = "#3f3f3f;#705050;#60b48a;#dfaf8f;#9ab8d7;#dc8cc3;#8cd0d3;#dcdcdc;#709080;#dca3a3;#72d5a3;#f0dfaf;#94bff3;#ec93d3;#93e0e3;#ffffff";
-        "color-selection-use-default" = true;
-        "color-use-theme" = false;
-        "dropdown-show-borders" = false;
-        "font-use-system" = true;
-        "misc-bell" = false;
-        "misc-bell-urgent" = false;
-        "misc-cursor-blinks" = true;
-        "misc-cursor-shape" = "TERMINAL_CURSOR_SHAPE_IBEAM";
-        "misc-hyperlinks-enabled" = true;
-        "misc-middle-click-opens-uri" = false;
-        "misc-mouse-autohide" = false;
-        "misc-right-click-action" = "TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU";
-        "misc-show-unsafe-paste-dialog" = false;
-        "misc-slim-tabs" = true;
-        "scrolling-unlimited" = true;
-        "tab-activity-color" = "#aa0000";
-        "title-mode" = "TERMINAL_TITLE_REPLACE";
-      };
-    xfwm4 = {
-      "borderless_maximize" = true;
-      "box_move" = true;
-      "box_resize" = true;
-      "mousewheel_rollup" = false;
-      "general/title_font" = "Lexend Bold 12";
-    };
-
-    };
-
-    home.pointerCursor = {
-      name = "WhiteSur-cursors";
-      package = pkgs.whitesur-cursors;
-      size = 24;
-      gtk.enable = true;
-      x11.enable = true;
-    };
-
-    gtk = {
+    programs.firefox = {
       enable = true;
-      iconTheme = {
-        name = "Reversal-dark";
-        package = pkgs.reversal-icon-theme;
-      };
-      theme = {
-        name = "WhiteSur-Dark";
-        package = pkgs.whitesur-gtk-theme;
-      };
-      cursorTheme = {
-        name = "WhiteSur-cursors";
-        package = pkgs.whitesur-cursors;
-        size = 24;
-      };
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
-    };
-
-    programs.wezterm = {
-      enable = true;
-      enableZshIntegration = true;
-      extraConfig = ''
-        local wezterm = require("wezterm")
-        local config = wezterm.config_builder()
-
-        -- Shell
-        config.default_prog = { "/run/current-system/sw/bin/zsh", "-l" }
-
-        -- Appearance
-        config.color_scheme = "Wez"
-
-        wezterm.on("window-config-reloaded", function(window)
-                local overrides = window:get_config_overrides() or {}
-                local appearance = window:get_appearance()
-                local scheme = scheme_for_appearance(appearance)
-                if overrides.color_scheme ~= scheme then
-                        overrides.color_scheme = scheme
-                        window:set_config_overrides(overrides)
-                end
-        end)
-
-        config.font = wezterm.font_with_fallback({
-                "JetBrains Mono",
-                "Symbols Nerd Font",
-        })
-        config.font_size = 12.0
-
-        -- Window
-        config.window_padding = {
-                left = 8,
-                right = 8,
-                top = 8,
-                bottom = 8,
-        }
-        config.window_decorations = "RESIZE"
-        config.hide_tab_bar_if_only_one_tab = true
-        config.use_fancy_tab_bar = false
-
-        -- Behavior
-        config.scrollback_lines = 10000
-        config.enable_scroll_bar = true
-        config.audible_bell = "Disabled"
-        config.check_for_updates = false
-
-        -- GPU
-        config.front_end = "WebGpu"
-
-        -- Keybindings (keep defaults, add a few conveniences)
-        config.keys = {
-                { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard") },
-                { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("Clipboard") },
-                { key = "=", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
-                { key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
-                { key = "0", mods = "CTRL", action = wezterm.action.ResetFontSize },
-        }
-
-        return config
-      '';
-    };
-
-    programs.firefox.enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+  };
     programs.mpv.enable = true;
     programs.zathura.enable = true;
     programs.thunderbird = {
@@ -550,97 +362,102 @@ in
 
       #];
       initLua = ''
-        -- Basic settings
-        vim.opt.signcolumn = "yes"
-        vim.opt.ignorecase = true
-        vim.opt.smartcase = true
-        vim.opt.incsearch = true
-        vim.opt.number = true
-        vim.opt.relativenumber = true
-        vim.opt.cursorline = true
-        vim.opt.showmode = false
-        vim.opt.splitbelow = true
-        vim.opt.splitright = true
-        vim.opt.tabstop = 4
-        vim.opt.softtabstop = 0
-        vim.opt.expandtab = true
-        vim.opt.shiftwidth = 4
-        vim.opt.smarttab = true
-        vim.opt.textwidth = 80
-        vim.opt.spell = true
-        vim.opt.spelllang = { "en" }
-        vim.opt.mouse = "a"
-        vim.cmd("filetype plugin indent on")
-        
-        -- Keymaps
-        local map = vim.api.nvim_set_keymap
-        local opts = { noremap = true, silent = true }
-        
-        -- Visual mode tab/shift-tab
-        map("v", "<Tab>", ">gv", {})
-        map("v", "<S-Tab>", "<gv", {})
-        
-        -- Yank to end of line
-        map("n", "Y", "y$", opts)
-        
-        -- Terminal mode: exit with Esc
-        map("t", "<Esc>", [[<C-\><C-n>]], opts)
-        
-        -- Resize windows
-        map("n", "<C-Up>", ":resize +2<CR>", opts)
-        map("n", "<C-Down>", ":resize -2<CR>", opts)
-        map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
-        map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-	-- LSP Setup
-	local lspconfig = require('lspconfig')
-	lspconfig.clangd.setup {}
+                -- Basic settings
+                vim.opt.signcolumn = "yes"
+                vim.opt.ignorecase = true
+                vim.opt.smartcase = true
+                vim.opt.incsearch = true
+                vim.opt.number = true
+                vim.opt.relativenumber = true
+                vim.opt.cursorline = true
+                vim.opt.showmode = false
+                vim.opt.splitbelow = true
+                vim.opt.splitright = true
+                vim.opt.tabstop = 4
+                vim.opt.softtabstop = 0
+                vim.opt.expandtab = true
+                vim.opt.shiftwidth = 4
+                vim.opt.smarttab = true
+                vim.opt.textwidth = 80
+                vim.opt.spell = true
+                vim.opt.spelllang = { "en" }
+                vim.opt.mouse = "a"
+                vim.cmd("filetype plugin indent on")
 
-	-- Autocompletion
-	local cmp = require'cmp'
-	cmp.setup {
-	  snippet = {
-	    expand = function(args)
-	      require('luasnip').lsp_expand(args.body)
-	    end,
-	  },
-	  sources = {
-	    { name = 'nvim_lsp' },
-	    { name = 'buffer' },
-	    { name = 'path' },
-	  },
-	  mapping = cmp.mapping.preset.insert({
-	    ['<Tab>'] = cmp.mapping.select_next_item(),
-	    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-	    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-	  }),
-	}
+                -- Keymaps
+                local map = vim.api.nvim_set_keymap
+                local opts = { noremap = true, silent = true }
 
-	-- Treesitter
-	require'nvim-treesitter.configs'.setup {
-	  highlight = { enable = true },
-	}
+                -- Visual mode tab/shift-tab
+                map("v", "<Tab>", ">gv", {})
+                map("v", "<S-Tab>", "<gv", {})
 
-        -- Tree
-        vim.g.loaded_netrw = 1
-        vim.g.loaded_netrwPlugin = 1
+                -- Yank to end of line
+                map("n", "Y", "y$", opts)
 
-        -- optionally enable 24-bit colour
-        vim.opt.termguicolors = true
+                -- Terminal mode: exit with Esc
+                map("t", "<Esc>", [[<C-\><C-n>]], opts)
 
-        -- empty setup using defaults
-        require("nvim-tree").setup()
+                -- Resize windows
+                map("n", "<C-Up>", ":resize +2<CR>", opts)
+                map("n", "<C-Down>", ":resize -2<CR>", opts)
+                map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+                map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 
-	-- Lualine
-	require('lualine').setup()
+      -- LSP Setup
+      local lspconfig = require('lspconfig')
+      lspconfig.clangd.setup {}
+
+
+      -- Autocompletion
+      local cmp = require'cmp'
+      cmp.setup {
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'path' },
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        }),
+      }
+
+
+      -- Treesitter
+      require'nvim-treesitter.configs'.setup {
+        highlight = { enable = true },
+      }
+
+                -- Tree
+                vim.g.loaded_netrw = 1
+                vim.g.loaded_netrwPlugin = 1
+
+                -- optionally enable 24-bit colour
+                vim.opt.termguicolors = true
+
+                -- empty setup using defaults
+                require("nvim-tree").setup()
+
+
+      -- Lualine
+      require('lualine').setup()
       '';
     };
 
     xdg = {
       enable = true;
       mime.enable = true;
-      userDirs = {
-        enable = true;
-        createDirectories = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      setSessionVariables = true;
         desktop = "$HOME/desk";
         documents = "$HOME/doc";
         download = "$HOME/down";
@@ -665,6 +482,6 @@ in
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
     programs.home-manager.path = "$HOME/proj/home-manager";
-  	
+
   };
 }

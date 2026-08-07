@@ -1,19 +1,38 @@
 { config, pkgs, ... }:
 
 let
-  lmstudio-nix = builtins.fetchTarball "https://github.com/Daaboulex/lmstudio-nix/archive/main.tar.gz";
+  pkgs-unstable = import <nixpkgs-unstable> {
+    config.allowUnfree = true;
+  };
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configurations/desktop.nix
       ./modules/common.nix
+      ./modules/desktop.nix
       ./modules/user.nix
       ./modules/headless.nix
-      "${lmstudio-nix}/nixos-module.nix"
     ];
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "spinner";
+    };
+
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "rd.udev.log_level=3"
+      "rd.systemd.show_status=auto"
+    ];
+    loader.timeout = 0;
+  };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -28,9 +47,9 @@ in
     hostName = "codebreaker"; # Define your hostname.
 
     hosts = {
-      "10.0.0.5" = ["radicale.spaceheaterlab.net"];
-      "10.0.0.6" = ["lab.cyberhawks.org"];
-      "10.0.0.7" = ["ai.spaceheaterlab.net"];
+      "10.0.0.5" = [ "radicale.spaceheaterlab.net" ];
+      "10.0.0.6" = [ "lab.cyberhawks.org" ];
+      "10.0.0.7" = [ "ai.spaceheaterlab.net" ];
     };
 
     firewall = {
@@ -42,36 +61,20 @@ in
 
   services.syncthing.openDefaultPorts = true;
 
-  # Antivirus
-  #services.clamav = {
-  #  daemon.enable = true;
-  #  updater.enable = true;
-  #  scanner.enable = true;
-  #  # Provides extra signatures
-  #  fangfrisch.enable = true;
-  #};
-
-  #services.lmstudio = {
-  #  enable = true;
-  #  port = 1234;          # API port (default: 1234)
-  #  openFirewall = false;  # Open firewall for API port
-  #  dataDir = "/var/lib/lmstudio";  # Model storage directory
-  #};
-
   services.caddy = {
     enable = true;
     virtualHosts."10.0.0.7" = {
-        extraConfig = ''
-          tls internal
-          reverse_proxy http://localhost:1234
-        '';
-      };
+      extraConfig = ''
+        tls internal
+        reverse_proxy http://localhost:1234
+      '';
+    };
     virtualHosts."ai.sawyers.cloud" = {
-        extraConfig = ''
-          tls internal
-          reverse_proxy http://localhost:1234
-        '';
-      };
+      extraConfig = ''
+        tls internal
+        reverse_proxy http://localhost:1234
+      '';
+    };
   };
 
   nixpkgs.config.cudaSupport = false;
@@ -88,6 +91,32 @@ in
 
 
   hardware.hackrf.enable = true;
+
+  # This is intentionally workstation-only: the Corsair DIMMs are connected
+  # through this machine's AMD SMBus.  Load its driver so OpenRGB can find the
+  # RAM reliably.
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
+
+  # The OpenRGB daemon starts before it has finished detecting controllers.
+  # Wait for that scan, then explicitly put every Vengeance DIMM into Direct
+  # mode and set every LED to black (off).  Selecting the controller prevents
+  # this from changing lighting on unrelated devices.
+  systemd.services.openrgb-ram-off = {
+    description = "Turn off Corsair Vengeance RAM RGB";
+    wantedBy = [ "multi-user.target" ];
+    requires = [ "openrgb.service" ];
+    after = [ "openrgb.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
+    };
+    script = ''
+      ${pkgs.openrgb}/bin/openrgb --device Vengeance --mode direct --color 000000
+    '';
+  };
 
   services.openssh = {
     enable = true;
@@ -122,7 +151,7 @@ in
     teamviewer
     clamtk
 
-    lmstudio
+    pkgs-unstable.lmstudio
 
     exiftool
 

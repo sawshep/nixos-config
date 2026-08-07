@@ -2,6 +2,9 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
+  pkgs-unstable = import <nixpkgs-unstable> {
+    config.allowUnfree = true;
+  };
 in
 {
   imports = [
@@ -22,9 +25,9 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  # Pin to unstable
+  # Keep system upgrades on the same release this configuration targets.
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-26.05";
 
   nix.settings.auto-optimise-store = true;
 
